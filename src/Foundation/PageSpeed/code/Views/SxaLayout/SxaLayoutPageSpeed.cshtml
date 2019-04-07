@@ -1,0 +1,117 @@
+﻿@using System.Web.Mvc.Html
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Analytics.Extensions
+@using Sitecore.XA.Foundation.MarkupDecorator.Extensions
+@using Sitecore.XA.Foundation.SitecoreExtensions.Extensions
+@using Sitecore.XA.Foundation.Grid.Extensions
+@using Sitecore.XA.Foundation.Theming.Bundler
+@using Site.Foundation.PageSpeed.Speedy
+
+@model Sitecore.Mvc.Presentation.RenderingModel
+
+@{
+    SpeedyAssetLinks assetLinks = SpeedyAssetLinksGenerator.GenerateDeferedLinks(new ThemesProvider());
+}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="@Model.Item.Language.Name">
+<!--<![endif]-->
+<head>
+    @Html.Sitecore().VisitorIdentification()
+    @Html.Sxa().Placeholder("head")
+</head>
+<body @Html.Sxa().Body().Decorate()>
+
+    @Html.Sitecore().Placeholder("body-top")
+
+    @Html.Sxa().GridBody()
+
+    @Html.Sitecore().Placeholder("body-bottom")
+
+
+    <noscript id="deferred-styles">
+        @foreach (string style in assetLinks.Styles)
+        {
+            @Html.Raw(style)
+        }
+    </noscript>
+    <script>
+        var loadDeferredStyles = function () {
+            var addStylesNode = document.getElementById("deferred-styles");
+            var replacement = document.createElement("div");
+            replacement.innerHTML = addStylesNode.textContent;
+            document.body.appendChild(replacement);
+            addStylesNode.parentElement.removeChild(addStylesNode);
+        };
+        var raf = requestAnimationFrame ||
+            mozRequestAnimationFrame ||
+            webkitRequestAnimationFrame ||
+            msRequestAnimationFrame;
+        if (raf) raf(function () { window.setTimeout(loadDeferredStyles, 3000); });
+        else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+    <script defer>
+			function bootstrapMain() {
+				setTimeout(function () {
+					// do something 1000ms later here.
+					deferedLoadMain();
+				}, 3000);
+			}
+
+			function inject(url){
+				var coreScripts = document.createElement('script');
+				coreScripts.src = url+".js";
+				document.head.appendChild(coreScripts);
+			}
+
+			function deferedLoadMain() {
+
+				var clientScripts = {};
+				@Html.Raw(assetLinks.ClientScriptsRendered);
+
+				inject(coreScripts[coreScriptNames[0]]);
+				var coreLoadtest = "(typeof jQuery != 'undefined') && (typeof Backbone != 'undefined')";
+
+				var round2 = function (){  inject(clientScripts[clientScriptNames[0]]); round3(); };
+				var round3 = function (){  inject(clientScripts[clientScriptNames[1]]); round4(); };
+				var round4 = function (){  inject(clientScripts[clientScriptNames[2]]); round5(); };
+				var round5 = function (){  inject(clientScripts[clientScriptNames[3]]); round6(); };
+				var round6 = function (){  inject(clientScripts[clientScriptNames[4]]); round7(); };
+				var round7 = function (){  inject(clientScripts[clientScriptNames[5]]); round8(); };
+				var round8 = function (){  inject(clientScripts[clientScriptNames[6]]); round9(); };
+				var round9 = function (){  inject(clientScripts[clientScriptNames[7]]); };
+
+				bootstrapMapper(coreLoadtest, round2 );
+
+				function registerJSLoadingCycle(e, o, t, a) {
+					requirejs.config({
+						paths: e
+					}), require(o, function() {
+						t && (a ? bootstrapMapper(a, t) : t())
+					})
+				}
+
+				function bootstrapMapper(variableToCheck, successCallback) {
+					eval(variableToCheck) ? successCallback() : setTimeout(function() {
+						bootstrapMapper(variableToCheck, successCallback)
+					}, 200)
+				}
+
+			}
+
+			if (window.addEventListener)
+				window.addEventListener("load", bootstrapMain, false);
+			else if (window.attachEvent)
+				window.attachEvent("onload", bootstrapMain);
+			else
+				window.onload = bootstrapMain;
+    </script>
+    <!-- /#wrapper -->
+
+</body>
+</html>
