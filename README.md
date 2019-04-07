@@ -1,2 +1,2 @@
 # HandySXAHelixFoundation
-A collection of Helix modules that related to SXA sites. 
+A collection of Helix modules that relate to SXA sites. 
