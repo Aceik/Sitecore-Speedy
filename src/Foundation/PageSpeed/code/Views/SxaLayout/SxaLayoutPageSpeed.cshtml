@@ -10,7 +10,7 @@
 @model Sitecore.Mvc.Presentation.RenderingModel
 
 @{
-    SpeedyAssetLinks assetLinks = SpeedyAssetLinksGenerator.GenerateDeferedLinks(new ThemesProvider());
+    SpeedyAssetLinks assetLinks = SpeedyAssetLinksGeneratorV2.GenerateDeferedLinks(new ThemesProvider());
 }
 
 <!DOCTYPE html>
@@ -23,6 +23,110 @@
 <head>
     @Html.Sitecore().VisitorIdentification()
     @Html.Sxa().Placeholder("head")
+
+    <script>
+        @Html.Raw(assetLinks.ClientScriptsRendered)
+        var Speedy = {
+            variables: {
+                src : null,  
+                script: null,
+                pendingScripts : [],
+                firstScript: function () { return document.scripts[0] }
+            },
+            init: function () {
+                var firstRunCompleted = Speedy.tools.checkCookie(Speedy.settings.cookieName)
+                if (firstRunCompleted) {
+                    Speedy.dynamicLoad();
+                } else {
+                    Speedy.fallbackExperience();
+                    // Defer load a bit longer with a fallback experience
+                    window.setTimeout(Speedy.dynamicLoad, Speedy.settings.deferLoadForMilliseconds);
+                    Speedy.tools.setCookie(Speedy.settings.cookieName, true, Speedy.settings.cookieExpiration);
+                }
+            },
+            dynamicLoad: function () {
+                // loop through our script urls
+                while (Speedy.variables.src = clientScripts.shift()) {
+                    if ('async' in Speedy.variables.firstScript()) { // modern browsers
+                        Speedy.variables.script = document.createElement('script');
+                        Speedy.variables.script.async = false;
+                        Speedy.variables.script.src = Speedy.variables.src;
+                        document.head.appendChild(Speedy.variables.script);
+                    }
+                    else if (Speedy.variables.firstScript().readyState) { // IE<10
+                        // create a script and add it to our todo pile
+                        Speedy.variables.script = document.createElement('script');
+                        Speedy.variables.pendingScripts.push(script);
+                        // listen for state changes
+                        Speedy.variables.script.onreadystatechange = Speedy.events.stateChange;
+                        // must set src AFTER adding onreadystatechange listener
+                        // else we’ll miss the loaded event for cached scripts
+                        Speedy.variables.script.src = Speedy.variables.src;
+                        console.log("readyState")
+                    }
+                    else { // fall back to defer
+                        document.write('<script src="' + Speedy.variables.src + '" defer></' + 'script>');
+                    }
+                }
+            },
+            events: {
+                stateChange: function() {
+                    // Execute as many scripts in order as we can
+                    var pendingScript;
+                    while (Speedy.variables.pendingScripts[0] && Speedy.variables.pendingScripts[0].readyState == 'loaded') {
+                        pendingScript = Speedy.variables.pendingScripts.shift();
+                        // avoid future loading events from this script (eg, if src changes)
+                        pendingScript.onreadystatechange = null;
+                        // can't just appendChild, old IE bug if element isn't closed
+                        Speedy.variables.firstScript().parentNode.insertBefore(pendingScript, Speedy.variables.firstScript());
+                    }
+                }
+            },
+            fallbackExperience: null,
+            tools: {
+                setCookie: function (cname, cvalue, exdays) {
+                    var d = new Date();
+                    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                    var expires = "expires=" + d.toUTCString();
+                    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                },
+                getCookie: function (cname) {
+                    var name = cname + "=";
+                    var ca = document.cookie.split(';');
+                    for (var i = 0; i < ca.length; i++) {
+                        var c = ca[i];
+                        while (c.charAt(0) == ' ') {
+                            c = c.substring(1);
+                        }
+                        if (c.indexOf(name) == 0) {
+                            return c.substring(name.length, c.length);
+                        }
+                    }
+                    return "";
+                },
+                checkCookie: function (name) {
+                    var user = Speedy.tools.getCookie(name);
+                    if (user != "") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        };
+
+        Speedy.settings = {
+            cookieName: "firstRun",
+            cookieExpiration: 10,
+            deferLoadForMilliseconds: 5000
+        };
+
+        Speedy.fallbackExperience = function () {
+
+        };
+
+        Speedy.init();
+    </script>
 </head>
 <body @Html.Sxa().Body().Decorate()>
 
@@ -55,63 +159,6 @@
         else window.addEventListener('load', loadDeferredStyles);
     </script>
 
-    <script defer>
-			function bootstrapMain() {
-				setTimeout(function () {
-					// do something 1000ms later here.
-					deferedLoadMain();
-				}, 3000);
-			}
-
-			function inject(url){
-				var coreScripts = document.createElement('script');
-				coreScripts.src = url+".js";
-				document.head.appendChild(coreScripts);
-			}
-
-			function deferedLoadMain() {
-
-				var clientScripts = {};
-				@Html.Raw(assetLinks.ClientScriptsRendered);
-
-				inject(coreScripts[coreScriptNames[0]]);
-				var coreLoadtest = "(typeof jQuery != 'undefined') && (typeof Backbone != 'undefined')";
-
-				var round2 = function (){  inject(clientScripts[clientScriptNames[0]]); round3(); };
-				var round3 = function (){  inject(clientScripts[clientScriptNames[1]]); round4(); };
-				var round4 = function (){  inject(clientScripts[clientScriptNames[2]]); round5(); };
-				var round5 = function (){  inject(clientScripts[clientScriptNames[3]]); round6(); };
-				var round6 = function (){  inject(clientScripts[clientScriptNames[4]]); round7(); };
-				var round7 = function (){  inject(clientScripts[clientScriptNames[5]]); round8(); };
-				var round8 = function (){  inject(clientScripts[clientScriptNames[6]]); round9(); };
-				var round9 = function (){  inject(clientScripts[clientScriptNames[7]]); };
-
-				bootstrapMapper(coreLoadtest, round2 );
-
-				function registerJSLoadingCycle(e, o, t, a) {
-					requirejs.config({
-						paths: e
-					}), require(o, function() {
-						t && (a ? bootstrapMapper(a, t) : t())
-					})
-				}
-
-				function bootstrapMapper(variableToCheck, successCallback) {
-					eval(variableToCheck) ? successCallback() : setTimeout(function() {
-						bootstrapMapper(variableToCheck, successCallback)
-					}, 200)
-				}
-
-			}
-
-			if (window.addEventListener)
-				window.addEventListener("load", bootstrapMain, false);
-			else if (window.attachEvent)
-				window.attachEvent("onload", bootstrapMain);
-			else
-				window.onload = bootstrapMain;
-    </script>
     <!-- /#wrapper -->
-
 </body>
 </html>

@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Speedy\SpeedyAssetLink.cs" />
     <Compile Include="Speedy\SpeedyAssetLinks.cs" />
+    <Compile Include="Speedy\SpeedyAssetLinksGeneratorV2.cs" />
     <Compile Include="Speedy\SpeedyAssetLinksGenerator.cs" />
     <Compile Include="Speedy\SpeedyConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

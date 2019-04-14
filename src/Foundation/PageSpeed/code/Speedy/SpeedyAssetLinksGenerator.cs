@@ -83,7 +83,7 @@ namespace Site.Foundation.PageSpeed.Speedy
         }
 
         private void GenerateSpeedyScriptsJson(SpeedyAssetLinks assetLinks)
-        {
+        { 
             //if (assetLinks.ClientScriptsDictionary == null)
             //{
             //    assetLinks.CoreLibrariesScripts = $"{{ }}";
