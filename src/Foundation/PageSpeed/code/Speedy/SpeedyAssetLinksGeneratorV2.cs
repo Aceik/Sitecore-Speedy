@@ -43,11 +43,6 @@ namespace Site.Foundation.PageSpeed.Speedy
 
         public virtual SpeedyAssetLinks GenerateSpeedyAssetLinks(IThemesProvider themesProvider)
         {
-            if (!License.HasModule("Sitecore.SXA"))
-            {
-                HttpContext.Current.Response.Redirect($"{Settings.NoLicenseUrl}?license=Sitecore.SXA");
-                return null;
-            }
             AssetsArgs assetsArgs = new AssetsArgs();
             CorePipeline.Run("assetService", assetsArgs);
             string text = GenerateCacheKey(assetsArgs.GetHashCode());

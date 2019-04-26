@@ -1,5 +1,6 @@
 ﻿using RestSharp;
 using Site.Foundation.PageSpeed.Model;
+using Site.Foundation.PageSpeed.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace Site.Foundation.PageSpeed.Repositories
 {
     public class CriticalGenerationGateway : ICriticalGenerationGateway
     {
-        public string GenerateCritical(string url, string width, string height)
+        public string GenerateCritical(string url, string width = "1800", string height = "1200")
         {
-            var client = new RestClient(url);
+            var client = new RestClient(SpeedyGenerationSettings.GetCriticalApiEndpoint());
             // client.Authenticator = new HttpBasicAuthenticator(username, password);
 
             var request = new RestRequest("critical", Method.GET);

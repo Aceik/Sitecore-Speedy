@@ -1,0 +1,108 @@
+﻿@using Sitecore.XA.Foundation.Theming.Bundler
+@using Site.Foundation.PageSpeed.Speedy
+
+@model SpeedyAssetLinks
+
+<script>
+    @Html.Raw(Model.ClientScriptsRendered)
+    var Speedy = {
+        variables: {
+            src : null,  
+            script: null,
+            pendingScripts : [],
+            firstScript: function () { return document.scripts[0] }
+        },
+        init: function () {
+            var firstRunCompleted = Speedy.tools.checkCookie(Speedy.settings.cookieName)
+            if (firstRunCompleted) {
+                Speedy.dynamicLoad();
+            } else {
+                Speedy.fallbackExperience();
+                // Defer load a bit longer with a fallback experience
+                window.setTimeout(Speedy.dynamicLoad, Speedy.settings.deferLoadForMilliseconds);
+                Speedy.tools.setCookie(Speedy.settings.cookieName, true, Speedy.settings.cookieExpiration);
+            }
+        },
+        dynamicLoad: function () {
+            // loop through our script urls
+            while (Speedy.variables.src = clientScripts.shift()) {
+                if ('async' in Speedy.variables.firstScript()) { // modern browsers
+                    Speedy.variables.script = document.createElement('script');
+                    Speedy.variables.script.async = false;
+                    Speedy.variables.script.src = Speedy.variables.src;
+                    document.head.appendChild(Speedy.variables.script);
+                }
+                else if (Speedy.variables.firstScript().readyState) { // IE<10
+                    // create a script and add it to our todo pile
+                    Speedy.variables.script = document.createElement('script');
+                    Speedy.variables.pendingScripts.push(script);
+                    // listen for state changes
+                    Speedy.variables.script.onreadystatechange = Speedy.events.stateChange;
+                    // must set src AFTER adding onreadystatechange listener
+                    // else we’ll miss the loaded event for cached scripts
+                    Speedy.variables.script.src = Speedy.variables.src;
+                    console.log("readyState")
+                }
+                else { // fall back to defer
+                    document.write('<script src="' + Speedy.variables.src + '" defer></' + 'script>');
+                }
+            }
+        },
+        events: {
+            stateChange: function() {
+                // Execute as many scripts in order as we can
+                var pendingScript;
+                while (Speedy.variables.pendingScripts[0] && Speedy.variables.pendingScripts[0].readyState == 'loaded') {
+                    pendingScript = Speedy.variables.pendingScripts.shift();
+                    // avoid future loading events from this script (eg, if src changes)
+                    pendingScript.onreadystatechange = null;
+                    // can't just appendChild, old IE bug if element isn't closed
+                    Speedy.variables.firstScript().parentNode.insertBefore(pendingScript, Speedy.variables.firstScript());
+                }
+            }
+        },
+        fallbackExperience: null,
+        tools: {
+            setCookie: function (cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            },
+            getCookie: function (cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            },
+            checkCookie: function (name) {
+                var user = Speedy.tools.getCookie(name);
+                if (user != "") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    };
+
+    Speedy.settings = {
+        cookieName: "firstRun",
+        cookieExpiration: 10,
+        deferLoadForMilliseconds: 5000
+    };
+
+    Speedy.fallbackExperience = function () {
+
+    };
+
+    Speedy.init();
+</script>

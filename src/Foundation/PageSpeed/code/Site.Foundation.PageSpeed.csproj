@@ -46,22 +46,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Events\SpeedyPageOnSaveEvent.cs" />
+    <Compile Include="Extensions\QuickExtensions.cs" />
     <Compile Include="Model\CriticalJson.cs" />
     <Compile Include="Services\CriticalGenerationGateway.cs" />
     <Compile Include="Services\ICriticalGenerationGateway.cs" />
+    <Compile Include="Settings\SpeedyGenerationSettings.cs" />
     <Compile Include="SpeedyConstants.cs" />
     <Compile Include="Speedy\SpeedyAssetLink.cs" />
     <Compile Include="Speedy\SpeedyAssetLinks.cs" />
     <Compile Include="Speedy\SpeedyAssetLinksGeneratorV2.cs" />
-    <Compile Include="Speedy\SpeedyAssetLinksGenerator.cs" />
-    <Compile Include="Speedy\SpeedyConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="App_Config\Include\Site\Foundation\Foundation.Speedy.Serialization.config" />
+    <Content Include="App_Config\Include\Site\Foundation\Foundation.Speedy.Events.config" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="Views\SxaLayout\SxaLayoutPageSpeed.cshtml" />
+    <Content Include="Views\Speedy\SpeedyJavascriptLoader.cshtml" />
+    <Content Include="Views\Speedy\SpeedyStylesLoader.cshtml" />
+    <Content Include="Views\Speedy\OriginalStylesLoader.cshtml" />
+    <Content Include="Views\Speedy\OriginalScriptsLoader.cshtml" />
     <None Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +75,12 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.DependencyInjection.1.0.0\lib\netstandard1.1\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
