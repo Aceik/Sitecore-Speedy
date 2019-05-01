@@ -9,6 +9,8 @@ using Site.Foundation.PageSpeed.Repositories;
 using Sitecore.Links;
 using Site.Foundation.PageSpeed.Extensions;
 using Site.Foundation.PageSpeed.Settings;
+using Sitecore.Sites;
+using Sitecore.Web;
 
 namespace Site.Foundation.PageSpeed.Events
 {
@@ -26,22 +28,23 @@ namespace Site.Foundation.PageSpeed.Events
             var item = Event.ExtractParameter(args, 0) as Item;
 
             // Only act if within the master database
-            if (item.Database != null && String.Compare(item.Database.Name, this.Database) != 0)
+            if ((item.Database != null && String.Compare(item.Database.Name, this.Database) != 0) || item.Name == "__Standard Values")
             {
                 return;
             }
 
-            if (item != null && item.InheritsFrom(SpeedyConstants.TemplateIDs.SpeedyPageTemplateID))
+            if (item != null && item.InheritsFrom(SpeedyConstants.TemplateIDs.SpeedyPageTemplateID) && SpeedyGenerationSettings.IsPublicFacingEnvironment())
             {
                 // either the flag to generate on each page load is set or the CSS field is empty
-                var shouldGenerate = SpeedyGenerationSettings.ShouldRegenerateOnEachSave() || !item.Fields[SpeedyConstants.Fields.CriticalCSS].HasValue;
+                bool isEmpty = !item.Fields[SpeedyConstants.Fields.CriticalCSS].HasValue || string.IsNullOrWhiteSpace(item.Fields[SpeedyConstants.Fields.CriticalCSS].Value);
+                var shouldGenerate = SpeedyGenerationSettings.ShouldRegenerateOnEachSave() || isEmpty;
 
                 // If speedy is enabled for this page and should we generate the CSS
                 if (item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled) && shouldGenerate)
                 {
                     ICriticalGenerationGateway criticalGateway = new CriticalGenerationGateway();
 
-                    string presentUrl = LinkManager.GetItemUrl(item, new UrlOptions { AlwaysIncludeServerUrl = true, ShortenUrls = true }) + $"?{SpeedyConstants.ByPass.ByPassParameter}=true";
+                    string presentUrl = GetUrlForContextSite(item) + $"?{SpeedyConstants.ByPass.ByPassParameter}=true";
 
                     string width = item.Fields[SpeedyConstants.Fields.CriticalViewPortWidth].Value;
                     string height = item.Fields[SpeedyConstants.Fields.CriticalViewPortHeight].Value;
@@ -51,6 +54,25 @@ namespace Site.Foundation.PageSpeed.Events
                     item.Fields[SpeedyConstants.Fields.CriticalCSS].Value = criticalHtml;
                 }
             }
+        }
+
+        public string GetUrlForContextSite(Item item)
+        {
+            SiteInfo siteInfo = SiteContextFactory.Sites
+            .Where(s => s.RootPath != "" & item.Paths.Path.StartsWith(s.RootPath, StringComparison.OrdinalIgnoreCase))
+            .OrderByDescending(s => s.RootPath.Length)
+            .FirstOrDefault();
+            var site = SiteContext.GetSite(siteInfo.Name);
+
+            using (var siteContextSwitcher = new SiteContextSwitcher(site))
+            {
+                var urlOptions = LinkManager.GetDefaultUrlOptions();
+                urlOptions.AlwaysIncludeServerUrl = true;
+                urlOptions.ShortenUrls = true;
+                urlOptions.SiteResolving = true;
+                return LinkManager.GetItemUrl(item, urlOptions);
+            }
+            return string.Empty;
         }
     }
 }

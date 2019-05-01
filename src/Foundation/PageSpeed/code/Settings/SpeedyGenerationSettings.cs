@@ -24,6 +24,11 @@ namespace Site.Foundation.PageSpeed.Settings
             return item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldRegenerateOnEverySaveEvent].HasValue && item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldRegenerateOnEverySaveEvent].Value == "1";
         }
 
+        public static bool IsPublicFacingEnvironment()
+        {
+            return bool.Parse(Sitecore.Configuration.Settings.GetSetting("Speedy.IsPublicFacingEnvironment"));
+        }
+
         public static bool IsSpeedyEnabledForPage(Item item)
         {
             return item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled);

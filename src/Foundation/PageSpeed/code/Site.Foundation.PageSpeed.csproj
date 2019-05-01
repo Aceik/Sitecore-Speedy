@@ -61,6 +61,7 @@
     <Content Include="packages.config" />
     <Content Include="App_Config\Include\Site\Foundation\Foundation.Speedy.Serialization.config" />
     <Content Include="App_Config\Include\Site\Foundation\Foundation.Speedy.Events.config" />
+    <Content Include="App_Config\Include\Site\Foundation\Foundation.Speedy.Settings.config" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="Views\SxaLayout\SxaLayoutPageSpeed.cshtml" />
     <Content Include="Views\Speedy\SpeedyJavascriptLoader.cshtml" />

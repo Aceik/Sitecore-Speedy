@@ -15,7 +15,7 @@ namespace Site.Foundation.PageSpeed.Repositories
             var client = new RestClient(SpeedyGenerationSettings.GetCriticalApiEndpoint());
             // client.Authenticator = new HttpBasicAuthenticator(username, password);
 
-            var request = new RestRequest("critical", Method.GET);
+            var request = new RestRequest(Method.GET);
             request.AddParameter("url", HttpUtility.UrlEncode(url)); // adds to POST or URL querystring based on Method
             request.AddParameter("width", width);
             request.AddParameter("height", height);

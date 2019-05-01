@@ -13,7 +13,7 @@ namespace Site.Foundation.PageSpeed.Extensions
     {
         public static bool IsEnabled(this Item item, string fieldName)
         {
-            return item.Fields[fieldName].HasValue && item.Fields[fieldName].Value == "1";
+            return item.Fields[fieldName].Value == "1";
         }
     }
 }
