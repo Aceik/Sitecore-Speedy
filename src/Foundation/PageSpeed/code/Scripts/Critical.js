@@ -1,4 +1,4 @@
-//node test.js main "https://www.tyackhealth.com.au/||30000||1800||1100"
+//node ./Scripts/Critical.js main "https://www.laminex.com.au/||30000||1800||1100"
 var critical = require('critical');
 var log4js = require('log4js');
 const CleanCss = require('clean-css');
@@ -7,12 +7,12 @@ module.exports.main = function (data, callback) {
 
 const log4js = require('log4js');
 log4js.configure({
-  appenders: { cheese: { type: 'file', filename: 'cheese.log' } },
-  categories: { default: { appenders: ['cheese'], level: 'trace' } }
+    appenders: { criticallogger: { type: 'file', filename: 'cheese.log' } },
+  categories: { default: { appenders: ['criticallogger'], level: 'trace' } }
 });
  
-const logger = log4js.getLogger('cheese');
-logger.debug('Got cheese logger - critical started.');
+    const logger = log4js.getLogger('criticallogger');
+    logger.debug('Got criticallogger logger - critical started.');
 
     var parts = data.split('||');
     var url = parts[0];
@@ -54,13 +54,13 @@ logger.debug('Got cheese logger - critical started.');
 				//return cleanedUpCcss;
 			}).catch(function (err) {
 				 console.log("promise rejected" + err);
-				 logger.error('critical API issues:' + error);
+                logger.error('critical API issues:' + err);
 			}); 
 				
 			console.log("completed");
 	  } catch (err) {
 		console.log("rejected" + err);
-		logger.error('general error:' + error);
+        logger.error('general error:' + err);
 	  }
     //callback(null, html);
 };

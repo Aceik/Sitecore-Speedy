@@ -16,33 +16,31 @@ namespace Site.Foundation.PageSpeed.Repositories
     {
         public string GenerateCritical(string url, string width = "1800", string height = "1200")
         {
-            AsyncHelpers.RunSync(() => Start());
-            //Start().Wait();
-            return "";
+            return AsyncHelpers.RunSync(() => Start());
         }
 
-        public static async Task Start()
+        public static async Task<string> Start()
         {
             try
             {
-                Sitecore.Diagnostics.Log.Info("create node js", "");
-                var func = Edge.Func(@"
-            return function (data, callback) {
-                callback(null, 'Node.js welcomes ' + data);
-            }");
+                Sitecore.Diagnostics.Log.Info("--- Critical Node JS --- About to read in javascript file ---", "");
+                var path = System.Web.HttpContext.Current.Server.MapPath("~/Scripts/Critical.js");
+                var javascriptContent = System.IO.File.ReadAllText(path);
+                var func = Edge.Func(javascriptContent);
 
-                Sitecore.Diagnostics.Log.Info("about to call node js", "");
-                var result = (await func(".NET"));
-                Sitecore.Diagnostics.Log.Info("resulted", "");
+                Sitecore.Diagnostics.Log.Info("--- Critical Node JS Function About to Start ---", "");
+                var result = (await func("https://www.tyackhealth.com.au/||30000||1800||1100")) as string;
+
+                Sitecore.Diagnostics.Log.Info("--- Critical Node JS Function Resulted ---", "");
                 Sitecore.Diagnostics.Log.Info(result as string, "");
-                Sitecore.Diagnostics.Log.Info("finished to call node js", "");
+                return result as string;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.GetBaseException().Message);
                 Sitecore.Diagnostics.Log.Info(ex.GetBaseException().Message, "");
             }
-            
+            return "--- Critical Node JS Generation failed ---";
         }
     }
 }
