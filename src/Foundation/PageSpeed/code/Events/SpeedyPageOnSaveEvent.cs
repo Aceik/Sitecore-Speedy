@@ -60,14 +60,13 @@ namespace Site.Foundation.PageSpeed.Events
                         criticalHtml = criticalGateway.GenerateCritical(presentUrl, width, height);
                     }
                         
-
                     item.Fields[SpeedyConstants.Fields.CriticalCSS].Value = criticalHtml;
                 }
             }
 
         }
 
-        public string GetUrlForContextSite(Item item)
+        public static string GetUrlForContextSite(Item item)
         {
             SiteInfo siteInfo = SiteContextFactory.Sites
             .Where(s => s.RootPath != "" & item.Paths.Path.StartsWith(s.RootPath, StringComparison.OrdinalIgnoreCase))

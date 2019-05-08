@@ -9,7 +9,8 @@
   },
   "devDependencies": {
     "clean-css": "^4.2.1",
-    "critical": "^1.3.4"
+    "critical": "^1.3.4",
+    "got": "^9.6.0"
   },
   "scripts": {},
   "author": "",

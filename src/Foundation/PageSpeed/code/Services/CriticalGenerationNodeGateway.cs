@@ -16,10 +16,10 @@ namespace Site.Foundation.PageSpeed.Repositories
     {
         public string GenerateCritical(string url, string width = "1800", string height = "1200")
         {
-            return AsyncHelpers.RunSync(() => Start());
+            return AsyncHelpers.RunSync(() => Start(url, width, height));
         }
 
-        public static async Task<string> Start()
+        public static async Task<string> Start(string url, string width = "1800", string height = "1200")
         {
             try
             {
@@ -29,7 +29,8 @@ namespace Site.Foundation.PageSpeed.Repositories
                 var func = Edge.Func(javascriptContent);
 
                 Sitecore.Diagnostics.Log.Info("--- Critical Node JS Function About to Start ---", "");
-                var result = (await func("https://www.tyackhealth.com.au/||30000||1800||1100")) as string;
+                string input = $"{url}||30000||{width}||{height}";
+                var result = (await func(input)) as string;
 
                 Sitecore.Diagnostics.Log.Info("--- Critical Node JS Function Resulted ---", "");
                 Sitecore.Diagnostics.Log.Info(result as string, "");

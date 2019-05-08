@@ -1,0 +1,8 @@
+﻿{
+  "homeid": "{B87F9889-A779-4E39-80F7-474E76F25CCA}",
+  "host": "http://raa.cms.local/",
+  "api": "sitecore/api/critical/",
+  "timeout": 30000,
+  "width": 1800,
+  "height": 1100
+}
