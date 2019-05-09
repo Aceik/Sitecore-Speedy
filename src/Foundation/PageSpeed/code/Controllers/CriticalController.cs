@@ -11,28 +11,46 @@ namespace Site.Foundation.PageSpeed.Controllers
     using Sitecore.SecurityModel;
     using System.Net;
     using System.Net.Http;
+    using System.Text;
     using System.Web.Http;
     using System.Web.Http.Cors;
-
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class CriticalApiController : ApiController
+    
+    public class CriticalController : ApiController
     {
+        public CriticalController()
+        {
+
+        }
+
+        [HttpGet]
+        public IHttpActionResult Generate()
+        {
+            var resp = new HttpResponseMessage
+            {
+                Content = new StringContent("Some Content", Encoding.UTF8, "text/xml")
+            };
+
+            // Your code here
+
+            return ResponseMessage(resp);
+        }
+
         [AllowAnonymous]
         [HttpGet]
-        [System.Web.Http.Route("sitecore/api/critical/url/{contextId}")]
-        public HttpResponseMessage GetSitecoreUrl([FromUri]string contextId)
+        [System.Web.Http.Route("critical/api/get/{id}")]
+        public HttpResponseMessage Get([FromUri]string id)
         {
-            Item item = Sitecore.Context.ContentDatabase.GetItem(new Sitecore.Data.ID(contextId));
+            Item item = Sitecore.Context.ContentDatabase.GetItem(new Sitecore.Data.ID(id));
             string url = SpeedyPageOnSaveEvent.GetUrlForContextSite(item) + $"?{SpeedyConstants.ByPass.ByPassParameter}=true";
             return this.Request.CreateResponse(HttpStatusCode.OK, url);
         }
 
         [AllowAnonymous]
         [HttpPost]
-        [System.Web.Http.Route("sitecore/api/critical/generation/{contextId}/")]
-        public HttpResponseMessage PutCriticalHtml([FromUri]string contextId, [FromBody] CriticalJson submit)
+        [System.Web.Http.Route("critical/api/put")]
+        public HttpResponseMessage Put([FromBody] CriticalJson submit)
         {
-            Item item = Sitecore.Context.ContentDatabase.GetItem(new Sitecore.Data.ID(contextId));
+            Item item = Sitecore.Context.ContentDatabase.GetItem(new Sitecore.Data.ID(submit.Id));
             using (new SecurityDisabler())
             {
                 item.Editing.BeginEdit();
@@ -40,7 +58,7 @@ namespace Site.Foundation.PageSpeed.Controllers
                 item.Editing.EndEdit();
                 item.Editing.AcceptChanges();
             }
-            
+
             return this.Request.CreateResponse(HttpStatusCode.OK);
         }
     }

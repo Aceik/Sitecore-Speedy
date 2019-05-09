@@ -1,20 +1,26 @@
 ﻿using System.Web.Http;
 using Sitecore.Pipelines;
+using Newtonsoft.Json;
+using Sitecore.Pipelines;
+using Newtonsoft.Json.Serialization;
+using System.Web.Routing;
+using System.Web.Mvc;
 
 namespace Site.Foundation.PageSpeed
 {
-    public class Routes
+    public class RegisterCriticalRoutes
     {
-        public void Process(PipelineArgs args)
+        public virtual void Process(PipelineArgs args)
         {
-            //GlobalConfiguration.Configure(Configure);
-            HttpConfiguration httpConfig = GlobalConfiguration.Configuration;
-            httpConfig.Routes.MapHttpRoute("critical", "critical/{controller}/{action}/{id}", true, new { id = RouteParameter.Optional });
+            RegisterRoute(RouteTable.Routes);
         }
 
-        protected void Configure(HttpConfiguration configuration)
+        protected virtual void RegisterRoute(RouteCollection routes)
         {
-            //var routes = configuration.Routes;
+            RouteTable.Routes.MapHttpRoute("routeName",
+                "speedy/{controller}/{action}/{id}" /* do not include a forward slash in front of the route */
+                , defaults: new { controller = "Critical", action = "Generate" } /* controller name should not have the "Controller" suffix */
+            );
         }
     }
 }

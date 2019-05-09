@@ -46,7 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Async\AsyncHelpers.cs" />
-    <Compile Include="Controllers\CriticalApiController.cs" />
+    <Compile Include="Controllers\CriticalController.cs" />
     <Compile Include="Events\SpeedyPageOnSaveEvent.cs" />
     <Compile Include="Extensions\QuickExtensions.cs" />
     <Compile Include="Model\CriticalJson.cs" />
@@ -132,6 +132,12 @@
     </Reference>
     <Reference Include="Sitecore.NVelocity, Version=8.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Sitecore.NVelocity.9.0.180604\lib\NET462\Sitecore.NVelocity.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Services.Infrastructure, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.Services.Infrastructure.NoReferences.9.0.171219\lib\NET462\Sitecore.Services.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Services.Infrastructure.Sitecore, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.Services.Infrastructure.Sitecore.NoReferences.9.0.171219\lib\NET462\Sitecore.Services.Infrastructure.Sitecore.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Web, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Sitecore.Web.9.0.180604\lib\NET462\Sitecore.Web.dll</HintPath>
