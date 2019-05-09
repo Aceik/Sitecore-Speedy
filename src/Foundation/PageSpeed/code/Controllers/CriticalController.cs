@@ -40,7 +40,7 @@ namespace Site.Foundation.PageSpeed.Controllers
         [System.Web.Http.Route("critical/api/get/{id}")]
         public HttpResponseMessage Get([FromUri]string id)
         {
-            Item item = Sitecore.Context.ContentDatabase.GetItem(new Sitecore.Data.ID(id));
+            Item item = Sitecore.Data.Database.GetDatabase("master").GetItem(new Sitecore.Data.ID(id));
             string url = SpeedyPageOnSaveEvent.GetUrlForContextSite(item) + $"?{SpeedyConstants.ByPass.ByPassParameter}=true";
             return this.Request.CreateResponse(HttpStatusCode.OK, url);
         }
@@ -50,7 +50,7 @@ namespace Site.Foundation.PageSpeed.Controllers
         [System.Web.Http.Route("critical/api/put")]
         public HttpResponseMessage Put([FromBody] CriticalJson submit)
         {
-            Item item = Sitecore.Context.ContentDatabase.GetItem(new Sitecore.Data.ID(submit.Id));
+            Item item = Sitecore.Data.Database.GetDatabase("master").GetItem(new Sitecore.Data.ID(submit.Id));
             using (new SecurityDisabler())
             {
                 item.Editing.BeginEdit();
