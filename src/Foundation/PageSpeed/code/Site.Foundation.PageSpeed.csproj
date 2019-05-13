@@ -49,6 +49,12 @@
     <Compile Include="Controllers\CriticalController.cs" />
     <Compile Include="Events\SpeedyPageOnSaveEvent.cs" />
     <Compile Include="Extensions\QuickExtensions.cs" />
+    <Compile Include="Models\API\ResponseWrapper\ApiErrorResponse.cs" />
+    <Compile Include="Models\API\ResponseWrapper\IGenericResponse.cs" />
+    <Compile Include="Models\API\ResponseWrapper\IServiceError.cs" />
+    <Compile Include="Models\API\ResponseWrapper\IWebApiResponse.cs" />
+    <Compile Include="Models\API\ResponseWrapper\ServiceError.cs" />
+    <Compile Include="Models\API\ResponseWrapper\WebApiResponse.cs" />
     <Compile Include="Model\CriticalJson.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="Services\CriticalGenerationNodeGateway.cs" />
@@ -100,7 +106,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EdgeJs, Version=9.3.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -168,6 +173,7 @@
     <Reference Include="System.Runtime.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\System.Runtime.Extensions.4.1.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>

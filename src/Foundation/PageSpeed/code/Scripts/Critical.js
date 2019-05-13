@@ -19,29 +19,47 @@ module.exports.main = function () {
     logger.debug('timeout:' + config.timeout);
     logger.debug('width:' + config.width);
     logger.debug('height:' + config.height);
-
-    var criticalCallback = function (html) {
-        console.log("criticalCallback");
-    };
-
-    var pageUrlCallback = function (pageUrl) {
-        console.log("pageUrlCallback");
-        processCritical(pageUrl, logger, criticalCallback);
-    };
     
-    lookupPageUrl(config.homeid, pageUrlCallback);
-
-
+    lookupPageUrl(config.itemid, logger);
 };
 
-var processCritical = function (pageUrl, logger, callback) {
-    logger.debug('about to critical:' + pageUrl);
+var lookupPageUrl = function (id, logger) {
+    var url = config.host + config.api + id + "/";
+
+    console.log("about to call API " + url);
+
+    got(url, { json: true }).then(response => {
+        console.log(response.body);
+        processPageUrl(response.body, logger);
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
+var processPageUrl = function (pageUrl, logger) {
+    if (pageUrl.Success) {
+        console.log("page url obtained " + pageUrl.Data);
+        processCritical(pageUrl.Data, logger);
+    } else {
+        console.log("page url lookup failed " + pageUrl.Errors);
+    }
+};
+
+
+var processCritical = function (pageUrl, logger) {
+
+    var url = pageUrl;
+
+    logger.debug('about to critical:' + url);
+
+    console.log("about to run critical HTML generator " + url);
 
     var cleanedUpCcss = "";
 
     try {
+
         var criticalresult = critical.generate({
-            src: pageUrl,
+            src: url,
             minify: true,
             inline: false,
             extract: true,
@@ -53,44 +71,69 @@ var processCritical = function (pageUrl, logger, callback) {
                 cssString: ''
             },
         }).then(function (result) {
-            console.log("promise resolved");
+            console.log("critical node tool -> promise resolved");
 
             let cleanedUpCcss = new CleanCss({ compress: true }).minify(result).styles;
 
-            logger.debug('html:' + cleanedUpCcss);
-            callback(cleanedUpCcss);
+            logger.debug('html: ' + cleanedUpCcss);
 
-            console.log("---------------");
+            console.log("--------------------------------------------");
             console.log("Critical HTML was generated");
-            console.log("---------------");
+            console.log("--------------------------------------------");
+
+            beingCriticalSave(cleanedUpCcss);
 
         }).catch(function (err) {
-            console.log("promise rejected" + err);
-            logger.error('critical API issues:' + err);
+            console.log("processing result rejected: " + err);
+            logger.error('critical API issues: ' + err);
         });
 
-        console.log("completed");
     } catch (err) {
         console.log("rejected" + err);
         logger.error('general error:' + err);
     }
-  
-    //return cleanedUpCcss;
+
 }
 
-var lookupPageUrl = function (id, callback) {
-    var url = config.host + config.api + "url/" + id + "/";
+
+var beingCriticalSave = function (result) {
+    if (result) {
+        console.log("--------------------------------------------");
+        console.log("page speedy html retrieved " + result.substring(0, 100));
+        console.log("--------------------------------------------");
+
+        updateCriticalField(result);
+
+    } else {
+        console.log("page speedy html retrieved but some other error -- " + result.Errors);
+    }
+};
+
+var updateCriticalField = function(html, logger) {
+    var url = config.host + config.apisave;
 
     console.log("about to call API " + url);
 
-    got(url, { json: true }).then(response => {
-        console.log(response.body);
-        callback(response.body);
-        //console.log(response.body.explanation);
+    got.post(url, { json: true, body: { Result: html, Id: config.itemid } }).then(response => {
+        console.log("Got response from " + url);
+        saveCompletedEvent(response);
     }).catch(error => {
+        console.log("ERROR SAVING TO SITECORE " + error);
         console.log(error.response.body);
     });
-}
+};
+
+var saveCompletedEvent = function (result) {
+    if (result.body.Data) {
+        console.log("--------------------------------------------");
+        console.log("page speedy html updated " + result.Success);
+        console.log("--------------------------------------------");
+
+    } else {
+        console.log("ERROR SAVING TO SITECORE -- " + result.Errors);
+    }
+};
+
 
 
 require('make-runnable');

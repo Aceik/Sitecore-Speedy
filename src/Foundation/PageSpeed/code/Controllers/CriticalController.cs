@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Site.Foundation.PageSpeed.Models.API.ResponseWrapper;
 
 namespace Site.Foundation.PageSpeed.Controllers
 {
@@ -42,7 +43,9 @@ namespace Site.Foundation.PageSpeed.Controllers
         {
             Item item = Sitecore.Data.Database.GetDatabase("master").GetItem(new Sitecore.Data.ID(id));
             string url = SpeedyPageOnSaveEvent.GetUrlForContextSite(item) + $"?{SpeedyConstants.ByPass.ByPassParameter}=true";
-            return this.Request.CreateResponse(HttpStatusCode.OK, url);
+
+            return Request.CreateResponse(HttpStatusCode.OK,
+                new WebApiResponse<string>(HttpUtility.HtmlEncode(url)));
         }
 
         [AllowAnonymous]
@@ -59,7 +62,8 @@ namespace Site.Foundation.PageSpeed.Controllers
                 item.Editing.AcceptChanges();
             }
 
-            return this.Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK,
+                new WebApiResponse<bool>(true));
         }
     }
 }
