@@ -56,41 +56,23 @@
     <Compile Include="Models\API\ResponseWrapper\ServiceError.cs" />
     <Compile Include="Models\API\ResponseWrapper\WebApiResponse.cs" />
     <Compile Include="Model\CriticalJson.cs" />
+    <Compile Include="Model\SpeedyLayoutModel.cs" />
     <Compile Include="Routes.cs" />
-    <Compile Include="Services\CriticalGenerationNodeGateway.cs" />
     <Compile Include="Services\CriticalGenerationGateway.cs" />
     <Compile Include="Services\ICriticalGenerationGateway.cs" />
     <Compile Include="Settings\SpeedyGenerationSettings.cs" />
     <Compile Include="SpeedyConstants.cs" />
     <Compile Include="Speedy\SpeedyAssetLink.cs" />
     <Compile Include="Speedy\SpeedyAssetLinks.cs" />
-    <Compile Include="Speedy\SpeedyAssetLinksGeneratorV2.cs" />
+    <Compile Include="Speedy\SpeedyAssetLinksGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="edge\double_edge.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="edge\edge.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="edge\x64\node.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="edge\x86\node.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="packages.config" />
     <Content Include="App_Config\Include\Site\Foundation\Foundation.Speedy.Serialization.config" />
     <Content Include="App_Config\Include\Site\Foundation\Foundation.Speedy.Events.config" />
     <Content Include="App_Config\Include\Site\Foundation\Foundation.Speedy.Settings.config">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="edge\x86\edge_nativeclr.node">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="edge\x64\edge_nativeclr.node">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Config\Include\Site\Foundation\Foundation.Speedy.API.config" />
     <Content Include="App_Config\Include\Site\Foundation\Foundation.Speedy.Routes.config" />

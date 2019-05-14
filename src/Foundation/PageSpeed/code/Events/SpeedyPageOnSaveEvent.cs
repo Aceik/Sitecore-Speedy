@@ -54,10 +54,6 @@ namespace Site.Foundation.PageSpeed.Events
                     {
                         criticalGateway = new CriticalGenerationGateway();
                         criticalHtml = criticalGateway.GenerateCritical(presentUrl, width, height);
-                    }else
-                    {
-                        criticalGateway = new CriticalGenerationNodeGateway();
-                        criticalHtml = criticalGateway.GenerateCritical(presentUrl, width, height);
                     }
                         
                     item.Fields[SpeedyConstants.Fields.CriticalCSS].Value = criticalHtml;
@@ -68,10 +64,12 @@ namespace Site.Foundation.PageSpeed.Events
 
         public static string GetUrlForContextSite(Item item)
         {
-            SiteInfo siteInfo = SiteContextFactory.Sites
-            .Where(s => s.RootPath != "" & item.Paths.Path.StartsWith(s.RootPath, StringComparison.OrdinalIgnoreCase))
-            .OrderByDescending(s => s.RootPath.Length)
-            .FirstOrDefault();
+            var sites = SiteContextFactory.Sites
+                .Where(s => !string.IsNullOrWhiteSpace(s.RootPath) &
+                            item.Paths.Path.StartsWith(s.RootPath, StringComparison.OrdinalIgnoreCase))
+                .OrderByDescending(s => s.RootPath.Length).ToList();
+
+            SiteInfo siteInfo = sites.FirstOrDefault();
             var site = SiteContext.GetSite(siteInfo.Name);
 
             using (var siteContextSwitcher = new SiteContextSwitcher(site))

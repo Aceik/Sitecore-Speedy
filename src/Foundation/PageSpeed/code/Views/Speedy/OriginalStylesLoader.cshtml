@@ -2,7 +2,7 @@
 @using Site.Foundation.PageSpeed.Speedy
 
 @model AssetLinks
-@foreach (string style in assetLinks.Styles)
+@foreach (string style in Model.Styles)
 {
     @Html.Raw(style)
 }
