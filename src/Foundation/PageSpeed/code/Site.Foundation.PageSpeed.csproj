@@ -84,6 +84,7 @@
     <Content Include="Views\Speedy\OriginalStylesLoader.cshtml" />
     <Content Include="Views\Speedy\OriginalScriptsLoader.cshtml" />
     <None Include="Scripts\Critical.json" />
+    <Content Include="Views\Speedy\Critical.cshtml" />
     <None Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -35,9 +35,14 @@
     @Html.Sitecore().VisitorIdentification()
     @Html.Sxa().Placeholder("head")
 
-    @if (model.SpeedyCssEnabled)
+    @if (model.SpeedyJsEnabled)
     {
         @Html.Partial("/Views/Speedy/SpeedyJavascriptLoader.cshtml", (model.AssetLinks as SpeedyAssetLinks))
+    }
+    
+    @if (model.SpeedyCssEnabled)
+    {
+        @Html.Partial("/Views/Speedy/Critical.cshtml", (model.CriticalHtml))
     }
 </head>
 <body @Html.Sxa().Body().Decorate()>

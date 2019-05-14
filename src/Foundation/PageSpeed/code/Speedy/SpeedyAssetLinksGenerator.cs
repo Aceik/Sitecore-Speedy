@@ -59,7 +59,12 @@ namespace Site.Foundation.PageSpeed.Speedy
             {
                 model.AssetLinks = SpeedyAssetLinksGenerator.GenerateDeferedLinks(new ThemesProvider());
                 model.SpeedyJsEnabled = SpeedyGenerationSettings.IsCriticalJavascriptEnabledAndPossible(Sitecore.Context.Item);
-                model.SpeedyCssEnabled = SpeedyGenerationSettings.IsCriticalJavascriptEnabledAndPossible(Sitecore.Context.Item);
+                model.SpeedyCssEnabled = SpeedyGenerationSettings.IsCriticalStylesEnabledAndPossible(Sitecore.Context.Item);
+
+                if (model.SpeedyCssEnabled)
+                {
+                    model.CriticalHtml = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.CriticalCSS].Value;
+                }
             }
             else
             {
