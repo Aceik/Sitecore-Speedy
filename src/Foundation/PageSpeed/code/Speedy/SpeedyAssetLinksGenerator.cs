@@ -78,7 +78,7 @@ namespace Site.Foundation.PageSpeed.Speedy
         {
             AssetsArgs assetsArgs = new AssetsArgs();
             CorePipeline.Run("assetService", assetsArgs);
-            string text = GenerateCacheKey(assetsArgs.GetHashCode());
+            string text = GenerateCacheKey(assetsArgs.GetHashCode()) + "speedy";
             SpeedyAssetLinks assetLinks = HttpContext.Current.Cache[text] as SpeedyAssetLinks;
             if (assetLinks == null || _configuration.RequestAssetsOptimizationDisabled)
             {

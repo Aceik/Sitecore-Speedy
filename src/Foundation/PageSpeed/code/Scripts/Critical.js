@@ -63,6 +63,7 @@ var processCritical = function (pageUrl, logger) {
             minify: true,
             inline: false,
             extract: true,
+            pathPrefix: '/',
             timeout: parseInt(config.timeout),
             width: parseInt(config.width),
             height: parseInt(config.height),
@@ -102,12 +103,31 @@ var beingCriticalSave = function (result) {
         console.log("page speedy html retrieved " + result.substring(0, 100));
         console.log("--------------------------------------------");
 
-        updateCriticalField(result);
+        var res = switchFontPaths(result);
+
+        updateCriticalField(res);
 
     } else {
         console.log("page speedy html retrieved but some other error -- " + result.Errors);
     }
 };
+
+var switchFontPaths = function replaceAll(input) {
+    var output2 = input;
+    config.fontmap.forEach(function (fontReplacement) {
+        console.log("fontReplacement.find -- " + fontReplacement.find + " -> " + fontReplacement.replace);
+        output2 = findReplace(output2, fontReplacement.find, fontReplacement.replace);
+    });
+    return output2;
+};
+
+var findReplace = function (str, find, replaceToken) {
+    return str.replace(new RegExp(escapeRegExp(find), 'gi'), replaceToken);
+};
+
+var escapeRegExp = function(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
 
 var updateCriticalField = function(html, logger) {
     var url = config.host + config.apisave;
