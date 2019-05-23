@@ -82,7 +82,7 @@ var processCritical = function (pageUrl, logger) {
             console.log("Critical HTML was generated");
             console.log("--------------------------------------------");
 
-            beingCriticalSave(cleanedUpCcss);
+            beingCriticalSave(cleanedUpCcss, logger);
 
         }).catch(function (err) {
             console.log("processing result rejected: " + err);
@@ -97,13 +97,15 @@ var processCritical = function (pageUrl, logger) {
 }
 
 
-var beingCriticalSave = function (result) {
+var beingCriticalSave = function (result, logger) {
     if (result) {
         console.log("--------------------------------------------");
         console.log("page speedy html retrieved " + result.substring(0, 100));
         console.log("--------------------------------------------");
 
         var res = switchFontPaths(result);
+
+        logger.debug('fonts fixed: ' + res);
 
         updateCriticalField(res);
 

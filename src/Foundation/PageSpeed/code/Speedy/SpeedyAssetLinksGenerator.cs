@@ -64,6 +64,7 @@ namespace Site.Foundation.PageSpeed.Speedy
                 if (model.SpeedyCssEnabled)
                 {
                     model.CriticalHtml = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.CriticalCSS].Value;
+                    model.SpecialCaseCriticalCss = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.SpecialCaseCriticalCSS].Value;
                 }
             }
             else

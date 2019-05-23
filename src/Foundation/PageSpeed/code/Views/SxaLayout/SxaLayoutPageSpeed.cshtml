@@ -42,7 +42,7 @@
     
     @if (model.SpeedyCssEnabled)
     {
-        @Html.Partial("/Views/Speedy/Critical.cshtml", (model.CriticalHtml))
+        @Html.Partial("/Views/Speedy/Critical.cshtml", (model))
     }
 </head>
 <body @Html.Sxa().Body().Decorate()>

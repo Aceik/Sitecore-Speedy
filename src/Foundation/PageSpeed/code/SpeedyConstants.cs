@@ -19,7 +19,8 @@ namespace Site.Foundation.PageSpeed
             public static readonly string CriticalViewPortWidth = "CriticalViewPortWidthPixels";
             public static readonly string CriticalViewPortHeight = "CriticalViewPortHeightPixels";
             public static readonly string CriticalCSS = "CriticalCSS";
-            
+            public static readonly string SpecialCaseCriticalCSS = "SpecialCaseCriticalCSS";
+
             public static readonly string EnableJavascriptLoadDefer = "EnableJavascriptLoadDefer";
             public static readonly string EnableStylesheetLoadDefer = "EnableStylesheetLoadDefer";
             public static readonly string OnePassCookieEnabled = "OnePassCookieEnabled";

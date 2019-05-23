@@ -15,5 +15,6 @@ namespace Site.Foundation.PageSpeed.Model
         public bool ByPassNotDetected { get; set; }
         public AssetLinks AssetLinks { get; set; }
         public string CriticalHtml { get; set; }
+        public string SpecialCaseCriticalCss { get; set; }
     }
 }
