@@ -50,7 +50,8 @@ namespace Site.Foundation.PageSpeed.Speedy
             model.SpeedyEnabled = SpeedyGenerationSettings.IsSpeedyEnabledForPage(Sitecore.Context.Item);
             model.SpeedyJsEnabled = false;
             model.SpeedyCssEnabled = false;
-            model.ByPassNotDetected = string.IsNullOrWhiteSpace(HttpContext.Current.Request[SpeedyConstants.ByPass.ByPassParameter]);
+            bool isOnePassCookieEnabledAndPresent = SpeedyGenerationSettings.IsOnePassCookieEnabled(Sitecore.Context.Item) && !string.IsNullOrWhiteSpace(HttpContext.Current.Request[SpeedyConstants.Fields.OnePassCookieName]);
+            model.ByPassNotDetected = string.IsNullOrWhiteSpace(HttpContext.Current.Request[SpeedyConstants.ByPass.ByPassParameter]) && !isOnePassCookieEnabledAndPresent;
 
             if (!model.ByPassNotDetected)
                 model.SpeedyEnabled = false;

@@ -34,6 +34,11 @@ namespace Site.Foundation.PageSpeed.Settings
             return item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled);
         }
 
+        public static bool IsOnePassCookieEnabled(Item item)
+        {
+            return item.IsEnabled(SpeedyConstants.Fields.OnePassCookieEnabled);
+        }
+
         public static bool IsCriticalStylesEnabledAndPossible(Item item)
         {
             return item.IsEnabled(SpeedyConstants.Fields.EnableStylesheetLoadDefer) && item.Fields[SpeedyConstants.Fields.CriticalCSS].HasValue;

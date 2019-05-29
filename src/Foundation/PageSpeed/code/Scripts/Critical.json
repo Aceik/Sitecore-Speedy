@@ -8,11 +8,11 @@
   "height": 1100,
   "fontmap": [
     {
-      "find": "/Users/thomas/AppData/Local/fonts/fontawesome/",
+      "find": "/C:/Users/thomas/AppData/Local/fonts/fontawesome/",
       "replace": ""
     },
     {
-      "find": "/Users/thomas/AppData/Local/fonts/",
+      "find": "/C:/Users/thomas/AppData/Local/fonts/",
       "replace": ""
     },
     {
@@ -66,6 +66,30 @@
     {
       "find": "national2web/national2web-bold-woff2.woff2?v=1.0.0",
       "replace": "/-/media/Themes/RAA/Web/Web/fonts/national2web/national2web-bold-woff2.woff2?v=1.0.0"
+    },
+    {
+      "find": "fa-regular-400-woff2.woff2",
+      "replace": "\"/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-regular-400-woff2.woff2"
+    },
+    {
+      "find": "fa-light-300-woff2.woff2",
+      "replace": "\"/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-300-woff2.woff2"
+    },
+    {
+      "find": "fa-solid-900-woff2.woff2",
+      "replace": "\"/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-solid-900-woff2.woff2"
+    },
+    {
+      "find": "fa-regular-400-woff.woff",
+      "replace": "\"/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-regular-400-woff.woff"
+    },
+    {
+      "find": "fa-light-300-woff.woff",
+      "replace": "\"/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-300-woff.woff"
+    },
+    {
+      "find": "fa-solid-900-woff.woff",
+      "replace": "\"/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-solid-900-woff.woff"
     }
   ]
 }

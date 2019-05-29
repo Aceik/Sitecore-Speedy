@@ -24,6 +24,7 @@ namespace Site.Foundation.PageSpeed
             public static readonly string EnableJavascriptLoadDefer = "EnableJavascriptLoadDefer";
             public static readonly string EnableStylesheetLoadDefer = "EnableStylesheetLoadDefer";
             public static readonly string OnePassCookieEnabled = "OnePassCookieEnabled";
+            public static readonly string OnePassCookieName = "CritcalPageLoadCookie";
         }
 
         public struct GlobalSettings

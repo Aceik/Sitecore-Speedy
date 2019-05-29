@@ -7,17 +7,18 @@
     @Html.Raw(Model.ClientScriptsRendered)
     var Speedy = {
         variables: {
-            src : null,  
+            src : null,
             script: null,
             pendingScripts : [],
-            firstScript: function () { return document.scripts[0] }
+            firstScript: function () { return document.scripts[0] },
+            firstRunCompleted: null
         },
         init: function () {
-            var firstRunCompleted = Speedy.tools.checkCookie(Speedy.settings.cookieName)
-            if (firstRunCompleted) {
+			Speedy.variables.firstRunCompleted = Speedy.tools.checkCookie(Speedy.settings.cookieName);
+            Speedy.fallbackExperienceBeforeLoad();
+			if (Speedy.variables.firstRunCompleted) {
                 Speedy.dynamicLoad();
             } else {
-                Speedy.fallbackExperience();
                 // Defer load a bit longer with a fallback experience
                 window.setTimeout(Speedy.dynamicLoad, Speedy.settings.deferLoadForMilliseconds);
                 Speedy.tools.setCookie(Speedy.settings.cookieName, true, Speedy.settings.cookieExpiration);
@@ -47,6 +48,8 @@
                     document.write('<script src="' + Speedy.variables.src + '" defer></' + 'script>');
                 }
             }
+
+			Speedy.fallbackExperienceAfterLoad();
         },
         events: {
             stateChange: function() {
@@ -61,7 +64,8 @@
                 }
             }
         },
-        fallbackExperience: null,
+        fallbackExperienceAfterLoad: null,
+        fallbackExperienceBeforeLoad: null,
         tools: {
             setCookie: function (cname, cvalue, exdays) {
                 var d = new Date();
@@ -95,13 +99,30 @@
     };
 
     Speedy.settings = {
-        cookieName: "firstRun",
+        cookieName: "CritcalPageLoadCookie",
         cookieExpiration: 10,
         deferLoadForMilliseconds: 5000
     };
 
-    Speedy.fallbackExperience = function () {
+    Speedy.fallbackExperienceBeforeLoad = function () {
+		setTimeout(function () {
+			var el = document.querySelectorAll('div.contact-us-container');
+			console.log(el);
+			// hide
+			if(el)
+			{
+				el.forEach(function(item) {
+				  item.style.display = 'none';
+				});
+				console.log("hiding drop down");
+			}
 
+		}, 100);
+    };
+
+    Speedy.fallbackExperienceAfterLoad = function () {
+
+		console.log("after load");
     };
 
     Speedy.init();
