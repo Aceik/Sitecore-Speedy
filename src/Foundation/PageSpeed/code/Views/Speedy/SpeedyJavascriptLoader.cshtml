@@ -11,16 +11,18 @@
             script: null,
             pendingScripts : [],
             firstScript: function () { return document.scripts[0] },
-            firstRunCompleted: null
+            firstRunCompleted: false
         },
         init: function () {
-			Speedy.variables.firstRunCompleted = Speedy.tools.checkCookie(Speedy.settings.cookieName);
+			//Speedy.variables.firstRunCompleted = Speedy.tools.checkCookie(Speedy.settings.cookieName);
             Speedy.fallbackExperienceBeforeLoad();
 			if (Speedy.variables.firstRunCompleted) {
-                Speedy.dynamicLoad();
+                console.log("load js right now")
+				Speedy.dynamicLoad();
             } else {
+				console.log("defering js - Defer load a bit longer with a fallback experience")
                 // Defer load a bit longer with a fallback experience
-                window.setTimeout(Speedy.dynamicLoad, Speedy.settings.deferLoadForMilliseconds);
+                window.setTimeout(Speedy.dynamicLoad, Speedy.settings.jsDeferLoadForMilliseconds);
                 Speedy.tools.setCookie(Speedy.settings.cookieName, true, Speedy.settings.cookieExpiration);
             }
         },
@@ -101,28 +103,31 @@
     Speedy.settings = {
         cookieName: "CritcalPageLoadCookie",
         cookieExpiration: 10,
-        deferLoadForMilliseconds: 5000
+        jsDeferLoadForMilliseconds: 4000,
+		fallBackExperienceDelay: 5000,
+		stylesDeferMilliseconds: 5500,
+		fallbackHideSelector : 'div.contact-us-container, div.myaccount-dropdown, div.header-search-box horizontal'
     };
 
     Speedy.fallbackExperienceBeforeLoad = function () {
 		setTimeout(function () {
-			var el = document.querySelectorAll('div.contact-us-container');
-			console.log(el);
-			// hide
+			var el = document.querySelectorAll(Speedy.settings.fallbackHideSelector);
 			if(el)
-			{
 				el.forEach(function(item) {
 				  item.style.display = 'none';
 				});
-				console.log("hiding drop down");
-			}
-
 		}, 100);
     };
 
     Speedy.fallbackExperienceAfterLoad = function () {
-
 		console.log("after load");
+		setTimeout(function () {
+			var el = document.querySelectorAll(Speedy.settings.fallbackHideSelector);
+			if(el)
+				el.forEach(function(item) {
+				  item.style.display = 'unset';
+				});
+		}, Speedy.settings.fallBackExperienceDelay);
     };
 
     Speedy.init();

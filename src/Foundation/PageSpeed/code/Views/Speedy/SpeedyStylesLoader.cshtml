@@ -20,6 +20,6 @@
         mozRequestAnimationFrame ||
         webkitRequestAnimationFrame ||
         msRequestAnimationFrame;
-    if (raf) raf(function () { window.setTimeout(loadDeferredStyles, 3000); });
+    if (raf) raf(function () { window.setTimeout(loadDeferredStyles, Speedy.settings.stylesDeferMilliseconds); });
     else window.addEventListener('load', loadDeferredStyles);
 </script>
