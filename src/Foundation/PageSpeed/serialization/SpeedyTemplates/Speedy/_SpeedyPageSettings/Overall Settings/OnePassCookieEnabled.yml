@@ -1,0 +1,25 @@
+﻿---
+ID: "e5fab53d-6c09-49d5-acc7-cc53f4ba9e90"
+Parent: "4b4cbb97-0c6a-4710-bc7a-c4a43e6624b4"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Overall Settings/OnePassCookieEnabled
+DB: master
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: Checkbox
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 100
+Languages:
+- Language: en
+  Fields:
+  - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
+    Hint: Title
+    Value: Use cookies to detect if critical is required only on first visit  (enabled if checked)  
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190424T111618Z

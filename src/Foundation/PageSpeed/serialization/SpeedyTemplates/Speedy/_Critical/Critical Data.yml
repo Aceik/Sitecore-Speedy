@@ -1,0 +1,18 @@
+﻿---
+ID: "9639c84f-79b5-42bc-9102-3f4be236425b"
+Parent: "cd50f100-0fae-4a18-94f2-a304fcceec98"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/Foundation/Speedy/_Critical/Critical Data
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190424T112414Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

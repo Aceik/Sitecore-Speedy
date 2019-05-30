@@ -1,0 +1,8 @@
+﻿@using Sitecore.XA.Foundation.Theming.Bundler
+@using Site.Foundation.PageSpeed.Speedy
+
+@model AssetLinks
+@foreach (string style in Model.Styles)
+{
+    @Html.Raw(style)
+}
