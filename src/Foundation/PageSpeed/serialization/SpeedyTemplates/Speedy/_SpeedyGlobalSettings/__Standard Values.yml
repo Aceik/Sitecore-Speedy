@@ -1,0 +1,18 @@
+﻿---
+ID: "76ccc6fd-80db-4d36-95c6-fda2ce6521f5"
+Parent: "b06f7c55-9717-4bfa-86d5-875b2ddac17c"
+Template: "b06f7c55-9717-4bfa-86d5-875b2ddac17c"
+Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190426T111214Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

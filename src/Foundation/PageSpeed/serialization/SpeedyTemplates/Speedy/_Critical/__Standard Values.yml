@@ -1,0 +1,58 @@
+﻿---
+ID: "dc098258-5fbb-4026-9ac3-4dd167af2788"
+Parent: "cd50f100-0fae-4a18-94f2-a304fcceec98"
+Template: "cd50f100-0fae-4a18-94f2-a304fcceec98"
+Path: /sitecore/templates/Foundation/Speedy/_Critical/__Standard Values
+DB: master
+SharedFields:
+- ID: "2d520efb-094e-4387-abef-3f784bd933a7"
+  Hint: CriticalViewPortHeightPixels
+  Value: 1200
+- ID: "d2b28a93-8173-44df-86a5-9751528ed0be"
+  Hint: CriticalViewPortWidthPixels
+  Value: 1800
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20190501T124451:636923114915874802Z"
+  - Version: 2
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20190501T124630:636923115902635095Z"
+  - Version: 3
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20190501T124642:636923116024615042Z"
+  - Version: 4
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190501T124752Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "c8f93afe-bfd4-4e8f-9c61-152559854661"
+      Hint: __Valid from
+      Value: 20190501T124752Z
+  - Version: 5
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190501T124757Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "c8f93afe-bfd4-4e8f-9c61-152559854661"
+      Hint: __Valid from
+      Value: 20190501T124757Z
+    - ID: "ea0df707-c97f-45f0-82e3-3bcc0b5f52c3"
+      Hint: CriticalCSS
+      Value: 

@@ -14,13 +14,11 @@
             firstRunCompleted: false
         },
         init: function () {
-			//Speedy.variables.firstRunCompleted = Speedy.tools.checkCookie(Speedy.settings.cookieName);
+			Speedy.variables.firstRunCompleted = Speedy.tools.checkCookie(Speedy.settings.cookieName);
             Speedy.fallbackExperienceBeforeLoad();
 			if (Speedy.variables.firstRunCompleted) {
-                console.log("load js right now")
 				Speedy.dynamicLoad();
             } else {
-				console.log("defering js - Defer load a bit longer with a fallback experience")
                 // Defer load a bit longer with a fallback experience
                 window.setTimeout(Speedy.dynamicLoad, Speedy.settings.jsDeferLoadForMilliseconds);
                 Speedy.tools.setCookie(Speedy.settings.cookieName, true, Speedy.settings.cookieExpiration);

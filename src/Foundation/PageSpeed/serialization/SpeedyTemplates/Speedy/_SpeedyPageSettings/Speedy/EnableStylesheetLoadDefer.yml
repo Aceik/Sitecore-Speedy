@@ -1,0 +1,25 @@
+﻿---
+ID: "36ca5a14-f010-46a9-a9e8-7eeea06ae3b3"
+Parent: "4b4cbb97-0c6a-4710-bc7a-c4a43e6624b4"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/EnableStylesheetLoadDefer
+DB: master
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: Checkbox
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 75
+Languages:
+- Language: en
+  Fields:
+  - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
+    Hint: Title
+    Value: Enable Stylesheet Defer
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190424T111846Z

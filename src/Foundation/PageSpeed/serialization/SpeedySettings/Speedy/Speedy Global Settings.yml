@@ -1,0 +1,21 @@
+﻿---
+ID: "7c852721-7717-41cf-b729-473859228964"
+Parent: "bd320c29-a67e-4b4b-8e79-af5214421ad9"
+Template: "b06f7c55-9717-4bfa-86d5-875b2ddac17c"
+Path: /sitecore/system/Settings/Foundation/Speedy/Speedy Global Settings
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190426T102857Z
+    - ID: "5a158a54-b524-483c-a3a0-6e2a5fcc5cbe"
+      Hint: EndpointURL
+      Value: "https://nodeapicritical.azurewebsites.net/critical/"
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
