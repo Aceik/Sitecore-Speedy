@@ -42,6 +42,37 @@ Instructions
    ii) Presentation > Details > Final Layout :  Change the layout to "Layouts/Foundation/Speedy/MVC/MVC Layout Page Speed"
    iii) Save and publish the item
 
-6) 
+6) Critical Generation 
+
+The critical generation is the most complex 
+
+
+
+Heading: Complex Issues
+
+In reality there is nothing simple about getting Critical and Javascript to play together. 
+
+This process will take some trial and error, the aim of which is to present the user with an experience that is so quick that they don't notice and strange behaviour at all.
+
+Strange behaviour usually includes flashing or mutating elements (in the blink of eye) as the deferred page load assets are loaded into the DOM.  This is due to the fact 
+that these assets are delayed and once they are loaded they each impact the DOM in turn.
+
+So how do we handle this.
+
+a) Hide components / features that require complex Javascript interactions until the Javascript library is ready.  After which we reshow the component. 
+b) Provide a loading splash if a is all to hard. 
+
+Sitecore Module Settings
+
+
+Node Settings  (Standalone Developer Mode)
+
+
+Node Settings (Hosted Azure Node Application)
+
+
+
+
+
 
 
