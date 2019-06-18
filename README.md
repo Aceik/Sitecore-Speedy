@@ -20,6 +20,14 @@ Read more here ...
 
 This module addresses Critical CSS and Deferred asset loading, which is perhaps the hardest one to get right. 
 
-Installation 
+Installation - From Helix Source - Assumes Unicorn is in use
 
-1) 
+1) Incorporate the module into your Foundation layer and VS solution
+2) Publish project to your running IIS site or deploy via CI/CD
+3) Run a unicorn sync for the module Foundation.Speedy
+	a) Templates will be installed here: /sitecore/templates/Foundation/Speedy/
+	b) A global settings file is installed here:  /sitecore/system/Settings/Foundation/Speedy/Speedy Global Settings
+	c) A new SXA Layout will be installed here: /sitecore/layout/Layouts/Foundation/Speedy/MVC/MVC Layout Page Speed
+4) Update
+
+

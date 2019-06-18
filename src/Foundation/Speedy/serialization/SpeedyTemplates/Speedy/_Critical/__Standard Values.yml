@@ -4,13 +4,6 @@ Parent: "cd50f100-0fae-4a18-94f2-a304fcceec98"
 Template: "cd50f100-0fae-4a18-94f2-a304fcceec98"
 Path: /sitecore/templates/Foundation/Speedy/_Critical/__Standard Values
 DB: master
-SharedFields:
-- ID: "2d520efb-094e-4387-abef-3f784bd933a7"
-  Hint: CriticalViewPortHeightPixels
-  Value: 1200
-- ID: "d2b28a93-8173-44df-86a5-9751528ed0be"
-  Hint: CriticalViewPortWidthPixels
-  Value: 1800
 Languages:
 - Language: en
   Versions:
@@ -54,5 +47,5 @@ Languages:
       Hint: __Valid from
       Value: 20190501T124757Z
     - ID: "ea0df707-c97f-45f0-82e3-3bcc0b5f52c3"
-      Hint: CriticalCSS
+      Hint: CriticalHTML
       Value: 

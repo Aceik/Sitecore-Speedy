@@ -1,4 +1,4 @@
-﻿namespace Site.Foundation.Speedy.Services
+﻿namespace Sitecore.Foundation.Speedy.Services
 {
     public interface ICriticalGenerationGateway
     {

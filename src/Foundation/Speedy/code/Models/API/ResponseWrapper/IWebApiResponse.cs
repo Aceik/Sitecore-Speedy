@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
 
-namespace Site.Foundation.Speedy.Models.API.ResponseWrapper
+namespace Sitecore.Foundation.Speedy.Models.API.ResponseWrapper
 {
 }

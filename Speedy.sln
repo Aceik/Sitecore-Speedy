@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Foundation", "Foundation", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Speedy", "Speedy", "{785C660D-96C1-4A96-A055-5A9FAD430454}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Site.Foundation.Speedy", "src\Foundation\Speedy\code\Site.Foundation.Speedy.csproj", "{42D502B8-600D-472C-A92F-AE7A87F8E1B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Foundation.Speedy", "src\Foundation\Speedy\code\Sitecore.Foundation.Speedy.csproj", "{42D502B8-600D-472C-A92F-AE7A87F8E1B6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1CBA560D-EDC3-4248-9FEF-753FDCFBAD03}"
 	ProjectSection(SolutionItems) = preProject

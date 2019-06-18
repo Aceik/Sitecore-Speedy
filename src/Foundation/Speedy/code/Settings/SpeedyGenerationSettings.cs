@@ -1,8 +1,8 @@
-﻿using Site.Foundation.Speedy.Extensions;
+﻿using Sitecore.Foundation.Speedy.Extensions;
 using Sitecore.Data;
 using Sitecore.Data.Items;
 
-namespace Site.Foundation.Speedy.Settings
+namespace Sitecore.Foundation.Speedy.Settings
 {
     public class SpeedyGenerationSettings
     {

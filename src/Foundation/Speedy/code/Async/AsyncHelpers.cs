@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Site.Foundation.Speedy.Async
+namespace Sitecore.Foundation.Speedy.Async
 {
     public static class AsyncHelpers
     {

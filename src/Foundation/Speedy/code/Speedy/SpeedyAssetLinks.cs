@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sitecore.XA.Foundation.Theming.Bundler;
 
-namespace Site.Foundation.Speedy.Speedy
+namespace Sitecore.Foundation.Speedy.Speedy
 {
     public class SpeedyAssetLinks : AssetLinks
     {

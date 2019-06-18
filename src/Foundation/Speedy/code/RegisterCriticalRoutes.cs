@@ -2,7 +2,7 @@
 using System.Web.Routing;
 using Sitecore.Pipelines;
 
-namespace Site.Foundation.Speedy
+namespace Sitecore.Foundation.Speedy
 {
     public class RegisterCriticalRoutes
     {

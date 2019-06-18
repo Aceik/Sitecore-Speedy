@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Web;
 using Microsoft.Extensions.DependencyInjection;
-using Site.Foundation.Speedy.Model;
-using Site.Foundation.Speedy.Settings;
+using Sitecore.Foundation.Speedy.Model;
+using Sitecore.Foundation.Speedy.Settings;
 using Sitecore.Data.Items;
 using Sitecore.DependencyInjection;
 using Sitecore.Diagnostics;
@@ -15,7 +15,7 @@ using Sitecore.XA.Foundation.Theming.EventHandlers;
 using Sitecore.XA.Foundation.Theming.Extensions;
 using Sitecore.XA.Foundation.Theming.Pipelines.AssetService;
 
-namespace Site.Foundation.Speedy.Speedy
+namespace Sitecore.Foundation.Speedy.Speedy
 {
     public class SpeedyAssetLinksGenerator : AssetLinksGenerator
     {

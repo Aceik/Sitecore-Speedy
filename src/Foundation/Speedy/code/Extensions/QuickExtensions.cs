@@ -5,7 +5,7 @@ using Sitecore.Links;
 using Sitecore.Sites;
 using Sitecore.Web;
 
-namespace Site.Foundation.Speedy.Extensions
+namespace Sitecore.Foundation.Speedy.Extensions
 {
     public static class QuickExtensions
     {

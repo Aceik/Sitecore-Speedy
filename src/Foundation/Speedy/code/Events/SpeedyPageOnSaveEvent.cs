@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using Site.Foundation.Speedy.Extensions;
-using Site.Foundation.Speedy.Services;
-using Site.Foundation.Speedy.Settings;
+using Sitecore.Foundation.Speedy.Extensions;
+using Sitecore.Foundation.Speedy.Services;
+using Sitecore.Foundation.Speedy.Settings;
 using Sitecore.Data.Items;
 using Sitecore.Events;
 using Sitecore.Links;
@@ -10,7 +10,7 @@ using Sitecore.Sites;
 using Sitecore.Web;
 using Sitecore.XA.Foundation.SitecoreExtensions.Extensions;
 
-namespace Site.Foundation.Speedy.Events
+namespace Sitecore.Foundation.Speedy.Events
 {
     public class SpeedyPageOnSaveEvent
     {

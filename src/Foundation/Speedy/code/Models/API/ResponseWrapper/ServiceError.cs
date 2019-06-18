@@ -1,4 +1,4 @@
-﻿namespace Site.Foundation.Speedy.Models.API.ResponseWrapper
+﻿namespace Sitecore.Foundation.Speedy.Models.API.ResponseWrapper
 {
     public class ServiceError : IServiceError
     {

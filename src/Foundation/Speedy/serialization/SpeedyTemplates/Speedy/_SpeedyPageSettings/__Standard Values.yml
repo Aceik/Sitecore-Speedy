@@ -31,9 +31,6 @@ Languages:
       Hint: SpeedyEnabled
       Type: Checkbox
       Value: 1
-    - ID: "d965f865-233a-4b6f-a6b5-d9be6b1d53be"
-      Hint: DeferJavascriptMilliseconds
-      Value: 10000
     - ID: "e5fab53d-6c09-49d5-acc7-cc53f4ba9e90"
       Hint: OnePassCookieEnabled
       Type: Checkbox

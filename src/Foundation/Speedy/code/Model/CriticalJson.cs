@@ -1,4 +1,4 @@
-﻿namespace Site.Foundation.Speedy.Model
+﻿namespace Sitecore.Foundation.Speedy.Model
 {
     public class CriticalJson
     {

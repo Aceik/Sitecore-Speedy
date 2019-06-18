@@ -1,6 +1,6 @@
 ﻿using Sitecore.XA.Foundation.Theming.Bundler;
 
-namespace Site.Foundation.Speedy.Model
+namespace Sitecore.Foundation.Speedy.Model
 {
     public class SpeedyLayoutModel
     {

@@ -1,6 +1,6 @@
 ﻿using Sitecore.Data;
 
-namespace Site.Foundation.Speedy
+namespace Sitecore.Foundation.Speedy
 {
     public struct SpeedyConstants
     {

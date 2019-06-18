@@ -1,9 +1,9 @@
 ﻿using System.Web;
 using RestSharp;
-using Site.Foundation.Speedy.Model;
-using Site.Foundation.Speedy.Settings;
+using Sitecore.Foundation.Speedy.Model;
+using Sitecore.Foundation.Speedy.Settings;
 
-namespace Site.Foundation.Speedy.Services
+namespace Sitecore.Foundation.Speedy.Services
 {
     public class CriticalGenerationGateway : ICriticalGenerationGateway
     {

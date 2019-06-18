@@ -10,13 +10,13 @@ SharedFields:
   Value: Checkbox
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
-  Value: 200
+  Value: 10
 Languages:
 - Language: en
   Fields:
   - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
     Hint: Title
-    Value: Speedy Enabled for Page
+    Value: Enable Speedy for this Page
   Versions:
   - Version: 1
     Fields:

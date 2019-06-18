@@ -1,12 +1,10 @@
 ﻿using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Web;
 using System.Web.Http;
-using Site.Foundation.Speedy.Events;
-using Site.Foundation.Speedy.Extensions;
-using Site.Foundation.Speedy.Model;
-using Site.Foundation.Speedy.Models.API.ResponseWrapper;
+using Sitecore.Foundation.Speedy.Extensions;
+using Sitecore.Foundation.Speedy.Model;
+using Sitecore.Foundation.Speedy.Models.API.ResponseWrapper;
 using Sitecore.Data.Items;
 using Sitecore.SecurityModel;
 
@@ -14,7 +12,7 @@ using Sitecore.SecurityModel;
 /// Note: This WEB API controller is meant to be used on a developer 'standalone' environment.
 /// This file is patched in via:  /App_config/Include/Speedy/Foundation/Foundation.Speedy.Routes.config
 /// </summary>
-namespace Site.Foundation.Speedy.Controllers
+namespace Sitecore.Foundation.Speedy.Controllers
 {
     public class CriticalController : ApiController
     {

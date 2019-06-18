@@ -1,0 +1,14 @@
+﻿---
+ID: "77aad200-e12e-43ed-ba40-e0c0378005f3"
+Parent: "10335194-8652-470a-9445-fd7c4fb21b4e"
+Template: "93227c5d-4fef-474d-94c0-f252ec8e8219"
+Path: /sitecore/layout/Layouts/Foundation/Speedy
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190618T133042Z
