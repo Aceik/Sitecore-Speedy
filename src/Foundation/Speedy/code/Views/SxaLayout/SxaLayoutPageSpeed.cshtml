@@ -1,0 +1,66 @@
+﻿@using System.Web.Mvc.Html
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Analytics.Extensions
+@using Sitecore.XA.Foundation.MarkupDecorator.Extensions
+@using Sitecore.XA.Foundation.SitecoreExtensions.Extensions
+@using Sitecore.XA.Foundation.Theming.Bundler
+@using System.Web.Mvc.Html
+@using Site.Foundation.Speedy.Model
+@using Site.Foundation.Speedy.Speedy
+@using Sitecore.Mvc
+@using Sitecore.XA.Foundation.Grid.Extensions
+@using Sitecore.XA.Foundation.Theming.Bundler
+
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+    SpeedyLayoutModel model = SpeedyAssetLinksGenerator.GetSpeedyLayoutModel();
+}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="@Model.Item.Language.Name">
+<!--<![endif]-->
+<head>
+
+    @if (!model.SpeedyJsEnabled)
+    {
+        @Html.Partial("/Views/Speedy/OriginalStylesLoader.cshtml", model.AssetLinks)
+    }
+
+    @Html.Sitecore().VisitorIdentification()
+    @Html.Sxa().Placeholder("head")
+
+    @if (model.SpeedyJsEnabled)
+    {
+        @Html.Partial("/Views/Speedy/SpeedyJavascriptLoader.cshtml", (model.AssetLinks as SpeedyAssetLinks))
+    }
+    
+    @if (model.SpeedyCssEnabled)
+    {
+        @Html.Partial("/Views/Speedy/Critical.cshtml", (model))
+    }
+</head>
+<body @Html.Sxa().Body().Decorate()>
+
+    @Html.Sitecore().Placeholder("body-top")
+
+    @Html.Sxa().GridBody()
+
+    @Html.Sitecore().Placeholder("body-bottom")
+
+    @if (model.SpeedyCssEnabled)
+    {
+        @Html.Partial("/Views/Speedy/SpeedyStylesLoader.cshtml", (model.AssetLinks as SpeedyAssetLinks))
+    }
+
+    @if (!model.SpeedyJsEnabled)
+    {
+        @Html.Partial("/Views/Speedy/OriginalScriptsLoader.cshtml", model.AssetLinks)
+    }
+
+    <!-- /#wrapper -->
+</body>
+</html>

@@ -1,0 +1,7 @@
+﻿@using Sitecore.XA.Foundation.Theming.Bundler
+
+@model AssetLinks
+@foreach (string style in Model.Styles)
+{
+    @Html.Raw(style)
+}
