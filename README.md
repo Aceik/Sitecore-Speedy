@@ -4,6 +4,8 @@
 
 Use best practice page load techniques to achieve Outstanding Page Speed scores in SXA.
 
+[![Node version](https://img.shields.io/node/v/[NPM-MODULE-NAME].svg?style=flat)](http://nodejs.org/download/)
+
 ## What does it do ?
 
 Speedy provides a Sitecore Layout and Asset provider that structures your HTML in accordance with Google's recommendations.  Google ranks your website with a score out of 100 and provides recommendation on how to achieve better scores.
