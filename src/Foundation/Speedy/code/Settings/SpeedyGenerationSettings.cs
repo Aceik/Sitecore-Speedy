@@ -51,5 +51,30 @@ namespace Sitecore.Foundation.Speedy.Settings
         {
             return Sitecore.Configuration.Factory.GetDatabase("master");
         }
+
+        public static string GetCookieExpiration()
+        {
+            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.CookieExpiration].Value;
+        }
+
+        public static string GetDeferJSLoadForMilliseconds()
+        {
+            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.DeferJSLoadForMilliseconds].Value;
+        }
+
+        public static string GetDeferCSSLoadForMilliseconds()
+        {
+            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.DeferCSSLoadForMilliseconds].Value;
+        }
+
+        public static string GetDeferFallbackMilliseconds()
+        {
+            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.DeferFallbackForMilliseconds].Value;
+        }
+
+        public static string GetFallbackExperienceSelector()
+        {
+            return Sitecore.Context.Item.Fields[SpeedyConstants.Fields.FallbackSelectorFieldName].Value;
+        }
     }
 }

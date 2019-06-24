@@ -20,6 +20,8 @@ namespace Sitecore.Foundation.Speedy
             public static readonly string EnableJavascriptLoadDefer = "EnableJavascriptLoadDefer";
             public static readonly string EnableStylesheetLoadDefer = "EnableStylesheetLoadDefer";
             public static readonly string OnePassCookieEnabled = "OnePassCookieEnabled";
+            
+            public static readonly string FallbackSelectorFieldName = "CssFallbackSelector";
         }
 
         public struct CookieNames
@@ -35,6 +37,10 @@ namespace Sitecore.Foundation.Speedy
             {
                 public static readonly string EndpointUrl = "EndpointURL";
                 public static readonly string ShouldRegenerateOnEverySaveEvent = "ShouldRegenerateOnEverySaveEvent";
+                public static readonly string CookieExpiration = "CookieExpirationDays";
+                public static readonly string DeferJSLoadForMilliseconds = "DeferJSLoadForMilliseconds";
+                public static readonly string DeferCSSLoadForMilliseconds = "DeferCSSLoadForMilliseconds";
+                public static readonly string DeferFallbackForMilliseconds = "DeferFallbackForMilliseconds";
             }
         }
 

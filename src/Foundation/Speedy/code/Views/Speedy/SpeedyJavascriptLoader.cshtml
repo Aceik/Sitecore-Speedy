@@ -1,4 +1,5 @@
-﻿@using Sitecore.XA.Foundation.Theming.Bundler
+﻿@using System.Web.Mvc.Html
+@using Sitecore.XA.Foundation.Theming.Bundler
 
 @model Sitecore.Foundation.Speedy.Speedy.SpeedyAssetLinks
 
@@ -97,14 +98,7 @@
         }
     };
 
-    Speedy.settings = {
-        cookieName: "CriticalPageLoadCookie",
-        cookieExpiration: 10,
-        jsDeferLoadForMilliseconds: 4000,
-		fallBackExperienceDelay: 5000,
-		stylesDeferMilliseconds: 5500,
-		fallbackHideSelector : 'div.contact-us-container, div.myaccount-dropdown, div.header-search-box horizontal'
-    };
+    @Html.Partial("/Views/Speedy/SpeedyJavascriptLoaderSettings.cshtml")
 
     Speedy.fallbackExperienceBeforeLoad = function () {
 		setTimeout(function () {

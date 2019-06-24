@@ -85,6 +85,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\Critical.json" />
     <Content Include="Views\Speedy\Critical.cshtml" />
+    <Content Include="Views\Speedy\SpeedyJavascriptLoaderSettings.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,0 +1,12 @@
+﻿@using Sitecore.Foundation.Speedy
+@using Sitecore.Foundation.Speedy.Settings
+@using Sitecore.XA.Foundation.Theming.Bundler
+
+Speedy.settings = {
+    cookieName: '@Html.Raw(SpeedyConstants.CookieNames.OnePassCookieName)',
+    cookieExpiration: @Html.Raw(SpeedyGenerationSettings.GetCookieExpiration()),
+    jsDeferLoadForMilliseconds: @Html.Raw(SpeedyGenerationSettings.GetDeferJSLoadForMilliseconds()),
+    fallBackExperienceDelay: @Html.Raw(SpeedyGenerationSettings.GetDeferFallbackMilliseconds()),
+    stylesDeferMilliseconds: @Html.Raw(SpeedyGenerationSettings.GetDeferCSSLoadForMilliseconds()),
+    fallbackHideSelector : '@Html.Raw(SpeedyGenerationSettings.GetFallbackExperienceSelector())'
+};
