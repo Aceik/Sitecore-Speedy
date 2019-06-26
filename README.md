@@ -2,9 +2,7 @@
 
 ## Sitecore Speedy (SXA Version)
 
-Use best practice page load techniques to achieve Outstanding Page Speed scores in SXA.
-
-[![Node version](https://img.shields.io/node/v/[NPM-MODULE-NAME].svg?style=flat)](http://nodejs.org/download/)
+Use best practice page load techniques to achieve Outstanding Page Speed scores in SXA. <img src='https://img.shields.io/github/tag/Aceik/Sitecore-Speedy.svg' />
 
 ## What does it do ?
 
@@ -38,7 +36,8 @@ This module addresses Critical CSS and Deferred asset loading, which is perhaps 
 ## Installation Pre-Requisuits
 
 Pre-Requisuits 
-1) Node.JS  (Required in local development mode)
+1) <img src="https://img.shields.io/badge/requires-node-blue.svg?style=flat-square" alt="requires node">  (Required in local development mode)
+2) <img src="https://img.shields.io/badge/requires-sitecore-blue.svg?style=flat-square" alt="requires node">
 
 ## Installation
 
