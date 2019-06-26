@@ -6,7 +6,7 @@
 <img src='https://img.shields.io/github/license/Aceik/Sitecore-Speedy.svg' />
 <img src='https://img.shields.io/github/languages/code-size/Aceik/Sitecore-Speedy.svg' />
 
-Use best practice page load techniques to achieve Outstanding Page Speed scores in SXA. 
+Use best practice page load techniques to achieve Outstanding Page Speed scores for your Sitecore pages. 
 
 ## What does it do ?
 
@@ -118,31 +118,28 @@ Strange behaviour usually includes flashing or mutating elements (in the blink o
 [Read more about how to handle ...](https://github.com/Aceik/Sitecore-Speedy/wiki/Complex-Page-Speed-Issues)
 
 
-### Sitecore Module Settings
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-### Node Settings  (Standalone Developer Mode)
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-### Node Settings (Hosted Azure Node Application)
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+### Siteore Settings
 
 
+#### Global
+
+The following settings will be installed at the following location: /sitecore/system/Settings/Foundation/Speedy/Speedy Global Settings
+
+| Setting Name        | Example Values           | Notes |
+| -------------       |:------------------------:|:-----:|
+| Endpoint URL         | https://nodeapicritical.azurewebsites.net/critical/ |  This URL points to your hosted version of the node JS web application that run the critical script. [Read more about production mode](https://github.com/Aceik/Sitecore-Speedy/wiki/Production-Mode) |
+| ShouldRegenerateOnEverySaveEvent  | true/false      |  Attempt to generate critical on save of each page. Critical must be enabled on a page for this to kick in. |
+| CookieExpirationDays | 10      |  When first pass only mode is enabled this controls how long the cookie is valid for.  See page settings for details on first pass using the cookie |
+| DeferJSLoadForMilliseconds  |   4000    |  Javascript is Expensive. Its a programming language run on the client side.  A users browser must parse all non-deferred javascript before First Contentful Paint (FCP) can occurr. For a Page Speed scores this has major implications.  We still want Javascript to run but to get good scores we must defer it until after FCP occurrs to get a good score. This value is in milliseconds |
+| DeferCSSLoadForMilliseconds |  5500    | Value in milliseconds.   We are using Critical CSS to make sure FCP happens nice and early without the need for external CSS assets.  This value controls how long we wait until the external assets are asked to kick into gear.  | 
+| DeferFallbackForMilliseconds  |   5000   |  Value in milliseconds.  [Read about first pass mode](https://github.com/Aceik/Sitecore-Speedy/wiki/Page-Speed---First-Pass-Mode)  |
 
 
+## References and Inspiration
 
+* [Deep dive into the murky waters of script loading](https://www.html5rocks.com/en/tutorials/speed/script-loading/)
+* [Async Vs Defer](https://bitsofco.de/async-vs-defer/)
+* [Efficiently load JavaScript with defer and async](https://flaviocopes.com/javascript-async-defer/)
+* [Critical](https://www.npmjs.com/package/critical)
+* [LoadCSS](https://github.com/filamentgroup/loadCSS/blob/master/README.md) -- Looking to implement this in a future version
+* https://www.browserless.io/
