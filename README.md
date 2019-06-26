@@ -118,7 +118,7 @@ Strange behaviour usually includes flashing or mutating elements (in the blink o
 [Read more about how to handle ...](https://github.com/Aceik/Sitecore-Speedy/wiki/Complex-Page-Speed-Issues)
 
 
-### Siteore Settings
+### Sitecore Settings
 
 
 #### Global
