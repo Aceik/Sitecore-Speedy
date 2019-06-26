@@ -32,7 +32,7 @@ This module addresses Critical CSS and Deferred asset loading, which is perhaps 
   * <img src="https://img.shields.io/badge/requires-sitecore%20v9.0.2-green.svg?style=flat-square" alt="requires node">
 
 ## Getting Started Steps
-1) [installation](https://github.com/Aceik/Sitecore-Speedy/wiki/Installation)
+1) [Installation](https://github.com/Aceik/Sitecore-Speedy/wiki/Installation)
 2) [Critical Generation](https://github.com/Aceik/Sitecore-Speedy/wiki/Critical-Generation-Options)
 3) [Usage on each page](https://github.com/Aceik/Sitecore-Speedy/wiki/Usage-on-a-Page)
 4) [Tweak, Adapt and test](https://github.com/Aceik/Sitecore-Speedy/wiki/Tweak,-Adapt-and-Test)
