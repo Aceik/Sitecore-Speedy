@@ -1,8 +1,8 @@
 ![Sitecore Speedy](https://aceiksolutions.files.wordpress.com/2019/06/speedylogo.png?w=1024&h=321)
 
-## Sitecore Speedy (SXA Version)
+## Sitecore Speedy (SXA Version) <img src='https://img.shields.io/github/tag/Aceik/Sitecore-Speedy.svg' />
 
-Use best practice page load techniques to achieve Outstanding Page Speed scores in SXA. <img src='https://img.shields.io/github/tag/Aceik/Sitecore-Speedy.svg' />
+Use best practice page load techniques to achieve Outstanding Page Speed scores in SXA. 
 
 ## What does it do ?
 
