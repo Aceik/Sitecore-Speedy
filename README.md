@@ -1,190 +1,50 @@
 ![Sitecore Speedy](https://aceiksolutions.files.wordpress.com/2019/06/speedylogo.png?w=1024&h=321)
 
-## Sitecore Speedy (SXA Version)
+## Sitecore Speedy (SXA Version) 
+<img src='https://img.shields.io/github/tag/Aceik/Sitecore-Speedy.svg' />
+<img src='https://img.shields.io/github/issues/Aceik/Sitecore-Speedy.svg' />
+<img src='https://img.shields.io/github/license/Aceik/Sitecore-Speedy.svg' />
+<img src='https://img.shields.io/github/languages/code-size/Aceik/Sitecore-Speedy.svg' />
 
-Use best practice page load techniques to achieve Outstanding Page Speed scores in SXA.
-
-[![Node version](https://img.shields.io/node/v/[NPM-MODULE-NAME].svg?style=flat)](http://nodejs.org/download/)
+Use best practice page load techniques to achieve Outstanding Page Speed scores for your Sitecore pages. 
 
 ## What does it do ?
 
 Speedy provides a Sitecore Layout and Asset provider that structures your HTML in accordance with Google's recommendations.  Google ranks your website with a score out of 100 and provides recommendation on how to achieve better scores.
 Implementing Critical CSS and Deferred Javascript loading can be tricky. This module provides a framework and the tools needed to automate the process. 
 
-## What structure is this module written in ?
+## What does Speedy solve in regard to Page Speed ?
 
-This is a Sitecore Helix module. 
-
-It is planned to release this module as an installable Sitecore package as well.
-
-## What are the main considerations for Page Speed ?
-
-Optimising your site for great page speed scores could involve:
-
-1) Server Side caching  (impact the Time to First Byte (TTFB) metric)
-	* Performance tuning the server side is well covered in Sitecore documentation. We suggest at the very least you do a HTML Caching Strategy. [Read more here.](https://aceik.com.au/2017/11/20/dont-forget-your-sitecore-caching-strategy/)
-2) Image optimiisation (Loseless compression), Image Lazy Loading, Responsive images
-	* [Dianoga](https://github.com/kamsar/Dianoga)
-	* [Image Lazy Loading](https://isaadansari.wordpress.com/2018/07/02/progressive-and-optimized-loading-images-with-sxa-how-to-implement-series/)
-	* [Image Lazy Loading Responsive Images](https://www.andreaverlicchi.eu/lazy-load-responsive-images-in-2019-srcset-sizes-more/)
-3) HTTP2 - Also enalbed on the server side.
-4) Critical CSS and Defered external asset files
-	* Is the focus of this module. :)
-
-## What are the main considerations for Page Speed ?
+In order to get great page speed scores there are several aspects you need to address. [Read more here.](https://github.com/Aceik/Sitecore-Speedy/wiki/Page-Speed-Considerations)
 
 This module addresses Critical CSS and Deferred asset loading, which is perhaps one of the hardest parts of Page Speed to get right.
 
-## Installation Pre-Requisuits
+## Installation prerequisites and notes
 
-Pre-Requisuits 
-1) Node.JS  (Required in local development mode)
+1) <img src="https://img.shields.io/badge/requires-node-blue.svg?style=flat-square" alt="requires node">  (Required in [local development mode](https://github.com/Aceik/Sitecore-Speedy/wiki/Development-Mode))
+2) <img src="https://img.shields.io/badge/requires-sitecore-blue.svg?style=flat-square" alt="requires sitecore">
+  * <img src="https://img.shields.io/badge/requires-sitecore%20v9.0.2-green.svg?style=flat-square" alt="requires sitecore 9.0.2">
+  * <img src="https://img.shields.io/badge/Helix-Foundation%20Layer-green.svg?style=flat-square" alt="requires sitecore 9.0.2">
 
-## Installation
+## Getting Started Steps
+1) [Installation](https://github.com/Aceik/Sitecore-Speedy/wiki/Installation)
+2) [Critical Generation](https://github.com/Aceik/Sitecore-Speedy/wiki/Critical-Generation-Options)
+3) [Usage on each page](https://github.com/Aceik/Sitecore-Speedy/wiki/Usage-on-a-Page)
+4) [Tweak, Adapt and test](https://github.com/Aceik/Sitecore-Speedy/wiki/Tweak,-Adapt-and-Test)
 
-### From Helix Source (Assumes Unicorn already installed)
-	- Incorporate the module into your Foundation layer and VS solution
-	- Publish project to your running IIS site or deploy via CI/CD
-	- Run a unicorn sync for the module Foundation.Speedy
-		a) Templates will be installed here: /sitecore/templates/Foundation/Speedy/
-		b) A global settings file is installed here:  /sitecore/system/Settings/Foundation/Speedy/Speedy Global Settings
-		c) A new SXA Layout will be installed here: /sitecore/layout/Layouts/Foundation/Speedy/MVC/MVC Layout Page Speed
+## Troubleshooting
 
-### Sitecore Package
-	- Download and install the Sitecore Package that corresponds to your SXA/Sitecore version in releases.
+[Read more about how to troubleshoot display issues ...](https://github.com/Aceik/Sitecore-Speedy/wiki/Complex-Page-Speed-Issues)
 
-## SXA Templates
+### Sitecore Settings
+* [Global Settings](https://github.com/Aceik/Sitecore-Speedy/wiki/Global-Settings)
+* [Page Settings](https://github.com/Aceik/Sitecore-Speedy/wiki/Page-Settings)
 
-Update your the desired SXA template to include the new base _SpeedyPage base template.
-   
-You may choose to add Speedy techniques to only the homepage in which case you could:
-	- Locate the Home tempalte that was generated by SXA, it should be located in 
-	> /sitecore/templates/Project/Site/Home 
-	and make it inherit from:  
-	> /sitecore/templates/Foundation/Speedy/_SpeedyPage
-	- To make all pages in your SXA site use Speedy you need to locate the Page template (within you SXA generated site templates) 
-	> /sitecore/templates/Project/Site/Page 
-	and make it inherit from _SpeedyPage. 
+## References and Inspiration
 
-## Usage on a Page
-
-Which ever page you now choose to use Speedy on, navigate to that item:
-	
-	- Make a new version of the item, so that you can roll back if needed.
-	- Presentation > Details > Final Layout :  Change the layout to 
-	> Layouts/Foundation/Speedy/MVC/MVC Layout Page Speed
-	- Save and publish the item
-
-## Critical Generation 
-
-In order to grab the critical CSS for the viewport we use an NPM tool.  https://www.npmjs.com/package/critical
-
-Included in this repository are two scripts, one that can be hosted and one that can be run on a local development environment by developers. 
-
-### Production Mode - Critical Generation
-   
-   - For production the process of generation critical can be automated. As your application is likely public facing it will likely have a public URL that can be used by another application to ready the HTML/CSS and generate that critical for any page on your website.
-   - We achieve this via a OnSave event in Sitecore that will restore the Critical HTML on the item when that Item is saved.
-
-   - The OnSave event is patched in via:  
-   > App_Config\Include\Speedy\Foundation\Foundation.Speedy.Events.config
-
-   - On save this will call an external API that will run "npm critical" and pass back the critical CSS in a JSON object. 
-
-   - [API Example:](https://nodeapicritical.azurewebsites.net/critical/?url=https%3A%2F%2Fwww.australia.com%2Fen&width=1900&height=1800) 
-
-   - This is a hosted node script that is availabe in this repostory [in a seperate repository](https://github.com/TomTyack/CriticalCSSAPI.git)
-   - It can be easily hosted on a free tier of Azure Webapps.
-
-   - The Hosted Node API uses https://www.browserless.io/ which is essentially a service that will run the chromium npm tool.  This is a little difficult to host on Azure at present although has been raised as a feature request in the future. https://www.browserless.io/ has limits on the free APIs so if you need a lot of Critical generation calls you may need to purchase a higher tier.
-   
-### Development Mode - Critical Generation
-
- For development mode you can find the critical generation node script in /scripts/Critical.js
-
-   - on the command line run "npm install" in the folder \src\Foundation\Speedy\code\ of this repository once checked out.
-   - Update the setting file \src\Foundation\Speedy\code\Critical.json
-      -- itemid = Set the Sitecore item ID of the page in Sitecore
-	  -- host = Set this to your local development environment URL
-	  -- width = The viewport width of the Critical CSS you require
-	  -- height = The viewport height of the Critical CSS you require
-	  -- fontmap -- The critical generator sometimes makes a mess of the font paths.  Once you have done a first critical Generation you can fix these by supplying an array of find and replace objects.  See the default examples. 
-   - From the same folder (\src\Foundation\Speedy\code) on the command line run 
-		> "node ./Scripts/Critical.js main"
-   - Now login to Sitecore to verify the Critcal CSS field has been populated.  The field with the title "Generated Critical HTML" under the Critical section.
-
-## Time to Adapt  - Tweak and Test
-
-After following the above instructions its time to run the Lighthouse Audit in your browser and check your page speed score. 
-
-Different pages will have different features, javascript and appearance. The end result that you get using these techniques can be different on every page.
-
-At the end of the day what your trying to achieve is something like this:
-
-- Display the HTML and CSS of the viewport so that First Contentful Paint happens as soon as possible.  Hide DOM object that require javascript to be full loaded. 
-
-- After a certain period start loading external resources. 
-
-- After loading resources begin to show DOM object that require all the javascript to be loaded and parsed by the browser. These resources are original hidden using Vanilla JS and are now made visible. (Fallback Experience)
-
-##### NOTE:  Javascript by far has the most impact on this whole process as it is the most expensive asset a users browser will download, parse (code parse) and ultimately run. 
-
-This module has some options available for tweaking and retesting. 
-
-| Name          						| Field Name           	| Description  |
-| ------------- 						|:-------------:		| -----:|
-| Defer JS Load For Milliseconds      	| The length of time to delay the load of external Javscript assets for (in milliseconds) 		| $1600 |
-| Defer CSS Load For Milliseconds      	| The length of time to delay the load of external CSS assets for (in milliseconds)      		|   $12 |
-| Defer Fallback Load For Milliseconds 	| The length of time to delay the visibility of certain DOM elements (in milliseconds). Based on the next setting. 				|		|
-| CSS Fallback Experience Selector 		| This css selector is done on a per page basis and allows the hiding and showing of DOM elements in order to support a Fallback Experience.     				|		|
-
------------------------
-
-## Complex Issues
-
-In reality there is nothing simple about getting Critical and Javascript to play together. 
-
-This process will take some trial and error, the aim of which is to present the user with an experience that is so quick that they don't notice and strange behaviour at all.
-
-Strange behaviour usually includes flashing or mutating elements (in the blink of eye) as the deferred page load assets are loaded into the DOM.  This is due to the fact 
-that these assets are delayed and once they are loaded they each impact the DOM in turn.
-
-So how do we handle this.
-
-a) Hide components / features that require complex Javascript interactions until the Javascript library is ready.  After which we reshow the component. 
-b) Provide a loading splash if a is all to hard. 
-
-
-### Font Replacement
-
-It seems that critical npm has some issues with font paths. The critical node script in this repository does have a feature to fix this.
-
-
-### Sitecore Module Settings
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-### Node Settings  (Standalone Developer Mode)
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-### Node Settings (Hosted Azure Node Application)
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-
-
-
-
+* [Deep dive into the murky waters of script loading](https://www.html5rocks.com/en/tutorials/speed/script-loading/)
+* [Async Vs Defer](https://bitsofco.de/async-vs-defer/)
+* [Efficiently load JavaScript with defer and async](https://flaviocopes.com/javascript-async-defer/)
+* [Critical](https://www.npmjs.com/package/critical)
+* [LoadCSS](https://github.com/filamentgroup/loadCSS/blob/master/README.md) -- Looking to implement this in a future version
+* https://www.browserless.io/
