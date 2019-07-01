@@ -11,6 +11,16 @@ namespace Sitecore.Foundation.Speedy.Settings
             return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.EndpointUrl].Value;
         }
 
+        public static string GetCriticalApiEndpointUsername()
+        {
+            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.EndpointUsername].Value;
+        }
+
+        public static string GetCriticalApiEndpointPassword()
+        {
+            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.EndpointPassword].Value;
+        }
+
         public static bool ShouldRegenerateOnEachSave()
         {
             var item = GetGlobalSettingsItem();

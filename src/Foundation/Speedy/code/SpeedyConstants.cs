@@ -36,6 +36,8 @@ namespace Sitecore.Foundation.Speedy
             public struct Fields
             {
                 public static readonly string EndpointUrl = "EndpointURL";
+                public static readonly string EndpointUsername = "EndpointUsername";
+                public static readonly string EndpointPassword = "EndpointPassword";
                 public static readonly string ShouldRegenerateOnEverySaveEvent = "ShouldRegenerateOnEverySaveEvent";
                 public static readonly string CookieExpiration = "CookieExpirationDays";
                 public static readonly string DeferJSLoadForMilliseconds = "DeferJSLoadForMilliseconds";
