@@ -58,6 +58,7 @@
     <Compile Include="Model\CriticalJson.cs" />
     <Compile Include="Model\SpeedyLayoutModel.cs" />
     <Compile Include="RegisterCriticalRoutes.cs" />
+    <Compile Include="Scheduler\SyncCritical.cs" />
     <Compile Include="Services\CriticalGenerationGateway.cs" />
     <Compile Include="Services\ICriticalGenerationGateway.cs" />
     <Compile Include="Settings\SpeedyGenerationSettings.cs" />
@@ -105,6 +106,26 @@
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.Abstractions, Version=12.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.Abstractions.9.1.0\lib\net471\Sitecore.Abstractions.dll</HintPath>
+<Private>False</Private>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.9.1.0\lib\net471\Sitecore.ContentSearch.dll</HintPath>
+<Private>False</Private>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.ContentExtraction, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.ContentExtraction.9.1.0\lib\net471\Sitecore.ContentSearch.ContentExtraction.dll</HintPath>
+<Private>False</Private>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.Data, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.Data.9.1.0\lib\net471\Sitecore.ContentSearch.Data.dll</HintPath>
+<Private>False</Private>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.Linq, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.Linq.9.1.0\lib\net471\Sitecore.ContentSearch.Linq.dll</HintPath>
+<Private>False</Private>    
+</Reference>
     <Reference Include="Sitecore.Kernel, Version=12.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Sitecore.Kernel.9.1.0\lib\net471\Sitecore.Kernel.dll</HintPath>
       <Private>False</Private>
