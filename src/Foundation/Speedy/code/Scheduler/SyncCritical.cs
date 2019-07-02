@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Web;
 using Sitecore.ContentSearch;
-using Sitecore.ContentSearch.Linq;
-using Sitecore.ContentSearch.Linq.Utilities;
-using Sitecore.ContentSearch.SearchTypes;
 using Sitecore.ContentSearch.Utilities;
-using Sitecore.Data;
+using Sitecore.Data.Items;
+using Sitecore.Foundation.Speedy.Events;
+using Sitecore.Foundation.Speedy.Extensions;
+using Sitecore.Foundation.Speedy.Settings;
 
 namespace Sitecore.Foundation.Speedy.Scheduler
 {
@@ -16,19 +15,39 @@ namespace Sitecore.Foundation.Speedy.Scheduler
     {
         public virtual void RunSync()
         {
-            using (var context = ContentSearchManager.GetIndex("sitecore_master").CreateSearchContext())
-            {
-                Expression<Func<SearchResultItem, bool>> predicate = PredicateBuilder.True<SearchResultItem>();
-                predicate = predicate.Or(p => p.TemplateName.Equals("_SpeedyPage"));
+            if (!SpeedyGenerationSettings.IsPublicFacingEnvironment())
+                return;
 
-                IEnumerable<SearchResultItem> results = context
-                    .GetQueryable<SearchResultItem>()
-                    .Where(predicate);
+            var speedyPageEvt = new SpeedyPageOnSaveEvent();
+            speedyPageEvt.Database = "master";
 
-                foreach (var result in results)
+            using (var context = ContentSearchManager.GetIndex("sitecore_master_index").CreateSearchContext())
+            {            
+                foreach (var result in GetSpeedyPagesByTemplate(context.Index))
                 {
-                    var item = result.GetItem();
+                    if(result.IsSpeedyEnabledForPage() && result.IsCriticalStylesEnabledAndPossible())
+                    {
+                        speedyPageEvt.UpdateCritical(result);
+                    }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Requires the following field to be patched in: <field fieldName="_templates"                 returnType="string"      type="Sitecore.ContentSearch.ComputedFields.AllTemplates, Sitecore.ContentSearch" deep="true" includeStandardTemplate="false" />
+        /// </summary>
+        /// <param name="index">The search index to search within.</param>
+        /// <returns></returns>
+        protected IEnumerable<Item> GetSpeedyPagesByTemplate(ISearchIndex index)
+        {                                                                      
+            using (var searchContext = index.CreateSearchContext())
+            {
+                var speedyPages = searchContext.GetQueryable<AllTemplatesSearchResultItem>().Where(x => x.ItemBaseTemplates.Contains(SpeedyConstants.TemplateIDs.SpeedyPageTemplateId));
+                if (!speedyPages.Any())
+                    return new List<Item>();
+
+                var sitecoreItems = speedyPages.Select(x => x.GetItem()).ToList().Where(y => y.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled));
+                return sitecoreItems.ToList();
             }
         }
     }
