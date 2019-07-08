@@ -35,9 +35,6 @@ Languages:
     - ID: "6c44f9ab-65f2-4730-87e3-ffda8aec3da5"
       Hint: DeferFallbackForMilliseconds
       Value: 5000
-    - ID: "aeff1db4-f4dc-4f05-8144-8275f18c35a8"
-      Hint: CssFallbackSelector
-      Value: "div.contact-us-container, div.myaccount-dropdown, div.header-search-box horizontal"
     - ID: "af9fa73f-f0a8-4d58-8dea-cb2169147c87"
       Hint: DeferJSLoadForMilliseconds
       Value: 4000
