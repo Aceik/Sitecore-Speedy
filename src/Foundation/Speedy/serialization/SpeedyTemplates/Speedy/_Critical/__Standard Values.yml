@@ -49,3 +49,31 @@ Languages:
     - ID: "ea0df707-c97f-45f0-82e3-3bcc0b5f52c3"
       Hint: CriticalCSS
       Value: 
+    - ID: "fe95d1f4-3eb5-4f40-8ff1-db7d935fe13d"
+      Hint: SpecialCaseCriticalCSS
+      Value: |
+        body.bodyclass
+        {
+            color: #747474!important;
+            font-size: 18px!important;
+        	font-family: "Open Sans",Helvetica,Verdana,Tahoma,sans-serif!important;
+            line-height: 1.5!important;
+        }
+        
+        .container .full-width-container { float: none;  }
+        
+        div.promo h3.field-promotext {
+            margin: .25px 0!important;
+        	font-size: 1.5em;
+        	font-weight: bold;
+        	font-family: "ProximaNova",arial,helvetica,sans-serif;
+            color: #50a1ab;
+        }
+        
+        @media only screen and (min-width: 786px) {
+        	div.promo.container h3.field-promotext p {
+        		font-size: 2em!important;
+        		margin: 0;
+        		color: #1d8c96;
+        	}
+        }
