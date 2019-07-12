@@ -24,8 +24,8 @@ This module addresses Critical CSS and Deferred asset loading, which is perhaps 
 1) <img src="https://img.shields.io/badge/requires-node-blue.svg?style=flat-square" alt="requires node">  (Required in [local development mode](https://github.com/Aceik/Sitecore-Speedy/wiki/08---Development-Mode))
 2) <img src="https://img.shields.io/badge/requires-sitecore-blue.svg?style=flat-square" alt="requires sitecore">
   * <img src="https://img.shields.io/badge/requires-sitecore%20v9.0.2-green.svg?style=flat-square" alt="requires sitecore 9.0.2">
-  * <img src="https://img.shields.io/badge/requires-sitecore%20v9.0.2-green.svg?style=flat-square" alt="requires sitecore 9.1">
-  * <img src="https://img.shields.io/badge/Supports-Helix-Foundation%20Layer-green.svg?style=flat-square" alt="requires Helix">
+  * <img src="https://img.shields.io/badge/requires-sitecore%20v9.1-green.svg?style=flat-square" alt="requires sitecore 9.1">
+  * <img src="https://img.shields.io/badge/requires-Helix-Foundation%20Layer-green.svg?style=flat-square" alt="requires Helix">
 
 ## Getting Started Steps
 1) [Installation](https://github.com/Aceik/Sitecore-Speedy/wiki/01---Installation)
