@@ -32,13 +32,13 @@ This module addresses Critical CSS and Deferred asset loading, which is perhaps 
 3) [Usage on each page](https://github.com/Aceik/Sitecore-Speedy/wiki/Usage-on-a-Page)
 4) [Tweak, Adapt and test](https://github.com/Aceik/Sitecore-Speedy/wiki/04---Tweak,-Adapt-and-Test)
 
+### Sitecore Settings
+* [Global Settings](https://github.com/Aceik/Sitecore-Speedy/wiki/06---Global-Settings)
+* [Page Settings](https://github.com/Aceik/Sitecore-Speedy/wiki/07---Page-Settings)
+
 ## Troubleshooting
 
-[Read more about how to troubleshoot display issues ...](https://github.com/Aceik/Sitecore-Speedy/wiki/Complex-Page-Speed-Issues)
-
-### Sitecore Settings
-* [Global Settings](https://github.com/Aceik/Sitecore-Speedy/wiki/Global-Settings)
-* [Page Settings](https://github.com/Aceik/Sitecore-Speedy/wiki/Page-Settings)
+[Read more about how to troubleshoot display issues ...](https://github.com/Aceik/Sitecore-Speedy/wiki/05--Complex-Page-Speed-Issues)
 
 ## References and Inspiration
 
