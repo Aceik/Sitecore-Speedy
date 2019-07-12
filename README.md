@@ -15,13 +15,13 @@ Implementing Critical CSS and Deferred Javascript loading can be tricky. This mo
 
 ## What does Speedy solve in regard to Page Speed ?
 
-In order to get great page speed scores there are several aspects you need to address. [Read more here.](https://github.com/Aceik/Sitecore-Speedy/wiki/Page-Speed-Considerations)
+In order to get great page speed scores there are several aspects you need to address. [Read more here.](https://github.com/Aceik/Sitecore-Speedy/wiki/Extra-Info---Page-Speed-Considerations)
 
 This module addresses Critical CSS and Deferred asset loading, which is perhaps one of the hardest parts of Page Speed to get right.
 
 ## Installation prerequisites and notes
 
-1) <img src="https://img.shields.io/badge/requires-node-blue.svg?style=flat-square" alt="requires node">  (Required in [local development mode](https://github.com/Aceik/Sitecore-Speedy/wiki/Development-Mode))
+1) <img src="https://img.shields.io/badge/requires-node-blue.svg?style=flat-square" alt="requires node">  (Required in [local development mode](https://github.com/Aceik/Sitecore-Speedy/wiki/08---Development-Mode))
 2) <img src="https://img.shields.io/badge/requires-sitecore-blue.svg?style=flat-square" alt="requires sitecore">
   * <img src="https://img.shields.io/badge/requires-sitecore%20v9.0.2-green.svg?style=flat-square" alt="requires sitecore 9.0.2">
   * <img src="https://img.shields.io/badge/Helix-Foundation%20Layer-green.svg?style=flat-square" alt="requires sitecore 9.0.2">
