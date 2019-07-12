@@ -25,6 +25,20 @@ namespace Sitecore.Foundation.Speedy.Events
             Sitecore.Diagnostics.Log.Info("SpeedyPageOnSaveEvent running", this);
             var item = Event.ExtractParameter(args, 0) as Item;
 
+            if (item.Fields[SpeedyConstants.Fields.SpeedyEnabled] == null)   // Nothing to see here lets exit quickly
+                return;
+
+            var shouldGenerate = SpeedyGenerationSettings.ShouldRegenerateOnEachSave();
+
+            // If speedy is enabled for this page and should we generate the CSS
+            if (item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled) && shouldGenerate)
+            {
+                UpdateCritical(item);
+            }
+        }
+
+        public void UpdateCritical(Item item)
+        {
             // Only act if within the master database
             if ((item.Database != null && String.Compare(item.Database.Name, this.Database) != 0) || item.Name == "__Standard Values")
             {
@@ -33,12 +47,8 @@ namespace Sitecore.Foundation.Speedy.Events
 
             if (item != null && item.InheritsFrom(SpeedyConstants.TemplateIDs.SpeedyPageTemplateId))
             {
-                // either the flag to generate on each page load is set or the CSS field is empty
-                bool isEmpty = !item.Fields[SpeedyConstants.Fields.CriticalCss].HasValue || string.IsNullOrWhiteSpace(item.Fields[SpeedyConstants.Fields.CriticalCss].Value);
-                var shouldGenerate = SpeedyGenerationSettings.ShouldRegenerateOnEachSave() || isEmpty;
-
                 // If speedy is enabled for this page and should we generate the CSS
-                if (item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled) && shouldGenerate)
+                if (item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled))
                 {
                     ICriticalGenerationGateway criticalGateway = null;
 
@@ -50,12 +60,12 @@ namespace Sitecore.Foundation.Speedy.Events
                     string criticalHtml = string.Empty;
 
                     // If the setting is turned on to so that this is a public facing environment, then critical HTML can be generated via the hosted Node application on a seperate URL.
-                    if(SpeedyGenerationSettings.IsPublicFacingEnvironment())
+                    if (SpeedyGenerationSettings.IsPublicFacingEnvironment())
                     {
                         criticalGateway = new CriticalGenerationGateway();
                         criticalHtml = criticalGateway.GenerateCritical(presentUrl, width, height);
                     }
-                        
+
                     item.Fields[SpeedyConstants.Fields.CriticalCss].Value = criticalHtml;
                 }
             }

@@ -1,8 +1,8 @@
 ﻿---
-ID: "e4d3ba94-e967-477f-8e3d-de3bda8712a3"
-Parent: "b06f7c55-9717-4bfa-86d5-875b2ddac17c"
-Template: "e269fbb5-3750-427a-9149-7aa950b49301"
-Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint
+ID: "784ec36a-df0d-42e2-80a6-9ccc62f7b03d"
+Parent: "3ebec263-b57e-4a3c-a232-7c70519f9908"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: /sitecore/system/Tasks/Commands/Speedy
 DB: master
 Languages:
 - Language: en
@@ -11,7 +11,7 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20190424T121525Z
+      Value: 20140904T100209Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |

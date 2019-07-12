@@ -4,6 +4,13 @@ Parent: "b06f7c55-9717-4bfa-86d5-875b2ddac17c"
 Template: "b06f7c55-9717-4bfa-86d5-875b2ddac17c"
 Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/__Standard Values
 DB: master
+SharedFields:
+- ID: "167a1fdf-2465-4131-8877-03fbe4f1dceb"
+  Hint: EndpointPassword
+  Value: generator
+- ID: "d261c023-5e72-4901-a7b7-95fadf754def"
+  Hint: EndpointUsername
+  Value: critical
 Languages:
 - Language: en
   Versions:
@@ -28,9 +35,6 @@ Languages:
     - ID: "6c44f9ab-65f2-4730-87e3-ffda8aec3da5"
       Hint: DeferFallbackForMilliseconds
       Value: 5000
-    - ID: "aeff1db4-f4dc-4f05-8144-8275f18c35a8"
-      Hint: CssFallbackSelector
-      Value: "div.contact-us-container, div.myaccount-dropdown, div.header-search-box horizontal"
     - ID: "af9fa73f-f0a8-4d58-8dea-cb2169147c87"
       Hint: DeferJSLoadForMilliseconds
       Value: 4000

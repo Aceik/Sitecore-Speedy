@@ -16,7 +16,7 @@
         init: function () {
 			Speedy.variables.firstRunCompleted = Speedy.tools.checkCookie(Speedy.settings.cookieName);
             Speedy.fallbackExperienceBeforeLoad();
-			if (Speedy.variables.firstRunCompleted) {
+            if (Speedy.variables.firstRunCompleted && Speedy.settings.isFirstPassOnlyCookieEnabled) {
 				Speedy.dynamicLoad();
             } else {
                 // Defer load a bit longer with a fallback experience
@@ -94,6 +94,13 @@
                 } else {
                     return false;
                 }
+            },
+            runSelector: function (value, displayValue) {
+                var el = document.querySelectorAll(value);
+                if (el)
+                    el.forEach(function (item) {
+                        item.style.display = displayValue;
+                    });
             }
         }
     };
@@ -102,22 +109,18 @@
 
     Speedy.fallbackExperienceBeforeLoad = function () {
 		setTimeout(function () {
-			var el = document.querySelectorAll(Speedy.settings.fallbackHideSelector);
-			if(el)
-				el.forEach(function(item) {
-				  item.style.display = 'none';
-				});
+            
+            Speedy.tools.runSelector(Speedy.settings.fallbackHideSelector.display_unset.selector, 'none');
+            Speedy.tools.runSelector(Speedy.settings.fallbackHideSelector.display_block.selector, 'none');
+
 		}, 100);
     };
 
     Speedy.fallbackExperienceAfterLoad = function () {
 		console.log("after load");
-		setTimeout(function () {
-			var el = document.querySelectorAll(Speedy.settings.fallbackHideSelector);
-			if(el)
-				el.forEach(function(item) {
-				  item.style.display = 'unset';
-				});
+        setTimeout(function () {
+            Speedy.tools.runSelector(Speedy.settings.fallbackHideSelector.display_unset.selector, 'unset');
+            Speedy.tools.runSelector(Speedy.settings.fallbackHideSelector.display_block.selector, 'block');
 		}, Speedy.settings.fallBackExperienceDelay);
     };
 

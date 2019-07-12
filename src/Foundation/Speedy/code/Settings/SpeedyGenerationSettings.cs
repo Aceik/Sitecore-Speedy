@@ -4,11 +4,21 @@ using Sitecore.Data.Items;
 
 namespace Sitecore.Foundation.Speedy.Settings
 {
-    public class SpeedyGenerationSettings
+    public static class SpeedyGenerationSettings
     {
         public static string GetCriticalApiEndpoint()
         {
             return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.EndpointUrl].Value;
+        }
+
+        public static string GetCriticalApiEndpointUsername()
+        {
+            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.EndpointUsername].Value;
+        }
+
+        public static string GetCriticalApiEndpointPassword()
+        {
+            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.EndpointPassword].Value;
         }
 
         public static bool ShouldRegenerateOnEachSave()
@@ -22,22 +32,22 @@ namespace Sitecore.Foundation.Speedy.Settings
             return bool.Parse(Sitecore.Configuration.Settings.GetSetting("Speedy.IsPublicFacingEnvironment"));
         }
 
-        public static bool IsSpeedyEnabledForPage(Item item)
+        public static bool IsSpeedyEnabledForPage(this Item item)
         {
             return item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled);
         }
 
-        public static bool IsOnePassCookieEnabled(Item item)
+        public static bool IsOnePassCookieEnabled(this Item item)
         {
             return item.IsEnabled(SpeedyConstants.Fields.OnePassCookieEnabled);
         }
 
-        public static bool IsCriticalStylesEnabledAndPossible(Item item)
+        public static bool IsCriticalStylesEnabledAndPossible(this Item item)
         {
             return item.IsEnabled(SpeedyConstants.Fields.EnableStylesheetLoadDefer) && item.Fields[SpeedyConstants.Fields.CriticalCss].HasValue;
         }
 
-        public static bool IsCriticalJavascriptEnabledAndPossible(Item item)
+        public static bool IsCriticalJavascriptEnabledAndPossible(this Item item)
         {
             return item.IsEnabled(SpeedyConstants.Fields.EnableJavascriptLoadDefer);
         }
