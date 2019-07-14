@@ -1,9 +1,12 @@
-﻿@using Sitecore.XA.Foundation.Theming.Bundler
+﻿@using Sitecore.Foundation.Speedy.Model
+@using Sitecore.Foundation.Speedy.Speedy
 
-@model Sitecore.Foundation.Speedy.Model.SpeedyLayoutModel
+@{
+    SpeedyLayoutModel model = SpeedyAssetLinksGenerator.GetSpeedyLayoutModel();
+}
 <style type="text/css">
-@Html.Raw(Model.CriticalHtml)
+@Html.Raw(model.CriticalHtml)
 </style>
 <style type="text/css">
-@Html.Raw(Model.SpecialCaseCriticalCss)
+@Html.Raw(model.SpecialCaseCriticalCss)
 </style>

@@ -11,5 +11,6 @@ namespace Sitecore.Foundation.Speedy.Model
         public AssetLinks AssetLinks { get; set; }
         public string CriticalHtml { get; set; }
         public string SpecialCaseCriticalCss { get; set; }
+        public string CacheKey { get; set; }
     }
 }

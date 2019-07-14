@@ -14,6 +14,7 @@ using Sitecore.XA.Foundation.Theming.Configuration;
 using Sitecore.XA.Foundation.Theming.EventHandlers;
 using Sitecore.XA.Foundation.Theming.Extensions;
 using Sitecore.XA.Foundation.Theming.Pipelines.AssetService;
+using Sitecore.Mvc.Presentation;
 
 namespace Sitecore.Foundation.Speedy.Speedy
 {
@@ -40,7 +41,15 @@ namespace Sitecore.Foundation.Speedy.Speedy
 
         public static SpeedyLayoutModel GetSpeedyLayoutModel()
         {
+            string text = GetPageKey(HttpContext.Current.Request.Url.AbsolutePath) + "speedysettings";
+            SpeedyLayoutModel speedyModel = HttpContext.Current.Cache[text] as SpeedyLayoutModel;
+            if (speedyModel != null)
+            {
+                return speedyModel;
+            }
+
             SpeedyLayoutModel model = new SpeedyLayoutModel();
+            model.CacheKey = text;
             model.SpeedyEnabled = SpeedyGenerationSettings.IsSpeedyEnabledForPage(Sitecore.Context.Item);
             model.SpeedyJsEnabled = false;
             model.SpeedyCssEnabled = false;
@@ -52,7 +61,7 @@ namespace Sitecore.Foundation.Speedy.Speedy
 
             if (model.SpeedyEnabled && model.ByPassNotDetected)
             {
-                model.AssetLinks = SpeedyAssetLinksGenerator.GenerateDeferedLinks(new ThemesProvider());
+                model.AssetLinks = GenerateDeferedLinks(new ThemesProvider());
                 model.SpeedyJsEnabled = SpeedyGenerationSettings.IsCriticalJavascriptEnabledAndPossible(Sitecore.Context.Item);
                 model.SpeedyCssEnabled = SpeedyGenerationSettings.IsCriticalStylesEnabledAndPossible(Sitecore.Context.Item);
 
@@ -74,7 +83,7 @@ namespace Sitecore.Foundation.Speedy.Speedy
         {
             AssetsArgs assetsArgs = new AssetsArgs();
             CorePipeline.Run("assetService", assetsArgs);
-            string text = GenerateCacheKey(assetsArgs.GetHashCode()) + "speedy";
+            string text = GenerateCacheKey(assetsArgs.GetHashCode()) + "speedylinks";
             SpeedyAssetLinks assetLinks = HttpContext.Current.Cache[text] as SpeedyAssetLinks;
             if (assetLinks == null || _configuration.RequestAssetsOptimizationDisabled)
             {
@@ -175,6 +184,28 @@ namespace Sitecore.Foundation.Speedy.Speedy
             var phase = $"var clientScripts = [{result}]\r";
 
             assetLinks.ClientScriptsRendered += phase;
+        }
+
+        public static string GetPageKey(string url)
+        {
+            var key = url;
+            string contextItemId = string.Empty;
+            if (RenderingContext.Current.ContextItem != null)
+            {
+                contextItemId = RenderingContext.Current.PageContext?.Item?.ID.ToShortID().ToString();
+            }
+            if (key == "/")
+            {
+                key = "homepage-" + contextItemId;
+            }
+            else
+                key = url + "-" + contextItemId;
+            return KeyFilter(key);
+        }
+
+        public static string KeyFilter(string value)
+        {
+            return value.Replace(" ", "_").Replace("/", "_").ToLower();
         }
     }
 }
