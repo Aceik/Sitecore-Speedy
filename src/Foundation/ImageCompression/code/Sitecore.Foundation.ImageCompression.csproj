@@ -1,0 +1,504 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\..\..\..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\..\..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{42D502B8-600D-472C-A92F-AE7A87F8E1B2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sitecore.Foundation.ImageCompression</RootNamespace>
+    <AssemblyName>Sitecore.Foundation.ImageCompression</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dianoga, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Dianoga.4.0.0\lib\net452\Dianoga.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="nQuant.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\nQuant.1.0.3\lib\net40\nQuant.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Dianoga Tools\jpegoptim-windows\COPYING.txt" />
+    <Content Include="App_Data\Dianoga Tools\jpegoptim-windows\COPYRIGHT.txt" />
+    <Content Include="App_Data\Dianoga Tools\jpegoptim-windows\jpegoptim.exe" />
+    <Content Include="App_Data\Dianoga Tools\libwebp-0.4.1-windows-x64\bin\cwebp.exe" />
+    <Content Include="App_Data\Dianoga Tools\mozjpeg_3.1_x86\jpegtran.exe" />
+    <Content Include="App_Data\Dianoga Tools\mozjpeg_3.1_x86\libjpeg-62.dll" />
+    <Content Include="App_Data\Dianoga Tools\mozjpeg_3.1_x86\LICENSE.txt" />
+    <Content Include="App_Data\Dianoga Tools\PNGOptimizer\Changelog.txt" />
+    <Content Include="App_Data\Dianoga Tools\PNGOptimizer\License.txt" />
+    <Content Include="App_Data\Dianoga Tools\PNGOptimizer\PngOptimizerCL.exe" />
+    <Content Include="App_Data\Dianoga Tools\PNGOptimizer\Readme.txt" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node.exe" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\lib\svgo.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\lib\svgo\coa.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\lib\svgo\config.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\lib\svgo\js2svg.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\lib\svgo\jsAPI.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\lib\svgo\plugins.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\lib\svgo\svg2js.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\lib\svgo\tools.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\ansi-regex\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\ansi-styles\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\action.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\action\append.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\action\append\constant.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\action\count.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\action\help.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\action\store.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\action\store\constant.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\action\store\false.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\action\store\true.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\action\subparsers.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\action\version.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\action_container.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\argparse.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\argument\error.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\argument\exclusive.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\argument\group.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\argument_parser.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\const.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\help\added_formatters.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\help\formatter.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\namespace.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\lib\utils.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\chalk\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\clap\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\lib\arg.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\lib\cmd.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\lib\color.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\lib\completion.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\lib\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\lib\opt.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\lib\shell.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\tests\api-h.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\tests\h.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\test\coa.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\test\shell-test.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\color-convert\conversions.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\color-convert\css-keywords.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\color-convert\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\color-convert\route.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\examples\normal-usage.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\examples\safe-string.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\lib\colors.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\lib\custom\trap.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\lib\custom\zalgo.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\lib\extendStringPrototype.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\lib\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\lib\maps\america.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\lib\maps\rainbow.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\lib\maps\random.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\lib\maps\zebra.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\lib\styles.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\lib\system\supports-colors.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\safe.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\themes\generic-logging.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\dist\csso-browser.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\cli.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\ast\gonzalesToInternal.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\ast\internalToGonzales.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\ast\translate.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\ast\translateWithSourceMap.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\ast\walk.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\clean\Atrule.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\clean\Declaration.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\clean\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\clean\Ruleset.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\clean\Space.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\compress\Atrule.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\compress\atrule\keyframes.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\compress\Attribute.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\compress\color.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\compress\Dimension.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\compress\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\compress\Number.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\compress\property\background.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\compress\property\font-weight.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\compress\property\font.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\compress\String.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\compress\Url.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\compress\Value.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\restructure\1-initialMergeRuleset.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\restructure\2-mergeAtrule.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\restructure\3-disjoinRuleset.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\restructure\4-restructShorthand.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\restructure\6-restructBlock.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\restructure\7-mergeRuleset.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\restructure\8-restructRuleset.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\restructure\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\restructure\prepare\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\restructure\prepare\processSelector.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\restructure\prepare\specificity.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\compressor\restructure\utils.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\parser\const.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\parser\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\parser\tokenize.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\utils\cleanInfo.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\utils\list.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\utils\stringify.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\utils\translate.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\lib\utils\walker.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\escape-string-regexp\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\esprima\bin\esparse.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\esprima\bin\esvalidate.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\esprima\esprima.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\has-ansi\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\bin\js-yaml.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\dist\js-yaml.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\dist\js-yaml.min.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\common.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\dumper.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\exception.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\loader.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\mark.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\schema.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\schema\core.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\schema\default_full.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\schema\default_safe.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\schema\failsafe.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\schema\json.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\binary.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\bool.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\float.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\int.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\js\function.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\js\regexp.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\js\undefined.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\map.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\merge.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\null.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\omap.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\pairs.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\seq.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\set.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\str.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\lib\js-yaml\type\timestamp.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\example\parse.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\test\dash.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\test\default_bool.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\test\dotted.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\test\long.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\test\parse.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\test\parse_modified.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\test\short.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\test\whitespace.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\bin\cmd.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\bin\usage.txt" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\examples\pow.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\chmod.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\clobber.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\mkdirp.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\opts_fs.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\opts_fs_sync.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\perm.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\perm_sync.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\race.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\rel.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\return.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\return_sync.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\root.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\sync.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\umask.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\test\umask_sync.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\q\q.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\q\queue.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sax\lib\sax.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sax\LICENSE-W3C.html" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\dist\source-map.debug.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\dist\source-map.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\dist\source-map.min.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\lib\array-set.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\lib\base64-vlq.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\lib\base64.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\lib\binary-search.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\lib\mapping-list.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\lib\quick-sort.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\lib\source-map-consumer.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\lib\source-map-generator.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\lib\source-node.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\lib\util.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\source-map.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\demo\angular.html" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\dist\angular-sprintf.min.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\dist\sprintf.min.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\gruntfile.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\src\angular-sprintf.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\src\sprintf.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\test\test.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\strip-ansi\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\supports-color\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\whet.extend\index.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\whet.extend\lib\whet.extend.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\addClassesToSVGElement.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\cleanupAttrs.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\cleanupEnableBackground.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\cleanupIDs.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\cleanupListOfValues.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\cleanupNumericValues.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\collapseGroups.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\convertColors.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\convertPathData.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\convertShapeToPath.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\convertStyleToAttrs.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\convertTransform.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\mergePaths.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\minifyStyles.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\moveElemsAttrsToGroup.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\moveGroupAttrsToElems.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeAttrs.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeComments.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeDesc.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeDimensions.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeDoctype.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeEditorsNSData.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeEmptyAttrs.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeEmptyContainers.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeEmptyText.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeHiddenElems.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeMetadata.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeNonInheritableGroupAttrs.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeRasterImages.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeStyleElement.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeTitle.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeUnknownsAndDefaults.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeUnusedNS.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeUselessDefs.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeUselessStrokeAndFill.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeViewBox.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\removeXMLProcInst.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\sortAttrs.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\transformsWithOnePath.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\_collections.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\_path.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\plugins\_transforms.js" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\README.ru.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\README.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\whet.extend\test\test_helper.coffee" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\whet.extend\test\mocha.opts" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\whet.extend\test\extend_test.coffee" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\whet.extend\src\whet.extend.coffee" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\whet.extend\Readme.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\whet.extend\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\whet.extend\LICENSE" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\whet.extend\History.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\whet.extend\Cakefile" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\whet.extend\.travis.yml" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\whet.extend\.npmignore" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\supports-color\readme.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\supports-color\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\supports-color\license" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\strip-ansi\readme.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\strip-ansi\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\strip-ansi\license" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\README.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\LICENSE" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\dist\sprintf.min.map" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\dist\sprintf.min.js.map" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\dist\angular-sprintf.min.map" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\dist\angular-sprintf.min.js.map" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\bower.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sprintf-js\.npmignore" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\README.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\source-map\dist\source-map.min.js.map" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sax\README.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sax\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\sax\LICENSE" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\q\README.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\q\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\q\LICENSE" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\q\CHANGES.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\readme.markdown" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\LICENSE" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\mkdirp\.travis.yml" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\readme.markdown" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\LICENSE" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\minimist\.travis.yml" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\README.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\LICENSE" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\js-yaml\CHANGELOG.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\has-ansi\readme.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\has-ansi\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\has-ansi\license" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\esprima\README.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\esprima\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\esprima\LICENSE.BSD" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\esprima\ChangeLog" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\escape-string-regexp\readme.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\escape-string-regexp\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\escape-string-regexp\license" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\README.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\LICENSE" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\HISTORY.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\csso\bin\csso" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\ReadMe.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\colors\LICENSE" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\color-convert\README.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\color-convert\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\color-convert\LICENSE" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\color-convert\CHANGELOG.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\test\mocha.opts" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\src\shell.coffee" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\src\opt.coffee" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\src\index.coffee" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\src\completion.coffee" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\src\color.coffee" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\src\cmd.coffee" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\src\arg.coffee" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\README.ru.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\README.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\lib\completion.sh" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\GNUmakefile" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\.travis.yml" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\coa\.npmignore" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\clap\README.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\clap\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\clap\LICENSE" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\chalk\readme.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\chalk\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\chalk\license" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\README.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\LICENSE" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\argparse\CHANGELOG.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\ansi-styles\readme.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\ansi-styles\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\ansi-styles\license" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\ansi-regex\readme.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\ansi-regex\package.json" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\ansi-regex\license" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\.bin\mkdirp.cmd" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\.bin\mkdirp" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\.bin\js-yaml.cmd" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\.bin\js-yaml" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\.bin\esvalidate.cmd" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\.bin\esvalidate" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\.bin\esparse.cmd" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\.bin\esparse" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\.bin\csso.cmd" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\node_modules\.bin\csso" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\Makefile" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\LICENSE" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\CHANGELOG.md" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\bin\svgo" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\.svgo.yml" />
+    <Content Include="App_Data\Dianoga Tools\SVGO\node_modules\svgo\.npmignore" />
+    <Content Include="App_Config\Include\Dianoga\Dianoga.WebP.config.disabled" />
+    <Content Include="App_Config\Include\Dianoga\Dianoga.Svg.config" />
+    <Content Include="App_Config\Include\Dianoga\Dianoga.Strategy.MediaCacheAsync.config" />
+    <Content Include="App_Config\Include\Dianoga\Dianoga.Strategy.GetMediaStreamSync.config.disabled" />
+    <Content Include="App_Config\Include\Dianoga\Dianoga.Png.config" />
+    <Content Include="App_Config\Include\Dianoga\Dianoga.Jpeg.Lossy.config.disabled" />
+    <Content Include="App_Config\Include\Dianoga\Dianoga.Jpeg.config" />
+    <Content Include="App_Config\Include\Dianoga\Dianoga.ExcludePaths.config.example" />
+    <Content Include="App_Config\Include\Dianoga\Dianoga.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DEV|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v15.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50900/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
