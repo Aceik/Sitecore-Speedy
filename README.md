@@ -19,8 +19,8 @@ Result:
 
 Before / After (Full Screenshots):
 
-<a target="_blank" href="https://aceiksolutions.files.wordpress.com/2019/07/before.png?w=1800"><img src="https://aceiksolutions.files.wordpress.com/2019/07/before.png?w=200"/></a>
 <a target="_blank" href="https://aceiksolutions.files.wordpress.com/2019/07/after.png?w=1800"><img src="https://aceiksolutions.files.wordpress.com/2019/07/after.png?w=200"/></a>
+<a target="_blank" href="https://aceiksolutions.files.wordpress.com/2019/07/before.png?w=1800"><img src="https://aceiksolutions.files.wordpress.com/2019/07/before.png?w=200"/></a>
 
 ## What does Speedy solve in regard to Page Speed ?
 
