@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Async\AsyncHelpers.cs" />
+    <Compile Include="Command\SpeedyRunCommand.cs" />
     <Compile Include="Controllers\CriticalController.cs" />
     <Compile Include="Events\SpeedyPageOnSaveEvent.cs" />
     <Compile Include="Extensions\QuickExtensions.cs" />
@@ -55,6 +56,9 @@
     <Compile Include="Models\API\ResponseWrapper\IWebApiResponse.cs" />
     <Compile Include="Models\API\ResponseWrapper\ServiceError.cs" />
     <Compile Include="Models\API\ResponseWrapper\WebApiResponse.cs" />
+    <Compile Include="Model\FontMap.cs" />
+    <Compile Include="Model\FontMapHolder.cs" />
+    <Compile Include="Model\RemoteCriticalParameters.cs" />
     <Compile Include="Model\CriticalJson.cs" />
     <Compile Include="Model\SpeedyLayoutModel.cs" />
     <Compile Include="RegisterCriticalRoutes.cs" />
@@ -77,6 +81,7 @@
     </Content>
     <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.API.config" />
     <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.Routes.config" />
+    <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.Commands.config" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="Scripts\Critical.js" />
     <Content Include="Views\SxaLayout\SxaLayoutPageSpeed.cshtml" />

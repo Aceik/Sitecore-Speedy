@@ -45,6 +45,11 @@ namespace Sitecore.Foundation.Speedy
                 public static readonly string DeferCSSLoadForMilliseconds = "DeferCSSLoadForMilliseconds";
                 public static readonly string DeferFallbackForMilliseconds = "DeferFallbackForMilliseconds";
             }
+
+            public struct Database
+            {
+                public static readonly string Master = "master";
+            }
         }
 
         public struct ByPass

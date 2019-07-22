@@ -8,6 +8,7 @@ using Sitecore.Data.Items;
 using Sitecore.Foundation.Speedy.Events;
 using Sitecore.Foundation.Speedy.Extensions;
 using Sitecore.Foundation.Speedy.Settings;
+using static Sitecore.Foundation.Speedy.SpeedyConstants;
 
 namespace Sitecore.Foundation.Speedy.Scheduler
 {
@@ -19,7 +20,7 @@ namespace Sitecore.Foundation.Speedy.Scheduler
                 return;
 
             var speedyPageEvt = new SpeedyPageOnSaveEvent();
-            speedyPageEvt.Database = "master";
+            speedyPageEvt.Database = GlobalSettings.Database.Master;
 
             using (var context = ContentSearchManager.GetIndex("sitecore_master_index").CreateSearchContext())
             {            

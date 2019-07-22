@@ -14,6 +14,7 @@ using Sitecore.XA.Foundation.Theming.Configuration;
 using Sitecore.XA.Foundation.Theming.EventHandlers;
 using Sitecore.XA.Foundation.Theming.Extensions;
 using Sitecore.XA.Foundation.Theming.Pipelines.AssetService;
+using static Sitecore.Foundation.Speedy.SpeedyConstants;
 
 namespace Sitecore.Foundation.Speedy.Speedy
 {
@@ -102,7 +103,7 @@ namespace Sitecore.Foundation.Speedy.Speedy
                     }
                 }
                 
-                CacheLinks(text, assetLinks, (DatabaseRepository.GetContentDatabase().Name.ToLower() == "master") ? AssetContentRefresher.MasterCacheDependencyKeys : AssetContentRefresher.WebCacheDependencyKeys);
+                CacheLinks(text, assetLinks, (DatabaseRepository.GetContentDatabase().Name.ToLower() == GlobalSettings.Database.Master) ? AssetContentRefresher.MasterCacheDependencyKeys : AssetContentRefresher.WebCacheDependencyKeys);
             }
             return assetLinks;
         }
