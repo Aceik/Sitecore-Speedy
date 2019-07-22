@@ -1,4 +1,4 @@
-![Sitecore Speedy](https://aceiksolutions.files.wordpress.com/2019/06/speedylogo.png?w=1024&h=321)
+![Sitecore Speedy](https://aceiksolutions.files.wordpress.com/2019/06/speedylogo.png?w=600)
 
 ## Sitecore Speedy (SXA Version) 
 <img src='https://img.shields.io/github/tag/Aceik/Sitecore-Speedy.svg' />
@@ -11,13 +11,24 @@ Use best practice page load techniques to achieve Outstanding Page Speed scores 
 ## What does it do ?
 
 Speedy provides a Sitecore Layout and Asset provider that structures your HTML in accordance with Google's recommendations.  Google ranks your website with a score out of 100 and provides recommendation on how to achieve better scores.
-Implementing Critical CSS and Deferred Javascript loading can be tricky. This module provides a framework and the tools needed to automate the process. 
+Implementing Critical CSS and Deferred Javascript loading can be tricky. This module provides a framework and brings together the tools needed to automate the process. 
+
+Result: 
+
+<img src="https://aceiksolutions.files.wordpress.com/2019/07/results.png?w=768"/>
+
+Before / After (Full Screenshots):
+
+<a target="_blank" href="https://aceiksolutions.files.wordpress.com/2019/07/after.png?w=1800"><img src="https://aceiksolutions.files.wordpress.com/2019/07/after.png?w=200"/></a>
+<a target="_blank" href="https://aceiksolutions.files.wordpress.com/2019/07/before.png?w=1800"><img src="https://aceiksolutions.files.wordpress.com/2019/07/before.png?w=200"/></a>
 
 ## What does Speedy solve in regard to Page Speed ?
 
 In order to get great page speed scores there are several aspects you need to address. [Read more here.](https://github.com/Aceik/Sitecore-Speedy/wiki/Extra-Info---Page-Speed-Considerations)
 
 This module addresses Critical CSS and Deferred asset loading, which is perhaps one of the hardest parts of Page Speed to get right.
+
+<img src="https://aceiksolutions.files.wordpress.com/2019/07/critical_plus_defer.png?w=720"/>
 
 ## Installation prerequisites and notes
 
