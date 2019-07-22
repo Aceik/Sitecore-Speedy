@@ -21,6 +21,11 @@ namespace Sitecore.Foundation.Speedy.Settings
             return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.EndpointPassword].Value;
         }
 
+        public static string GetCriticalApiRemoteFontMap()
+        {
+            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.RemoteFontMap].Value;
+        }
+
         public static bool ShouldRegenerateOnEachSave()
         {
             var item = GetGlobalSettingsItem();

@@ -38,11 +38,17 @@ namespace Sitecore.Foundation.Speedy
                 public static readonly string EndpointUrl = "EndpointURL";
                 public static readonly string EndpointUsername = "EndpointUsername";
                 public static readonly string EndpointPassword = "EndpointPassword";
+                public static readonly string RemoteFontMap = "RemoteFontMap";
                 public static readonly string ShouldRegenerateOnEverySaveEvent = "ShouldRegenerateOnEverySaveEvent";
                 public static readonly string CookieExpiration = "CookieExpirationDays";
                 public static readonly string DeferJSLoadForMilliseconds = "DeferJSLoadForMilliseconds";
                 public static readonly string DeferCSSLoadForMilliseconds = "DeferCSSLoadForMilliseconds";
                 public static readonly string DeferFallbackForMilliseconds = "DeferFallbackForMilliseconds";
+            }
+
+            public struct Database
+            {
+                public static readonly string Master = "master";
             }
         }
 

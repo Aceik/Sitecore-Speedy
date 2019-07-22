@@ -9,6 +9,7 @@ using Sitecore.Links;
 using Sitecore.Sites;
 using Sitecore.Web;
 using Sitecore.XA.Foundation.SitecoreExtensions.Extensions;
+using Sitecore.Data;
 
 namespace Sitecore.Foundation.Speedy.Events
 {
@@ -63,7 +64,15 @@ namespace Sitecore.Foundation.Speedy.Events
                     if (SpeedyGenerationSettings.IsPublicFacingEnvironment())
                     {
                         criticalGateway = new CriticalGenerationGateway();
-                        criticalHtml = criticalGateway.GenerateCritical(presentUrl, width, height);
+
+                        if (string.IsNullOrWhiteSpace(width) && string.IsNullOrWhiteSpace(height))
+                            criticalHtml = criticalGateway.GenerateCritical(presentUrl, fontReplace: true);
+                        else if (string.IsNullOrWhiteSpace(width))
+                            criticalHtml = criticalGateway.GenerateCritical(presentUrl, height: height, fontReplace: true);
+                        else if (string.IsNullOrWhiteSpace(height))
+                            criticalHtml = criticalGateway.GenerateCritical(presentUrl, width: width, fontReplace: true);
+                        else
+                            criticalHtml = criticalGateway.GenerateCritical(presentUrl, width, height, fontReplace: true);
                     }
 
                     item.Fields[SpeedyConstants.Fields.CriticalCss].Value = criticalHtml;
