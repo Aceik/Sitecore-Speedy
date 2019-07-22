@@ -27,7 +27,7 @@
 
     @if (!model.SpeedyJsEnabled)
     {
-        @Html.Partial("/Views/Speedy/OriginalStylesLoader.cshtml", model.AssetLinks)
+        @Html.Sitecore().Rendering("{B623677C-0D6A-42C1-8D96-22BF2C0DCC87}", new { Cacheable = true, CacheKey = model.CacheKey + "OriginalStylesLoader" })
     }
 
     @Html.Sitecore().VisitorIdentification()
@@ -35,12 +35,13 @@
 
     @if (model.SpeedyJsEnabled)
     {
-        @Html.Partial("/Views/Speedy/SpeedyJavascriptLoader.cshtml", (model.AssetLinks as SpeedyAssetLinks))
+        @Html.Sitecore().Rendering("{645086C0-B7F8-455B-AC12-4A8971311652}", new { Cacheable = true, CacheKey = model.CacheKey + "javascriptloader" })
     }
-    
+
     @if (model.SpeedyCssEnabled)
     {
-        @Html.Partial("/Views/Speedy/Critical.cshtml", (model))
+        @* Inline Critical Css *@
+        @Html.Sitecore().Rendering("{8A3B4A25-EAD1-4B93-BF43-45C333F9129E}", new { Cacheable = true, CacheKey = model.CacheKey + "criticalcss" })
     }
 </head>
 <body @Html.Sxa().Body().Decorate()>
@@ -53,12 +54,12 @@
 
     @if (model.SpeedyCssEnabled)
     {
-        @Html.Partial("/Views/Speedy/SpeedyStylesLoader.cshtml", (model.AssetLinks as SpeedyAssetLinks))
+        @Html.Sitecore().Rendering("{77C679DE-CFF5-40C1-A386-8AD1D953FC99}", new { Cacheable = true, CacheKey = model.CacheKey + "SpeedyStylesLoader" })
     }
 
     @if (!model.SpeedyJsEnabled)
     {
-        @Html.Partial("/Views/Speedy/OriginalScriptsLoader.cshtml", model.AssetLinks)
+        @Html.Sitecore().Rendering("{A41DEEAE-2E35-416C-AF04-F97A5F174C07}", new { Cacheable = true, CacheKey = model.CacheKey + "OriginalScriptsLoader" })
     }
 
     <!-- /#wrapper -->
