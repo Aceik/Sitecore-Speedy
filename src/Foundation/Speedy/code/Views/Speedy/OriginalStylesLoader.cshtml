@@ -1,7 +1,10 @@
-﻿@using Sitecore.XA.Foundation.Theming.Bundler
+﻿@using Sitecore.Foundation.Speedy.Model
+@using Sitecore.Foundation.Speedy.Speedy
 
-@model AssetLinks
-@foreach (string style in Model.Styles)
+@{
+    SpeedyLayoutModel model = SpeedyAssetLinksGenerator.GetSpeedyLayoutModel();
+}
+@foreach (string style in model.AssetLinks.Styles)
 {
     @Html.Raw(style)
 }
