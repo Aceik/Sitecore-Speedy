@@ -13,6 +13,10 @@ Use best practice page load techniques to achieve Outstanding Page Speed scores 
 Speedy provides a Sitecore Layout and Asset provider that structures your HTML in accordance with Google's recommendations.  Google ranks your website with a score out of 100 and provides recommendation on how to achieve better scores.
 Implementing Critical CSS and Deferred Javascript loading can be tricky. This module provides a framework and brings together the tools needed to automate the process. 
 
+See it in action: 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/02WEMjTrSD4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Result: 
 
 <img src="https://aceiksolutions.files.wordpress.com/2019/07/results.png?w=768"/>
