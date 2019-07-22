@@ -1,8 +1,12 @@
-﻿@using Sitecore.XA.Foundation.Theming.Bundler
+﻿@using Sitecore.Foundation.Speedy.Model
+@using Sitecore.Foundation.Speedy.Speedy
 
-@model Sitecore.Foundation.Speedy.Speedy.SpeedyAssetLinks
+@{
+    SpeedyLayoutModel model = SpeedyAssetLinksGenerator.GetSpeedyLayoutModel();
+    var assetLinks = (SpeedyAssetLinks)model.AssetLinks;
+}
 <noscript id="deferred-styles">
-    @foreach (string style in Model.Styles)
+    @foreach (string style in assetLinks.Styles)
     {
         @Html.Raw(style)
     }

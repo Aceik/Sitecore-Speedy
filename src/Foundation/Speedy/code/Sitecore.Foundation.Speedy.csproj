@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Async\AsyncHelpers.cs" />
+    <Compile Include="Command\SpeedyRunCommand.cs" />
     <Compile Include="Controllers\CriticalController.cs" />
     <Compile Include="Events\SpeedyPageOnSaveEvent.cs" />
     <Compile Include="Extensions\QuickExtensions.cs" />
@@ -56,8 +57,13 @@
     <Compile Include="Models\API\ResponseWrapper\ServiceError.cs" />
     <Compile Include="Models\API\ResponseWrapper\WebApiResponse.cs" />
     <Compile Include="Model\CriticalJson.cs" />
+    <Compile Include="Model\FontMap.cs" />
+    <Compile Include="Model\FontMapHolder.cs" />
+    <Compile Include="Model\RemoteCriticalParameters.cs" />
     <Compile Include="Model\SpeedyLayoutModel.cs" />
     <Compile Include="RegisterCriticalRoutes.cs" />
+    <Compile Include="Scheduler\AllTemplatesSearchResultItem.cs" />
+    <Compile Include="Scheduler\SyncCritical.cs" />
     <Compile Include="Services\CriticalGenerationGateway.cs" />
     <Compile Include="Services\ICriticalGenerationGateway.cs" />
     <Compile Include="Settings\SpeedyGenerationSettings.cs" />
@@ -75,6 +81,7 @@
     </Content>
     <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.API.config" />
     <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.Routes.config" />
+    <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.Commands.config" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="Scripts\Critical.js" />
     <Content Include="Views\SxaLayout\SxaLayoutPageSpeed.cshtml" />
@@ -86,6 +93,16 @@
     <None Include="Scripts\Critical.json" />
     <Content Include="Views\Speedy\Critical.cshtml" />
     <Content Include="Views\Speedy\SpeedyJavascriptLoaderSettings.cshtml" />
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.DEV.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -100,6 +117,12 @@
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.NoReferences.9.0.180604\lib\NET462\Sitecore.ContentSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.Linq, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.Linq.NoReferences.9.0.180604\lib\NET462\Sitecore.ContentSearch.Linq.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel, Version=11.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Sitecore.Kernel.9.0.180604\lib\NET462\Sitecore.Kernel.dll</HintPath>

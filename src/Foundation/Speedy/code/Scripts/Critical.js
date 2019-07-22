@@ -7,6 +7,8 @@ const got = require('got');
 
 module.exports.main = function () {
 
+    process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
+
     const log4js = require('log4js');
     log4js.configure({
         appenders: { criticallogger: { type: 'file', filename: 'criticallogger.log' } },

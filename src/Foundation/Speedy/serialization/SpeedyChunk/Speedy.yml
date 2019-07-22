@@ -1,0 +1,18 @@
+﻿---
+ID: "eae1c736-ece2-4948-ac17-cb7f9b14ae21"
+Parent: "66738f84-31a9-43c9-9fcf-1515a849d6c5"
+Template: "8f3d8f9b-2d76-4ace-803f-35415d2b230a"
+Path: /sitecore/content/Applications/Content Editor/Ribbons/Chunks/Speedy
+DB: core
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190722T030712Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

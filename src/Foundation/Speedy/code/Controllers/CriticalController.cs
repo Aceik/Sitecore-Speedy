@@ -7,6 +7,7 @@ using Sitecore.Foundation.Speedy.Model;
 using Sitecore.Foundation.Speedy.Models.API.ResponseWrapper;
 using Sitecore.Data.Items;
 using Sitecore.SecurityModel;
+using static Sitecore.Foundation.Speedy.SpeedyConstants;
 
 /// <summary>
 /// Note: This WEB API controller is meant to be used on a developer 'standalone' environment.
@@ -26,7 +27,7 @@ namespace Sitecore.Foundation.Speedy.Controllers
         [System.Web.Http.Route("critical/api/get/{id}")]
         public HttpResponseMessage Get([FromUri]string id)
         {
-            Item item = Sitecore.Data.Database.GetDatabase("master").GetItem(new Sitecore.Data.ID(id));
+            Item item = Sitecore.Data.Database.GetDatabase(GlobalSettings.Database.Master).GetItem(new Sitecore.Data.ID(id));
             string url = item.GetUrlForContextSite() + $"?{SpeedyConstants.ByPass.ByPassParameter}=true";
 
             return Request.CreateResponse(HttpStatusCode.OK,
@@ -43,7 +44,7 @@ namespace Sitecore.Foundation.Speedy.Controllers
         [System.Web.Http.Route("critical/api/put")]
         public HttpResponseMessage Put([FromBody] CriticalJson submit)
         {
-            Item item = Sitecore.Data.Database.GetDatabase("master").GetItem(new Sitecore.Data.ID(submit.Id));
+            Item item = Sitecore.Data.Database.GetDatabase(GlobalSettings.Database.Master).GetItem(new Sitecore.Data.ID(submit.Id));
             using (new SecurityDisabler())
             {
                 item.Editing.BeginEdit();
