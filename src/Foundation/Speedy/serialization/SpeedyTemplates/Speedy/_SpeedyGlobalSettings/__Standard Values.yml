@@ -38,3 +38,17 @@ Languages:
     - ID: "af9fa73f-f0a8-4d58-8dea-cb2169147c87"
       Hint: DeferJSLoadForMilliseconds
       Value: 4000
+    - ID: "f4006c48-6487-43b7-8d65-a3c32c637e29"
+      Hint: RemoteFontMap
+      Value: |
+        { "fontmap": [
+            {
+              "find": "/Users/fontmap/AppData/Local/fonts/fontawesome/",
+              "replace": "/-/media/Themes/Habitat-Sites/Habitat-Home-v2/fonts/fontawesome/"
+            },
+            {
+              "find": "/Users/font/AppData/Local/fonts/",
+              "replace": "/-/media/Themes/Habitat-Sites/Habitat-Home-v2/fonts/"
+            }
+          ]
+        }
