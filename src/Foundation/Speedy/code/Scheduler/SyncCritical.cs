@@ -16,13 +16,16 @@ namespace Sitecore.Foundation.Speedy.Scheduler
     {
         public virtual void RunSync()
         {
+            if (!SpeedyGenerationSettings.ShouldGeneateViaScheduledTask())
+                return;
+
             if (!SpeedyGenerationSettings.IsPublicFacingEnvironment())
                 return;
 
             var speedyPageEvt = new SpeedyPageOnSaveEvent();
             speedyPageEvt.Database = GlobalSettings.Database.Master;
 
-            using (var context = ContentSearchManager.GetIndex("sitecore_master_index").CreateSearchContext())
+            using (var context = ContentSearchManager.GetIndex(SpeedyConstants.GlobalSettings.Index.Master).CreateSearchContext())
             {            
                 foreach (var result in GetSpeedyPagesByTemplate(context.Index))
                 {

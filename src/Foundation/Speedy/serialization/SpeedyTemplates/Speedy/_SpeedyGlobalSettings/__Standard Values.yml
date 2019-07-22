@@ -22,6 +22,9 @@ Languages:
     - ID: "32c93514-942e-4411-a8b1-9432cb055bc1"
       Hint: CookieExpirationDays
       Value: 10
+    - ID: "3d90972c-d661-48ca-80d8-3eec2beaa230"
+      Hint: DefaultCriticalWidth
+      Value: 1800
     - ID: "4fda48e4-0a51-4aa7-9d98-5008502377e6"
       Hint: DeferCSSLoadForMilliseconds
       Value: 5500
@@ -35,6 +38,9 @@ Languages:
     - ID: "6c44f9ab-65f2-4730-87e3-ffda8aec3da5"
       Hint: DeferFallbackForMilliseconds
       Value: 5000
+    - ID: "97197d2e-4289-4a4e-8bcc-789897de907f"
+      Hint: DefaultCriticalHeight
+      Value: 1200
     - ID: "af9fa73f-f0a8-4d58-8dea-cb2169147c87"
       Hint: DeferJSLoadForMilliseconds
       Value: 4000

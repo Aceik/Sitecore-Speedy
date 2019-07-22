@@ -32,6 +32,24 @@ namespace Sitecore.Foundation.Speedy.Settings
             return item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldRegenerateOnEverySaveEvent].HasValue && item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldRegenerateOnEverySaveEvent].Value == "1";
         }
 
+        public static bool ShouldGeneateViaScheduledTask()
+        {
+            var item = GetGlobalSettingsItem();
+            return item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldGenerateOnScheduledTask].HasValue && item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldGenerateOnScheduledTask].Value == "1";
+        }
+
+        public static string GetDefaultCriticalWidth()
+        {
+            var item = GetGlobalSettingsItem();
+            return item.Fields[SpeedyConstants.GlobalSettings.Fields.DefaultCriticalWidth].Value;
+        }
+
+        public static string GetDefaultCriticalHeight()
+        {
+            var item = GetGlobalSettingsItem();
+            return item.Fields[SpeedyConstants.GlobalSettings.Fields.DefaultCriticalHeight].Value;
+        }
+
         public static bool IsPublicFacingEnvironment()
         {
             return bool.Parse(Sitecore.Configuration.Settings.GetSetting("Speedy.IsPublicFacingEnvironment"));

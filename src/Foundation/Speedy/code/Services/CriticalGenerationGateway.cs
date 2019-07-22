@@ -32,7 +32,7 @@ namespace Sitecore.Foundation.Speedy.Services
         /// <returns></returns>
         public string GenerateCritical(string url, string width = "1800", string height = "1200", bool fontReplace = false)
         {
-            
+            url = "https://southaustralia.com";
             var client = new RestClient(SpeedyGenerationSettings.GetCriticalApiEndpoint());
             client.Authenticator = new HttpBasicAuthenticator(SpeedyGenerationSettings.GetCriticalApiEndpointUsername(), SpeedyGenerationSettings.GetCriticalApiEndpointPassword());
 
@@ -61,7 +61,6 @@ namespace Sitecore.Foundation.Speedy.Services
                 requestBody.Width = Int32.Parse(width);
                 requestBody.Url = HttpUtility.UrlEncode(url);
                 request.AddParameter("application/json", JsonConvert.SerializeObject(requestBody), ParameterType.RequestBody);
-
             }
 
             client.Timeout = 300000;

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using Sitecore.Data.Items;
+using Sitecore.Events;
 using Sitecore.Foundation.Speedy.Extensions;
 using Sitecore.Foundation.Speedy.Services;
 using Sitecore.Foundation.Speedy.Settings;
-using Sitecore.Data.Items;
-using Sitecore.Events;
-using Sitecore.Links;
-using Sitecore.Sites;
-using Sitecore.Web;
 using Sitecore.XA.Foundation.SitecoreExtensions.Extensions;
-using Sitecore.Data;
+using System;
 
 namespace Sitecore.Foundation.Speedy.Events
 {
@@ -58,21 +53,18 @@ namespace Sitecore.Foundation.Speedy.Events
                     string width = item.Fields[SpeedyConstants.Fields.CriticalViewPortWidth].Value;
                     string height = item.Fields[SpeedyConstants.Fields.CriticalViewPortHeight].Value;
 
+                    if (string.IsNullOrWhiteSpace(width))
+                        width = SpeedyGenerationSettings.GetDefaultCriticalWidth();
+                    if (string.IsNullOrWhiteSpace(height))
+                        height = SpeedyGenerationSettings.GetDefaultCriticalHeight();
+
                     string criticalHtml = string.Empty;
 
                     // If the setting is turned on to so that this is a public facing environment, then critical HTML can be generated via the hosted Node application on a seperate URL.
                     if (SpeedyGenerationSettings.IsPublicFacingEnvironment())
                     {
                         criticalGateway = new CriticalGenerationGateway();
-
-                        if (string.IsNullOrWhiteSpace(width) && string.IsNullOrWhiteSpace(height))
-                            criticalHtml = criticalGateway.GenerateCritical(presentUrl, fontReplace: true);
-                        else if (string.IsNullOrWhiteSpace(width))
-                            criticalHtml = criticalGateway.GenerateCritical(presentUrl, height: height, fontReplace: true);
-                        else if (string.IsNullOrWhiteSpace(height))
-                            criticalHtml = criticalGateway.GenerateCritical(presentUrl, width: width, fontReplace: true);
-                        else
-                            criticalHtml = criticalGateway.GenerateCritical(presentUrl, width, height, fontReplace: true);
+                        criticalHtml = criticalGateway.GenerateCritical(presentUrl, width, height, fontReplace: true);
                     }
 
                     item.Fields[SpeedyConstants.Fields.CriticalCss].Value = criticalHtml;
