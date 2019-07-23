@@ -57,7 +57,7 @@ namespace Sitecore.Foundation.Speedy.Settings
 
         public static bool IsSpeedyEnabledForPage(this Item item)
         {
-            return item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled);
+            return item.Fields[SpeedyConstants.Fields.SpeedyEnabled] != null && item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled);
         }
 
         public static bool IsOnePassCookieEnabled(this Item item)
@@ -72,7 +72,7 @@ namespace Sitecore.Foundation.Speedy.Settings
 
         public static bool IsCriticalJavascriptEnabledAndPossible(this Item item)
         {
-            return item.IsEnabled(SpeedyConstants.Fields.EnableJavascriptLoadDefer);
+            return item.Fields[SpeedyConstants.Fields.EnableJavascriptLoadDefer] != null && item.IsEnabled(SpeedyConstants.Fields.EnableJavascriptLoadDefer);
         }
 
         private static Item GetGlobalSettingsItem()
