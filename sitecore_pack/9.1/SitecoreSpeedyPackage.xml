@@ -104,7 +104,16 @@
       <Converter>
         <FileToEntryConverter>
           <Root>/</Root>
-          <Transforms />
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
         </FileToEntryConverter>
       </Converter>
       <Include />
@@ -120,7 +129,16 @@
       <SkipVersions>False</SkipVersions>
       <Converter>
         <ItemToEntryConverter>
-          <Transforms />
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
         </ItemToEntryConverter>
       </Converter>
       <Include />
@@ -200,54 +218,6 @@
       <Exclude />
       <Name>Master Items</Name>
     </xitems>
-    <items>
-      <Database>master</Database>
-      <Root>{10083CA0-5093-4D67-99DB-2579ABB421D3}</Root>
-      <SkipVersions>False</SkipVersions>
-      <Converter>
-        <ItemToEntryConverter>
-          <Transforms />
-        </ItemToEntryConverter>
-      </Converter>
-      <Include>
-        <ItemNameFilter>
-          <Pattern />
-          <FilterSearchType>Simple</FilterSearchType>
-        </ItemNameFilter>
-        <ItemDateFilter>
-          <FilterType>CreatedFilter</FilterType>
-          <NotOlderThan />
-          <ActionDateTo />
-          <ActionDateFrom />
-        </ItemDateFilter>
-        <ItemDateFilter>
-          <FilterType>ModifiedFilter</FilterType>
-          <NotOlderThan />
-          <ActionDateTo />
-          <ActionDateFrom />
-        </ItemDateFilter>
-        <ItemPublishFilter>
-          <PublishDate />
-          <CheckWorkflow>True</CheckWorkflow>
-        </ItemPublishFilter>
-        <ItemTemplateFilter>
-          <Templates />
-        </ItemTemplateFilter>
-        <ItemUserFilter>
-          <FilterType>Created</FilterType>
-          <Accounts />
-        </ItemUserFilter>
-        <ItemUserFilter>
-          <FilterType>Modified</FilterType>
-          <Accounts />
-        </ItemUserFilter>
-        <ItemLanguageFilter>
-          <Languages />
-        </ItemLanguageFilter>
-      </Include>
-      <Exclude />
-      <Name />
-    </items>
     <xitems>
       <Entries>
         <x-item>/master/sitecore/layout/Layouts/Foundation/{10335194-8652-470A-9445-FD7C4FB21B4E}/invariant/0</x-item>
