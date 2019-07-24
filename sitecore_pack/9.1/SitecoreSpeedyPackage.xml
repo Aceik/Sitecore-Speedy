@@ -48,6 +48,7 @@
       <Entries>
         <x-item>/scripts/Critical.js</x-item>
         <x-item>/scripts/Critical.json</x-item>
+        <x-item>/scripts/package.json</x-item>
       </Entries>
       <Converter>
         <FileToEntryConverter>
