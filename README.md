@@ -14,7 +14,7 @@ Speedy provides a Sitecore Layout and Asset provider that structures your HTML i
 Implementing Critical CSS and Deferred Javascript loading can be tricky. This module provides a framework and brings together the tools needed to automate the process. 
 
 [Results demo screencast ... click here](https://www.youtube.com/watch?v=02WEMjTrSD4&feature=youtu.be) 
-
+[Installation and Usage on a developer machine screencast ... click here](https://youtu.be/-1SA12qax1g)
 Results: 
 
 <img src="https://aceiksolutions.files.wordpress.com/2019/07/results.png?w=768"/>
