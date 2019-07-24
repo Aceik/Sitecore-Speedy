@@ -10,7 +10,7 @@ Use best practice page load techniques to achieve Outstanding Page Speed scores 
 
 ## What does it do ?
 
-Speedy provides a Sitecore Layout and Asset provider that structures your HTML in accordance with Google's recommendations.  Google ranks your website with a score out of 100 and provides recommendation on how to achieve better scores.
+Speedy provides a Sitecore Layout and Asset provider that structures your HTML in accordance with Google's recommendations.  Google ranks your website with a score out of 100 and provides recommendations on how to achieve better scores.
 Implementing Critical CSS and Deferred Javascript loading can be tricky. This module provides a framework and brings together the tools needed to automate the process. 
 
 [Results demo screencast ... click here](https://www.youtube.com/watch?v=02WEMjTrSD4&feature=youtu.be) 
