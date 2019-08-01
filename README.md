@@ -34,6 +34,13 @@ This module addresses Critical CSS and Deferred asset loading, which is perhaps 
 
 <img src="https://aceiksolutions.files.wordpress.com/2019/07/critical_plus_defer.png?w=720"/>
 
+## Is it easy to use ?
+
+It is likely that a developer will be required to setup and tweak the settings before the first full deployment. 
+
+In production mode the Content Editor will have a button they can use to re-generate the Critical CSS for any given page. (This feature is supported by a simple node API application that can be hosted on an Azure Free plan and a subscription to https://www.browserless.io/ if you go over the free limits.)
+<a target="_blank" href="https://aceiksolutions.files.wordpress.com/2019/07/generatebutton.png"><img src="https://aceiksolutions.files.wordpress.com/2019/07/generatebutton.png"/></a>
+
 ## Installation prerequisites and notes
 
 1) <img src="https://img.shields.io/badge/requires-node-blue.svg?style=flat-square" alt="requires node">  (Required in [local development mode](https://github.com/Aceik/Sitecore-Speedy/wiki/08---Development-Mode))
