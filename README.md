@@ -79,6 +79,8 @@ In production mode the Content Editor will have a button they can use to re-gene
 
 ### Q) My custom libraries written in Jquery won't load via async, what do I do ?
 ### A) 
+
+If you have a browse around this has been [blogged about a bit](https://idiallo.com/javascript/async-jquery). 
 When loading external libraries async its likely that the DOM Ready event that Jquery fires has already passed. 
 Ideally the javascript library would be written so that it will initialise when loaded (regardless of async/defer). If this isn't the case try to find the initialization function within the library.  You would call this initialization inside of 
 `Speedy.fallbackExperienceAfterLoad = function () {` which can be found [here](https://github.com/Aceik/Sitecore-Speedy/blob/master/src/Foundation/Speedy/code/Views/Speedy/SpeedyJavascriptLoader.cshtml)
