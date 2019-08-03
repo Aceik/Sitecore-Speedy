@@ -50,7 +50,9 @@ In production mode the Content Editor will have a button they can use to re-gene
   * <img src="https://img.shields.io/badge/supports-helix-green.svg?style=flat-square" alt="requires Helix Foundation"/>
 
 ## Getting Started Steps
-1) [Installation](https://github.com/Aceik/Sitecore-Speedy/wiki/01---Installation)
+1) Installation
+- Option 1: [via Sitecore Package](https://github.com/Aceik/Sitecore-Speedy/wiki/00-Installation-Via-Sitecore-Package)
+- Option 2: [Via Source](https://github.com/Aceik/Sitecore-Speedy/wiki/01--Installation-Via-Helix-Source)
 2) [Critical Generation](https://github.com/Aceik/Sitecore-Speedy/wiki/02---Critical-Generation-Options)
 3) [Usage on each page](https://github.com/Aceik/Sitecore-Speedy/wiki/03---Usage-on-a-Page)
 4) [Tweak, Adapt and test](https://github.com/Aceik/Sitecore-Speedy/wiki/04---Tweak,-Adapt-and-Test)
