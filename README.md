@@ -73,3 +73,14 @@ In production mode the Content Editor will have a button they can use to re-gene
 * [Critical](https://www.npmjs.com/package/critical)
 * [LoadCSS](https://github.com/filamentgroup/loadCSS/blob/master/README.md) -- Looking to implement this in a future version
 * https://www.browserless.io/
+
+
+## FAQ
+
+### Q) My custom libraries written in Jquery won't load via async, what do I do ?
+### A) 
+When loading external libraries async its likely that the DOM Ready event that Jquery fires has already passed. 
+Ideally the javascript library would be written so that it will initialise when loaded (regardless of async/defer). If this isn't the case try to find the initialization function within the library.  You would call this initialization inside of 
+`Speedy.fallbackExperienceAfterLoad = function () {` which can be found [here](https://github.com/Aceik/Sitecore-Speedy/blob/master/src/Foundation/Speedy/code/Views/Speedy/SpeedyJavascriptLoader.cshtml)
+
+At this stage Speedy doesn't support a hybrid model of loading some scripts in main upfront and some async. It might be something to consider in a future release. 
