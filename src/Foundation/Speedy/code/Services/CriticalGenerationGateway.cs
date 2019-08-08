@@ -32,7 +32,6 @@ namespace Sitecore.Foundation.Speedy.Services
         /// <returns></returns>
         public string GenerateCritical(string url, string width = "1800", string height = "1200", bool fontReplace = false)
         {
-            url = "https://southaustralia.com";
             var client = new RestClient(SpeedyGenerationSettings.GetCriticalApiEndpoint());
             client.Authenticator = new HttpBasicAuthenticator(SpeedyGenerationSettings.GetCriticalApiEndpointUsername(), SpeedyGenerationSettings.GetCriticalApiEndpointPassword());
 
@@ -85,7 +84,7 @@ namespace Sitecore.Foundation.Speedy.Services
          *
          
             { 
-	            "url" : "https%3a%2f%2fwww.southaustralia.com%2f",
+	            "url" : "https%3a%2f%2fwww.australia.com%2f",
 	            "width" : "1800",
 	            "height": "1200",
 	            "fontmap": [
