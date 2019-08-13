@@ -1,6 +1,6 @@
 ﻿{
-  "itemid": "{B87F9889-A779-4E39-80F7-474E76F25CCA}",
-  "host": "",  // Set this to your local development environment URL
+  "itemid": "{10083CA0-5093-4D67-99DB-2579ABB421D3}",
+  "host": "https://habitathome.dev.local/",
   "api": "critical/api/get/",
   "apisave": "critical/api/put/",
   "timeout": 30000,
@@ -8,88 +8,12 @@
   "height": 1100,
   "fontmap": [
     {
-      "find": "/C:/Users/thomas/AppData/Local/fonts/fontawesome/",
-      "replace": ""
+      "find": "/Users/ttyack/AppData/Local/fonts/fontawesome/",
+      "replace": "/-/media/Themes/Habitat-Sites/Habitat-Home-v2/fonts/fontawesome/"
     },
     {
-      "find": "/C:/Users/thomas/AppData/Local/fonts/",
-      "replace": ""
-    },
-    {
-      "find": "fontawesome-webfont-woff.woff?v=4.7.0",
-      "replace": "/-/media/Base-Themes/Core-Libraries/fonts/fontawesome/fontawesome-webfont-woff.woff?v=4.7.0"
-    },
-    {
-      "find": "fontawesome-webfont-woff2.woff2?v=4.7.0",
-      "replace": "/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fontawesome-webfont-woff2.woff2?v=4.7.0"
-    },
-    {
-      "find": "fontawesome-webfont-ttf.ttf?v=4.7.0",
-      "replace": "/-/media/Base-Themes/Core-Libraries/fonts/fontawesome-webfont-ttf.ttf?v=4.7.0"
-    },
-    {
-      "find": "fontawesome-webfont-eot.eot?#iefix&v=4.7.0",
-      "replace": "/-/media/Base-Themes/Core-Libraries/fonts/fontawesome/fontawesome-webfont-eot.eot?#iefix&v=4.7.0"
-    },
-    {
-      "find": "fontawesome-webfont-svg.svg?v=4.7.0#fontawesomeregular",
-      "replace": "/-/media/Base-Themes/Core-Libraries/fonts/fontawesome-webfont-svg.svg?v=4.7.0#fontawesomeregular"
-    },
-    {
-      "find": "national2web/national2web-regular-woff.woff?v=1.0.0",
-      "replace": "/-/media/Themes/RAA/Web/Web/fonts/national2web/national2web-regular-woff.woff?v=1.0.0"
-    },
-    {
-      "find": "national2web/national2web-medium-woff.woff?v=1.0.0",
-      "replace": "/-/media/Themes/RAA/Web/Web/fonts/national2web/national2web-medium-woff.woff?v=1.0.0"
-    },
-    {
-      "find": "national2web/national2web-extrabold-woff.woff?v=1.0.0",
-      "replace": "/-/media/Themes/RAA/Web/Web/fonts/national2web/national2web-extrabold-woff.woff?v=1.0.0"
-    },
-    {
-      "find": "national2web/national2web-bold-woff.woff?v=1.0.0",
-      "replace": "/-/media/Themes/RAA/Web/Web/fonts/national2web/national2web-bold-woff.woff?v=1.0.0"
-    },
-    {
-      "find": "national2web/national2web-regular-woff2.woff2?v=1.0.0",
-      "replace": "/-/media/Themes/RAA/Web/Web/fonts/national2web/national2web-regular-woff2.woff2?v=1.0.0"
-    },
-    {
-      "find": "national2web/national2web-medium-woff2.woff2?v=1.0.0",
-      "replace": "/-/media/Themes/RAA/Web/Web/fonts/national2web/national2web-medium-woff2.woff2?v=1.0.0"
-    },
-    {
-      "find": "national2web/national2web-extrabold-woff2.woff2?v=1.0.0",
-      "replace": "/-/media/Themes/RAA/Web/Web/fonts/national2web/national2web-extrabold-woff2.woff2?v=1.0.0"
-    },
-    {
-      "find": "national2web/national2web-bold-woff2.woff2?v=1.0.0",
-      "replace": "/-/media/Themes/RAA/Web/Web/fonts/national2web/national2web-bold-woff2.woff2?v=1.0.0"
-    },
-    {
-      "find": "fa-regular-400-woff2.woff2",
-      "replace": "\"/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-regular-400-woff2.woff2"
-    },
-    {
-      "find": "fa-light-300-woff2.woff2",
-      "replace": "\"/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-300-woff2.woff2"
-    },
-    {
-      "find": "fa-solid-900-woff2.woff2",
-      "replace": "\"/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-solid-900-woff2.woff2"
-    },
-    {
-      "find": "fa-regular-400-woff.woff",
-      "replace": "\"/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-regular-400-woff.woff"
-    },
-    {
-      "find": "fa-light-300-woff.woff",
-      "replace": "\"/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-300-woff.woff"
-    },
-    {
-      "find": "fa-solid-900-woff.woff",
-      "replace": "\"/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-solid-900-woff.woff"
+      "find": "/Users/ttyack/AppData/Local/fonts/",
+      "replace": "/-/media/Themes/Habitat-Sites/Habitat-Home-v2/fonts/"
     }
   ]
 }

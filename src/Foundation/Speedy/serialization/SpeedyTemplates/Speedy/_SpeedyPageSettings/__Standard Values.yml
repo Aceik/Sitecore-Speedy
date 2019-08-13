@@ -29,7 +29,11 @@ Languages:
       Value: 1
     - ID: "aeff1db4-f4dc-4f05-8144-8275f18c35a8"
       Hint: CssFallbackSelector
-      Value: "div.contact-us-container, div.myaccount-dropdown, div.header-search-box horizontal"
+      Value: |
+        {
+        	'display_unset' : { 'selector': 'div.contact-us-container, div.header-search-box horizontal, div.privacy-warning' },
+        	'display_block' : { 'selector': 'div.primary-nav-container, div.privacy-warning' }
+        }
     - ID: "cfcc9511-c7e2-47bc-b8d4-86734ce26a93"
       Hint: SpeedyEnabled
       Type: Checkbox

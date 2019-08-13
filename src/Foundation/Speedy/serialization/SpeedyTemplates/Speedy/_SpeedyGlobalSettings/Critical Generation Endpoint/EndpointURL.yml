@@ -11,6 +11,10 @@ SharedFields:
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
   Value: 100
+- ID: "be351a73-fcb0-4213-93fa-c302d8ab4f51"
+  Hint: Shared
+  Type: Checkbox
+  Value: 1
 Languages:
 - Language: en
   Fields:
@@ -23,6 +27,3 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20190424T121525Z
-    - ID: "c8f93afe-bfd4-4e8f-9c61-152559854661"
-      Hint: __Valid from
-      Value: 

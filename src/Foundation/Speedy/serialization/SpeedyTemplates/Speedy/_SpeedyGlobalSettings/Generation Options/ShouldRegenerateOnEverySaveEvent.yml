@@ -1,28 +1,33 @@
 ﻿---
 ID: "3cc49f95-c8f9-482e-a7a8-af6baaea0fa6"
-Parent: "e4d3ba94-e967-477f-8e3d-de3bda8712a3"
+Parent: "0f96b813-d291-41c9-8bfe-8767fb6cb86a"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint/ShouldRegenerateOnEverySaveEvent
+Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Generation Options/ShouldRegenerateOnEverySaveEvent
 DB: master
 SharedFields:
+- ID: "9c6106ea-7a5a-48e2-8cad-f0f693b1e2d4"
+  Hint: __Read Only
+  Type: Checkbox
+  Value: 0
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
   Value: Checkbox
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
-  Value: 200
+  Value: 1000
+- ID: "be351a73-fcb0-4213-93fa-c302d8ab4f51"
+  Hint: Shared
+  Type: Checkbox
+  Value: 1
 Languages:
 - Language: en
   Fields:
   - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
     Hint: Title
-    Value: "Should the Critical CSS regenerate every time the page is saved in Sitecore ?   (otherwise regeneration will happen only when the Critical CSS field is empty) "
+    Value: "Should Generate Critical CSS On Item Save Event ?"
   Versions:
   - Version: 1
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20190426T111201Z
-    - ID: "c8f93afe-bfd4-4e8f-9c61-152559854661"
-      Hint: __Valid from
-      Value: 

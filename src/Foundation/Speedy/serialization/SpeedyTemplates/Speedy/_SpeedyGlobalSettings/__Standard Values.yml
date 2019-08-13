@@ -4,6 +4,13 @@ Parent: "b06f7c55-9717-4bfa-86d5-875b2ddac17c"
 Template: "b06f7c55-9717-4bfa-86d5-875b2ddac17c"
 Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/__Standard Values
 DB: master
+SharedFields:
+- ID: "167a1fdf-2465-4131-8877-03fbe4f1dceb"
+  Hint: EndpointPassword
+  Value: generator
+- ID: "d261c023-5e72-4901-a7b7-95fadf754def"
+  Hint: EndpointUsername
+  Value: critical
 Languages:
 - Language: en
   Versions:
@@ -15,6 +22,9 @@ Languages:
     - ID: "32c93514-942e-4411-a8b1-9432cb055bc1"
       Hint: CookieExpirationDays
       Value: 10
+    - ID: "3d90972c-d661-48ca-80d8-3eec2beaa230"
+      Hint: DefaultCriticalWidth
+      Value: 1800
     - ID: "4fda48e4-0a51-4aa7-9d98-5008502377e6"
       Hint: DeferCSSLoadForMilliseconds
       Value: 5500
@@ -28,9 +38,23 @@ Languages:
     - ID: "6c44f9ab-65f2-4730-87e3-ffda8aec3da5"
       Hint: DeferFallbackForMilliseconds
       Value: 5000
-    - ID: "aeff1db4-f4dc-4f05-8144-8275f18c35a8"
-      Hint: CssFallbackSelector
-      Value: "div.contact-us-container, div.myaccount-dropdown, div.header-search-box horizontal"
+    - ID: "97197d2e-4289-4a4e-8bcc-789897de907f"
+      Hint: DefaultCriticalHeight
+      Value: 1200
     - ID: "af9fa73f-f0a8-4d58-8dea-cb2169147c87"
       Hint: DeferJSLoadForMilliseconds
       Value: 4000
+    - ID: "f4006c48-6487-43b7-8d65-a3c32c637e29"
+      Hint: RemoteFontMap
+      Value: |
+        { "fontmap": [
+            {
+              "find": "/Users/fontmap/AppData/Local/fonts/fontawesome/",
+              "replace": "/-/media/Themes/Habitat-Sites/Habitat-Home-v2/fonts/fontawesome/"
+            },
+            {
+              "find": "/Users/font/AppData/Local/fonts/",
+              "replace": "/-/media/Themes/Habitat-Sites/Habitat-Home-v2/fonts/"
+            }
+          ]
+        }
