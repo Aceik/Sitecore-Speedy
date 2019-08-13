@@ -56,9 +56,6 @@
     <Compile Include="Models\API\ResponseWrapper\IWebApiResponse.cs" />
     <Compile Include="Models\API\ResponseWrapper\ServiceError.cs" />
     <Compile Include="Models\API\ResponseWrapper\WebApiResponse.cs" />
-    <Compile Include="Model\FontMap.cs" />
-    <Compile Include="Model\FontMapHolder.cs" />
-    <Compile Include="Model\RemoteCriticalParameters.cs" />
     <Compile Include="Model\CriticalJson.cs" />
     <Compile Include="Model\FontMap.cs" />
     <Compile Include="Model\FontMapHolder.cs" />
