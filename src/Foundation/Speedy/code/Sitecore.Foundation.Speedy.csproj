@@ -82,14 +82,12 @@
     <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.API.config" />
     <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.Routes.config" />
     <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.Commands.config" />
-    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="Scripts\Critical.js" />
     <Content Include="Views\SxaLayout\SxaLayoutPageSpeed.cshtml" />
     <Content Include="Views\Speedy\SpeedyJavascriptLoader.cshtml" />
     <Content Include="Views\Speedy\SpeedyStylesLoader.cshtml" />
     <Content Include="Views\Speedy\OriginalStylesLoader.cshtml" />
     <Content Include="Views\Speedy\OriginalScriptsLoader.cshtml" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\Critical.json" />
     <Content Include="Views\Speedy\Critical.cshtml" />
     <Content Include="Views\Speedy\SpeedyJavascriptLoaderSettings.cshtml" />
