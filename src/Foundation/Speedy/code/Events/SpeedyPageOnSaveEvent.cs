@@ -18,11 +18,12 @@ namespace Sitecore.Foundation.Speedy.Events
 
         public void OnItemSaving(object sender, EventArgs args)
         {
-            Sitecore.Diagnostics.Log.Info("SpeedyPageOnSaveEvent running", this);
             var item = Event.ExtractParameter(args, 0) as Item;
 
             if (item.Name == "__Standard Values" || !item.IsSpeedyEnabledForPage())   // Nothing to see here lets exit quickly
                 return;
+
+            Sitecore.Diagnostics.Log.Info("SpeedyPageOnSaveEvent running", this);
 
             var shouldGenerate = SpeedyGenerationSettings.ShouldRegenerateOnEachSave();
 

@@ -11,7 +11,7 @@ namespace Sitecore.Foundation.Speedy.Extensions
     {
         public static bool IsEnabled(this Item item, string fieldName)
         {
-            return item.Fields[fieldName].Value == "1";
+            return item.Fields[fieldName] != null && item.Fields[fieldName].Value == "1";
         }
 
         public static string GetUrlForContextSite(this Item item)

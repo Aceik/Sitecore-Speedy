@@ -114,7 +114,9 @@
 		setTimeout(function () {
 
             Speedy.tools.runSelector(Speedy.settings.fallbackHideSelector.display_unset.selector, 'none');
-            Speedy.tools.runSelector(Speedy.settings.fallbackHideSelector.display_block.selector, 'none');
+
+            if (Speedy.settings.fallbackHideSelector.display_block.selector)
+                Speedy.tools.runSelector(Speedy.settings.fallbackHideSelector.display_block.selector, 'none');
 
 		}, 100);
     };
@@ -123,7 +125,8 @@
 		console.log("after load");
         setTimeout(function () {
             Speedy.tools.runSelector(Speedy.settings.fallbackHideSelector.display_unset.selector, 'unset');
-            Speedy.tools.runSelector(Speedy.settings.fallbackHideSelector.display_block.selector, 'block');
+            if (Speedy.settings.fallbackHideSelector.display_block.selector)
+                Speedy.tools.runSelector(Speedy.settings.fallbackHideSelector.display_block.selector, 'block');
 		}, Speedy.settings.fallBackExperienceDelay);
     };
 
