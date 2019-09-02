@@ -5,15 +5,78 @@
   "apisave": "critical/api/put/",
   "timeout": 30000,
   "width": 1800,
-  "height": 1100,
+  "height": 1200,
   "fontmap": [
     {
-      "find": "/Users/ttyack/AppData/Local/fonts/fontawesome/",
-      "replace": "/-/media/Themes/Habitat-Sites/Habitat-Home-v2/fonts/fontawesome/"
+      "find": "/Users/thomas/AppData/Local/fonts/national2web/",
+      "replace": "/-/media/Themes/Site/Web/Web/fonts/national2web/"
     },
     {
-      "find": "/Users/ttyack/AppData/Local/fonts/",
-      "replace": "/-/media/Themes/Habitat-Sites/Habitat-Home-v2/fonts/"
+      "find": "/Users/thomas/AppData/Local/fonts/fontawesome/",
+      "replace": "/-/media/Themes/Site/Web/Web/fonts/fontawesome/"
+    },
+    {
+      "find": "/Users/thomas/AppData/Local/fonts/fontawesome/",
+      "replace": "/-/media/Themes/Site/Web/Web/fonts/fontawesome/"
+    },
+    {
+      "find": "content:\"\"",
+      "replace": ""
+    },
+    {
+      "find": "content:\"\"",
+      "replace": ""
+    },
+    {
+      "find": "url(/C:/-/media/",
+      "replace": "url(/-/media/"
+    },
+    {
+      "find": "@font-face{",
+      "replace": "@font-face{font-display: swap;"
+    }
+  ],
+  "removeduplicates": [
+    {
+      "find": "@font-face{font-display: swap;font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:300;font-display:auto;src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-300-eot.eot);src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-300-eot.eot?#iefix) format(\"embedded-opentype\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-300-woff2.woff2) format(\"woff2\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-300-woff.woff) format(\"woff\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-300-ttf.ttf) format(\"truetype\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-300-svg.svg#fontawesome) format(\"svg\")}"
+    },
+    {
+      "find": "@font-face{font-display: swap;font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:400;font-display:auto;src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-400-eot.eot);src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-400-eot.eot?#iefix) format(\"embedded-opentype\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-400-woff2.woff2) format(\"woff2\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-400-woff.woff) format(\"woff\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-400-ttf.ttf) format(\"truetype\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-400-svg.svg#fontawesome) format(\"svg\")}"
+    },
+    {
+      "find": "@font-face{font-display: swap;font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:900;font-display:auto;src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-900-eot.eot);src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-900-eot.eot?#iefix) format(\"embedded-opentype\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-900-woff2.woff2) format(\"woff2\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-900-woff.woff) format(\"woff\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-900-ttf.ttf) format(\"truetype\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-900-svg.svg#fontawesome) format(\"svg\")}"
+    },
+    {
+      "find": "@font-face{font-display: swap;font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:900;font-display:auto;src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-solid-900-eot.eot);src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-solid-900-eot.eot?#iefix) format(\"embedded-opentype\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-solid-900-woff2.woff2) format(\"woff2\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-solid-900-woff.woff) format(\"woff\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-solid-900-ttf.ttf) format(\"truetype\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-solid-900-svg.svg#fontawesome) format(\"svg\")}"
+    },
+    {
+      "find": "@font-face{font-display: swap;font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:400;font-display:auto;src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-regular-400-eot.eot);src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-regular-400-eot.eot?#iefix) format(\"embedded-opentype\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-regular-400-woff2.woff2) format(\"woff2\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-regular-400-woff.woff) format(\"woff\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-regular-400-ttf.ttf) format(\"truetype\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-regular-400-svg.svg#fontawesome) format(\"svg\")}"
+    }
+  ],
+  "fontFaceSwitch": [
+    {
+      "find": "font-family:NationalWebExtraBold;",
+      "replace": "font-family:NationalWebExtraBold-Critical;"
+    },
+    {
+      "find": "font-family:NationalWeb;",
+      "replace": "font-family:NationalWeb-Critical;"
+    },
+    {
+      "find": "font-family:NationalWebExtraBold;",
+      "replace": "font-family:NationalWebExtraBold-critical;"
+    },
+    {
+      "find": "font-family:NationalWebMedium;",
+      "replace": "font-family:NationalWebMedium-critical;"
+    },
+    {
+      "find": "font-family:NationalWeb;",
+      "replace": "font-family:NationalWeb-critical;"
+    },
+    {
+      "find": "font-family:NationalWebBold;",
+      "replace": "font-family:NationalWebBold-critical;"
     }
   ]
 }

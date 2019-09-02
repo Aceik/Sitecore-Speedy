@@ -39,6 +39,8 @@ namespace Sitecore.Foundation.Speedy
                 public static readonly string EndpointUsername = "EndpointUsername";
                 public static readonly string EndpointPassword = "EndpointPassword";
                 public static readonly string RemoteFontMap = "RemoteFontMap";
+                public static readonly string RemoteDuplicatesToRemove = "RemoteDuplicatesToRemove";
+                public static readonly string RemoteFontsToSwitch = "RemoteFontsToSwitch";
                 public static readonly string ShouldRegenerateOnEverySaveEvent = "ShouldRegenerateOnEverySaveEvent";
                 public static readonly string ShouldGenerateOnScheduledTask = "ShouldGenerateOnScheduledTask";
                 public static readonly string CookieExpiration = "CookieExpirationDays";

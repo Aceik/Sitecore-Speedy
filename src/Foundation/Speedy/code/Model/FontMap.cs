@@ -9,4 +9,10 @@ namespace Sitecore.Foundation.Speedy.Model
         [JsonProperty(PropertyName = "replace")]
         public string Replace { get; set; }
     }
+
+    public class FindDuplicatesMap
+    {
+        [JsonProperty(PropertyName = "find")]
+        public string Find { get; set; }
+    }
 }

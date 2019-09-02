@@ -26,6 +26,16 @@ namespace Sitecore.Foundation.Speedy.Settings
             return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.RemoteFontMap].Value;
         }
 
+        public static string GetCriticalApiRemoteDuplicates()
+        {
+            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.RemoteDuplicatesToRemove].Value;
+        }
+
+        public static string GetCriticalApiRemoteFontSwitch()
+        {
+            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.RemoteFontsToSwitch].Value;
+        }
+
         public static bool ShouldRegenerateOnEachSave()
         {
             var item = GetGlobalSettingsItem();
@@ -77,14 +87,14 @@ namespace Sitecore.Foundation.Speedy.Settings
 
         private static Item GetGlobalSettingsItem()
         {
-            return GetMaster().GetItem(SpeedyConstants.GlobalSettings.SpeedyGlobalSettingsId);
+            return GetContextDatabase().GetItem(SpeedyConstants.GlobalSettings.SpeedyGlobalSettingsId);
         }
 
-        private static Database GetMaster()
+        private static Database GetContextDatabase()
         {
-            return Sitecore.Configuration.Factory.GetDatabase("master");
+            return Sitecore.Context.Database;
         }
-
+        
         public static string GetCookieExpiration()
         {
             return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.CookieExpiration].Value;

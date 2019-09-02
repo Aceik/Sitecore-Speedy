@@ -32,33 +32,39 @@ namespace Sitecore.Foundation.Speedy.Services
         /// <returns></returns>
         public string GenerateCritical(string url, string width = "1800", string height = "1200", bool fontReplace = false)
         {
+
             var client = new RestClient(SpeedyGenerationSettings.GetCriticalApiEndpoint());
             client.Authenticator = new HttpBasicAuthenticator(SpeedyGenerationSettings.GetCriticalApiEndpointUsername(), SpeedyGenerationSettings.GetCriticalApiEndpointPassword());
 
             var request = new RestRequest(Method.POST);
 
-            request.AddHeader("cache-control", "no-cache");
-            request.AddHeader("content-length", "18");
             request.AddHeader("accept-encoding", "gzip, deflate");
             request.AddHeader("Host", "nodeapicritical.azurewebsites.net");
             request.AddHeader("Cache-Control", "no-cache");
             request.AddHeader("Accept", "*/*");
-            request.AddHeader("User-Agent", "PostmanRuntime/7.15.0");
             request.AddHeader("Authorization", "Basic Y3JpdGljYWw6Z2VuZXJhdG9y");
             request.AddHeader("Content-Type", "application/json");
 
             request.RequestFormat = DataFormat.Json;
-            var fontReplaceStr = SpeedyGenerationSettings.GetCriticalApiRemoteFontMap();
-            if (fontReplace && !string.IsNullOrWhiteSpace(fontReplaceStr))
+
+            if (fontReplace)
             {
-                fontReplaceStr = fontReplaceStr.Replace("\r", string.Empty);
-                fontReplaceStr = fontReplaceStr.Replace("\n", string.Empty);
+                string fontReplaceStr = GetRemoteJsonField(SpeedyGenerationSettings.GetCriticalApiRemoteFontMap());
+                string duplicatesStr = GetRemoteJsonField(SpeedyGenerationSettings.GetCriticalApiRemoteDuplicates());
+                string fontSwapStr = GetRemoteJsonField(SpeedyGenerationSettings.GetCriticalApiRemoteFontSwitch());
+
                 var requestBody = new RemoteCriticalParameters();
 
-                requestBody.FontMap = JsonConvert.DeserializeObject<RemoteCriticalParameters>(fontReplaceStr).FontMap;
-                requestBody.Height = Int32.Parse(height);
-                requestBody.Width = Int32.Parse(width);
-                requestBody.Url = HttpUtility.UrlEncode(url);
+                if (!string.IsNullOrWhiteSpace(fontReplaceStr))
+                    requestBody.FontMap = JsonConvert.DeserializeObject<RemoteCriticalParameters>(fontReplaceStr).FontMap;
+                if (!string.IsNullOrWhiteSpace(duplicatesStr))
+                    requestBody.RemoveDuplicates = JsonConvert.DeserializeObject<RemoteCriticalParameters>(duplicatesStr).RemoveDuplicates;
+                if (!string.IsNullOrWhiteSpace(fontSwapStr))
+                    requestBody.FontFaceSwitch = JsonConvert.DeserializeObject<RemoteCriticalParameters>(fontSwapStr).FontFaceSwitch;
+
+                requestBody.Height = height;
+                requestBody.Width = width;
+                requestBody.Url = url;
                 request.AddParameter("application/json", JsonConvert.SerializeObject(requestBody), ParameterType.RequestBody);
             }
 
@@ -77,6 +83,14 @@ namespace Sitecore.Foundation.Speedy.Services
                 Diagnostics.Log.Error("Speedy Remote API caused an error", ex);
             }
             return "API ISSUE";
+        }
+
+        public string GetRemoteJsonField(string fieldValue)
+        {
+            var fontReplaceStr = fieldValue;
+            fontReplaceStr = fontReplaceStr.Replace("\r", string.Empty);
+            fontReplaceStr = fontReplaceStr.Replace("\n", string.Empty);
+            return fontReplaceStr;
         }
 
         /**

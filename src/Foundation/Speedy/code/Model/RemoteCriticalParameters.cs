@@ -9,12 +9,18 @@ namespace Sitecore.Foundation.Speedy.Model
         public string Url { get; set; }
 
         [JsonProperty(PropertyName = "width")]
-        public int Width { get; set; }
+        public string Width { get; set; }
 
         [JsonProperty(PropertyName = "height")]
-        public int Height { get; set; }
+        public string Height { get; set; }
 
         [JsonProperty(PropertyName = "fontmap")]
         public List<FontMap> FontMap { get; set; }
+
+        [JsonProperty(PropertyName = "removeduplicates")]
+        public List<FindDuplicatesMap> RemoveDuplicates { get; set; }
+
+        [JsonProperty(PropertyName = "fontFaceSwitch")]
+        public List<FontMap> FontFaceSwitch { get; set; }
     }
 }

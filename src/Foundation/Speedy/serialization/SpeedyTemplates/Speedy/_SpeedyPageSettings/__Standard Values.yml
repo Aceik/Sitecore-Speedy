@@ -37,7 +37,7 @@ Languages:
     - ID: "cfcc9511-c7e2-47bc-b8d4-86734ce26a93"
       Hint: SpeedyEnabled
       Type: Checkbox
-      Value: 1
+      Value: 0
     - ID: "e5fab53d-6c09-49d5-acc7-cc53f4ba9e90"
       Hint: OnePassCookieEnabled
       Type: Checkbox

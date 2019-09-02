@@ -4,6 +4,47 @@ Parent: "bd320c29-a67e-4b4b-8e79-af5214421ad9"
 Template: "b06f7c55-9717-4bfa-86d5-875b2ddac17c"
 Path: /sitecore/system/Settings/Foundation/Speedy/Speedy Global Settings
 DB: master
+SharedFields:
+- ID: "5a158a54-b524-483c-a3a0-6e2a5fcc5cbe"
+  Hint: EndpointURL
+  Value: "https://nodeapicritical.azurewebsites.net/criticalfonts/"
+- ID: "af9fa73f-f0a8-4d58-8dea-cb2169147c87"
+  Hint: DeferJSLoadForMilliseconds
+  Value: 6000
+- ID: "f4006c48-6487-43b7-8d65-a3c32c637e29"
+  Hint: RemoteFontMap
+  Value: |
+    { "fontmap": [
+        {
+          "find": "../../local/Temp/fonts/national2web/",
+          "replace": "/-/media/Themes/RAA/Web/Web/fonts/national2web/"
+        },
+        {
+          "find": "../../local/Temp/fonts/fontawesome/",
+          "replace": "/-/media/Themes/RAA/Web/Web/fonts/fontawesome/"
+        },
+        {
+          "find": "../../local/Temp/fonts/fontawesome/",
+          "replace": "/-/media/Themes/RAA/Web/Web/fonts/fontawesome/"
+        },
+        {
+          "find": "content:\"\"",
+          "replace": ""
+        },
+        {
+          "find": "content:\"\"",
+          "replace": ""
+        },
+        {
+          "find": "url(/C:/-/media/",
+          "replace": "url(/-/media/"
+        },
+        {
+          "find": "@font-face{",
+          "replace": "@font-face{font-display: swap;"
+        }
+      ]
+    }
 Languages:
 - Language: en
   Versions:
@@ -12,10 +53,50 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20190426T102857Z
-    - ID: "5a158a54-b524-483c-a3a0-6e2a5fcc5cbe"
-      Hint: EndpointURL
-      Value: "https://nodeapicritical.azurewebsites.net/criticalfonts/"
+    - ID: "3bd89967-8179-41eb-b4d0-30bb21f892fe"
+      Hint: RemoteFontsToSwitch
+      Value: |
+        {"fontFaceSwitch": [
+                {
+                    "find": "font-family:NationalWebExtraBold;",
+                    "replace": "font-family:NationalWebExtraBold-Critical;"
+                },
+                {
+                    "find": "font-family:NationalWeb;",
+                    "replace": "font-family:NationalWeb-Critical;"
+                },
+                {
+                    "find": "font-family:NationalWebExtraBold;",
+                    "replace": "font-family:NationalWebExtraBold-critical;"
+                },
+                {
+                    "find": "font-family:NationalWebMedium;",
+                    "replace": "font-family:NationalWebMedium-critical;"
+                }
+            ]}
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
         sitecore\admin
+    - ID: "c86e2356-39db-45c9-9451-5232660b8074"
+      Hint: RemoteDuplicatesToRemove
+      Value: |
+        {
+        "removeduplicates": [
+                {
+                    "find": "@font-face{font-display: swap;font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:300;font-display:auto;src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-300-eot.eot);src:url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-300-eot.eot?#iefix) format(\"embedded-opentype\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-300-woff2.woff2) format(\"woff2\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-300-woff.woff) format(\"woff\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-300-ttf.ttf) format(\"truetype\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-300-svg.svg#fontawesome) format(\"svg\")}"
+                },
+                {
+                    "find": "@font-face{font-display: swap;font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:400;font-display:auto;src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-400-eot.eot);src:url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-400-eot.eot?#iefix) format(\"embedded-opentype\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-400-woff2.woff2) format(\"woff2\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-400-woff.woff) format(\"woff\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-400-ttf.ttf) format(\"truetype\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-400-svg.svg#fontawesome) format(\"svg\")}"
+                },
+                {
+                    "find": "@font-face{font-display: swap;font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:900;font-display:auto;src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-900-eot.eot);src:url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-900-eot.eot?#iefix) format(\"embedded-opentype\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-900-woff2.woff2) format(\"woff2\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-900-woff.woff) format(\"woff\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-900-ttf.ttf) format(\"truetype\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-light-900-svg.svg#fontawesome) format(\"svg\")}"
+                },
+                {
+                    "find": "@font-face{font-display: swap;font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:900;font-display:auto;src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-solid-900-eot.eot);src:url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-solid-900-eot.eot?#iefix) format(\"embedded-opentype\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-solid-900-woff2.woff2) format(\"woff2\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-solid-900-woff.woff) format(\"woff\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-solid-900-ttf.ttf) format(\"truetype\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-solid-900-svg.svg#fontawesome) format(\"svg\")}"
+                },
+                {
+                    "find": "@font-face{font-display: swap;font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:400;font-display:auto;src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-regular-400-eot.eot);src:url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-regular-400-eot.eot?#iefix) format(\"embedded-opentype\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-regular-400-woff2.woff2) format(\"woff2\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-regular-400-woff.woff) format(\"woff\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-regular-400-ttf.ttf) format(\"truetype\"),url(/-/media/Themes/RAA/Web/Web/fonts/fontawesome/fa-regular-400-svg.svg#fontawesome) format(\"svg\")}"
+                }
+            ]
+        }

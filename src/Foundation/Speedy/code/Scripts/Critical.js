@@ -106,10 +106,12 @@ var beingCriticalSave = function (result, logger) {
         console.log("--------------------------------------------");
 
         var res = switchFontPaths(result);
+        var res2 = removeDuplicates(res);
+        var res3 = switchFontFaceNames(res2);
 
-        logger.debug('fonts fixed: ' + res);
+        logger.debug('fonts fixed: ' + res3);
 
-        updateCriticalField(res);
+        updateCriticalField(res3);
 
     } else {
         console.log("page speedy html retrieved but some other error -- " + result.Errors);
@@ -121,6 +123,25 @@ var switchFontPaths = function replaceAll(input) {
     config.fontmap.forEach(function (fontReplacement) {
         console.log("fontReplacement.find -- " + fontReplacement.find + " -> " + fontReplacement.replace);
         output2 = findReplace(output2, fontReplacement.find, fontReplacement.replace);
+    });
+    return output2;
+};
+
+var switchFontFaceNames = function replaceAll(input) {
+    var output3 = input;
+    config.fontFaceSwitch.forEach(function (fontFaceSwitch) {
+        console.log("fontFaceSwitch.find -- " + fontFaceSwitch.find + " -> " + fontFaceSwitch.replace);
+        output3 = findReplace(output3, fontFaceSwitch.find, fontFaceSwitch.replace);
+    });
+    return output3;
+};
+
+var removeDuplicates = function removeDups(input) {
+    var output2 = input;
+    config.removeduplicates.forEach(function (fontReplacement) {
+        console.log("fontReplacement.find -- " + fontReplacement.find);
+        output2 = findReplace(output2, fontReplacement.find, "");
+        output2 += fontReplacement.find;
     });
     return output2;
 };
