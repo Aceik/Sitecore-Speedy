@@ -38,13 +38,13 @@ namespace Sitecore.Foundation.Speedy.Settings
 
         public static bool ShouldRegenerateOnEachSave()
         {
-            var item = GetGlobalSettingsItem();
+            var item = GetGlobalSettingsItemFromMaster();
             return item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldRegenerateOnEverySaveEvent].HasValue && item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldRegenerateOnEverySaveEvent].Value == "1";
         }
 
         public static bool ShouldGeneateViaScheduledTask()
         {
-            var item = GetGlobalSettingsItem();
+            var item = GetGlobalSettingsItemFromMaster();
             return item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldGenerateOnScheduledTask].HasValue && item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldGenerateOnScheduledTask].Value == "1";
         }
 
@@ -90,11 +90,21 @@ namespace Sitecore.Foundation.Speedy.Settings
             return GetContextDatabase().GetItem(SpeedyConstants.GlobalSettings.SpeedyGlobalSettingsId);
         }
 
+        private static Item GetGlobalSettingsItemFromMaster()
+        {
+            return GetMasterDatabase().GetItem(SpeedyConstants.GlobalSettings.SpeedyGlobalSettingsId);
+        }
+
         private static Database GetContextDatabase()
         {
             return Sitecore.Context.Database;
         }
-        
+
+        private static Database GetMasterDatabase()
+        {
+            return Sitecore.Data.Database.GetDatabase(SpeedyConstants.GlobalSettings.Database.Master);
+        }
+
         public static string GetCookieExpiration()
         {
             return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.CookieExpiration].Value;

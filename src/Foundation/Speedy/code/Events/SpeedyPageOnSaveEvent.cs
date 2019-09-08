@@ -18,19 +18,27 @@ namespace Sitecore.Foundation.Speedy.Events
 
         public void OnItemSaving(object sender, EventArgs args)
         {
-            var item = Event.ExtractParameter(args, 0) as Item;
-
-            if (item.Name == "__Standard Values" || !item.IsSpeedyEnabledForPage())   // Nothing to see here lets exit quickly
-                return;
-
-            Sitecore.Diagnostics.Log.Info("SpeedyPageOnSaveEvent running", this);
-
-            var shouldGenerate = SpeedyGenerationSettings.ShouldRegenerateOnEachSave();
-
-            // If speedy is enabled for this page and should we generate the CSS
-            if (shouldGenerate)
+            try
             {
-                UpdateCritical(item);
+                var item = Event.ExtractParameter(args, 0) as Item;
+
+                if (item.Name == "__Standard Values" || !item.IsSpeedyEnabledForPage()
+                ) // Nothing to see here lets exit quickly
+                    return;
+
+                Sitecore.Diagnostics.Log.Info("SpeedyPageOnSaveEvent running", this);
+
+                var shouldGenerate = SpeedyGenerationSettings.ShouldRegenerateOnEachSave();
+
+                // If speedy is enabled for this page and should we generate the CSS
+                if (shouldGenerate)
+                {
+                    UpdateCritical(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Sitecore.Diagnostics.Log.Error("Speedy OnItemSaving is falling over", this);
             }
         }
 
