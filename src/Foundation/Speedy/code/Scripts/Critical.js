@@ -120,7 +120,7 @@ var beingCriticalSave = function (result, logger) {
 
 var switchFontPaths = function replaceAll(input) {
     var output2 = input;
-    config.fontmap.forEach(function (fontReplacement) {
+    config.fontMap.forEach(function (fontReplacement) {
         console.log("fontReplacement.find -- " + fontReplacement.find + " -> " + fontReplacement.replace);
         output2 = findReplace(output2, fontReplacement.find, fontReplacement.replace);
     });
@@ -138,7 +138,7 @@ var switchFontFaceNames = function replaceAll(input) {
 
 var removeDuplicates = function removeDups(input) {
     var output2 = input;
-    config.removeduplicates.forEach(function (fontReplacement) {
+    config.removeDuplicates.forEach(function (fontReplacement) {
         console.log("fontReplacement.find -- " + fontReplacement.find);
         output2 = findReplace(output2, fontReplacement.find, "");
         output2 += fontReplacement.find;
