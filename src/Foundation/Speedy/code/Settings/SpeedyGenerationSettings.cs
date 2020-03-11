@@ -38,13 +38,13 @@ namespace Sitecore.Foundation.Speedy.Settings
 
         public static bool ShouldRegenerateOnEachSave()
         {
-            var item = GetGlobalSettingsItemFromMaster();
+            var item = GetGlobalSettingsItem();
             return item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldRegenerateOnEverySaveEvent].HasValue && item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldRegenerateOnEverySaveEvent].Value == "1";
         }
 
-        public static bool ShouldGeneateViaScheduledTask()
+        public static bool ShouldGenerateViaScheduledTask()
         {
-            var item = GetGlobalSettingsItemFromMaster();
+            var item = GetGlobalSettingsItem();
             return item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldGenerateOnScheduledTask].HasValue && item.Fields[SpeedyConstants.GlobalSettings.Fields.ShouldGenerateOnScheduledTask].Value == "1";
         }
 
@@ -62,9 +62,12 @@ namespace Sitecore.Foundation.Speedy.Settings
 
         public static bool IsPublicFacingEnvironment()
         {
-            return bool.Parse(Sitecore.Configuration.Settings.GetSetting("Speedy.IsPublicFacingEnvironment"));
+            return bool.Parse(Configuration.Settings.GetSetting("Speedy.IsPublicFacingEnvironment"));
         }
-
+        public static bool UseLocalCriticalCssGenerator()
+        {
+            return bool.Parse(Configuration.Settings.GetSetting("Speedy.UseLocalCriticalCssGenerator"));
+        }
         public static bool IsSpeedyEnabledForPage(this Item item)
         {
             return item.Fields[SpeedyConstants.Fields.SpeedyEnabled] != null && item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled);
@@ -87,22 +90,12 @@ namespace Sitecore.Foundation.Speedy.Settings
 
         private static Item GetGlobalSettingsItem()
         {
-            return GetContextDatabase().GetItem(SpeedyConstants.GlobalSettings.SpeedyGlobalSettingsId);
-        }
-
-        private static Item GetGlobalSettingsItemFromMaster()
-        {
             return GetMasterDatabase().GetItem(SpeedyConstants.GlobalSettings.SpeedyGlobalSettingsId);
-        }
-
-        private static Database GetContextDatabase()
-        {
-            return Sitecore.Context.Database;
         }
 
         private static Database GetMasterDatabase()
         {
-            return Sitecore.Data.Database.GetDatabase(SpeedyConstants.GlobalSettings.Database.Master);
+            return Database.GetDatabase(SpeedyConstants.GlobalSettings.Database.Master);
         }
 
         public static string GetCookieExpiration()
@@ -127,7 +120,7 @@ namespace Sitecore.Foundation.Speedy.Settings
 
         public static string GetFallbackExperienceSelector()
         {
-            return Sitecore.Context.Item.Fields[SpeedyConstants.Fields.FallbackSelectorFieldName].Value;
+            return Context.Item.Fields[SpeedyConstants.Fields.FallbackSelectorFieldName].Value;
         }
     }
 }
