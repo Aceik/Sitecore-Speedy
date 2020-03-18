@@ -1,0 +1,25 @@
+﻿---
+ID: "6809ceff-8031-4582-bb66-07cf92aa0ac9"
+Parent: "fac2fe50-cc2f-4080-944c-249eeeee0e44"
+Template: "58119a3e-560e-4da6-97c6-1ace8a5b1219"
+Path: /sitecore/system/Tasks/Commands/ImageCompression/Image Compression Syncer
+DB: master
+SharedFields:
+- ID: "4bc75539-d5c4-487b-af35-ff13d62bd286"
+  Hint: Method
+  Value: RunSync
+- ID: "752579a7-ef2f-45b7-b9d1-9b682308b7a5"
+  Hint: Type
+  Value: Sitecore.Foundation.ImageCompression.Scheduler.SyncImages, Sitecore.Foundation.ImageCompression
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190702T125007Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

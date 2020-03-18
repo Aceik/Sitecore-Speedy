@@ -1,0 +1,14 @@
+﻿---
+ID: "9b00343f-ea68-4ea6-be27-301843b18e36"
+Parent: "31c85853-d86d-46b0-a418-86df28f7294f"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: /sitecore/system/Settings/Foundation/ImageCompression
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200318T124812Z
