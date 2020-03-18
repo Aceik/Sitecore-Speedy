@@ -16,7 +16,7 @@ namespace Sitecore.Foundation.ImageCompression
     
         public struct GlobalSettings
         {
-            public static readonly ID ImageCompressionGlobalSettingsId = new ID("{7C852721-7717-41CF-B729-473859228964}");
+            public static readonly ID ImageCompressionGlobalSettingsId = new ID("{E25A860E-B060-4AAB-9E6B-91546EFB08CC}");
 
             public struct Fields
             {
@@ -24,7 +24,7 @@ namespace Sitecore.Foundation.ImageCompression
                 public static readonly string ImageCompressionButtonEnabled = "ImageCompressionButtonEnabled";
                 public static readonly string ImageCompressionScheduledTaskEnabled = "ImageCompressionScheduledTaskEnabled";
                 public static readonly string EndpointUrl = "EndpointURL";
-                public static readonly string EndpointKey = "Key";
+                public static readonly string EndpointKey = "EndpointKey";
                 //public static readonly string EndpointUsername = "EndpointUsername";
                 //public static readonly string EndpointPassword = "EndpointPassword";
                 //public static readonly string RemoteFontMap = "RemoteFontMap";
