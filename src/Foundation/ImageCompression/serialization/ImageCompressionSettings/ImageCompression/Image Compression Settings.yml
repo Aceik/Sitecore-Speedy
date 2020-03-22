@@ -4,6 +4,13 @@ Parent: "9b00343f-ea68-4ea6-be27-301843b18e36"
 Template: "411f24df-bb3e-4741-8dd4-38207b81f5b8"
 Path: /sitecore/system/Settings/Foundation/ImageCompression/Image Compression Settings
 DB: master
+SharedFields:
+- ID: "0b4c8d6b-6960-45f6-ab53-0e6aad664230"
+  Hint: EndpointKey
+  Value: 2dHQGN8PYMj0n0TPcb61wpmMCtN41M0Q
+- ID: "e6a3cde0-9913-4304-b114-e318ef685c62"
+  Hint: EndpointURL
+  Value: "https://api.tinify.com/shrink"
 Languages:
 - Language: en
   Fields:
@@ -13,6 +20,10 @@ Languages:
   Versions:
   - Version: 1
     Fields:
+    - ID: "0fe28c4f-bc97-4fc7-8ae8-2655380e08ec"
+      Hint: ImageCompressionButtonEnabled
+      Type: Checkbox
+      Value: 1
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200318T124915Z
@@ -20,3 +31,7 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "c17828c5-895b-4fa2-a824-901431abf451"
+      Hint: ImageCompressionEnabled
+      Type: Checkbox
+      Value: 1
