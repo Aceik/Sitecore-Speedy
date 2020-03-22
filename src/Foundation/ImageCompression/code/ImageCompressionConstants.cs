@@ -7,6 +7,7 @@ namespace Sitecore.Foundation.ImageCompression
         public struct TemplateIDs
         {
             public static readonly ID ImageCompressionPageTemplateId = new ID("{AFB9A38D-7ECA-4C13-848C-F6A5DF08C11E}");
+            public static readonly ID ImageTemplateId = new ID("{F1828A2C-7E5D-4BBD-98CA-320474871548}");
         }
 
         public struct ImageFields

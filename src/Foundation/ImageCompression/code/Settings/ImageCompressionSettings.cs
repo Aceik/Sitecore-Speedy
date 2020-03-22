@@ -1,6 +1,7 @@
 ﻿using Sitecore.Data;
 using Sitecore.Data.Items;
 using Sitecore.Foundation.ImageCompression;
+using Sitecore.XA.Foundation.SitecoreExtensions.Extensions;
 
 namespace Sitecore.Foundation.ImageCompression.Settings
 {
@@ -34,6 +35,11 @@ namespace Sitecore.Foundation.ImageCompression.Settings
             if (!IsImageCompressionEnabled()) return false;
             var item = GetGlobalSettingsItem();
             return item.Fields[ImageCompressionConstants.GlobalSettings.Fields.ImageCompressionScheduledTaskEnabled].HasValue && item.Fields[ImageCompressionConstants.GlobalSettings.Fields.ImageCompressionScheduledTaskEnabled].Value == "1";
+        }
+
+        public static bool IsImage(Item item)
+        {
+            return item.InheritsFrom(ImageCompressionConstants.TemplateIDs.ImageTemplateId);
         }
 
         private static Item GetGlobalSettingsItem()

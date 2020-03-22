@@ -44,7 +44,7 @@ namespace Sitecore.Foundation.ImageCompression.Command
             if (!ImageCompressionSettings.IsImageCompressionButtonEnabled())
                 return CommandState.Hidden;
 
-            if (context.Items.Length != 1)
+            if (context.Items.Length != 1 || !ImageCompressionSettings.IsImage(context.Items[0]))
             {
                 return CommandState.Hidden;
             }

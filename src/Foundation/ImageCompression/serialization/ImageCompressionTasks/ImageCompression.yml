@@ -1,0 +1,13 @@
+﻿---
+ID: "54efc3af-9a21-4573-b633-2040e24cca17"
+Parent: "a705d262-5714-4880-9962-051e25f1416d"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: /sitecore/system/Tasks/Schedules/ImageCompression
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Value: "20200322T115141:637204747019282270Z"
