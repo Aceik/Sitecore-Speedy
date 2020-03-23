@@ -6,6 +6,7 @@ namespace Sitecore.Foundation.ImageCompression.Model
     {
         [JsonProperty(PropertyName = "input")]
         public Input InputObj { get; set; }
+        public string Location { get; set; }
 
         public class Input
         {
