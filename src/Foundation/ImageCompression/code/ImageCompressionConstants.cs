@@ -4,6 +4,11 @@ namespace Sitecore.Foundation.ImageCompression
 {
     public struct ImageCompressionConstants
     {
+        public struct Messages
+        {
+            public static readonly string OPTIMISED_BY = "Optimised by TinyPng";
+        }
+
         public struct TemplateIDs
         {
             public static readonly ID ImageCompressionPageTemplateId = new ID("{AFB9A38D-7ECA-4C13-848C-F6A5DF08C11E}");
@@ -26,6 +31,10 @@ namespace Sitecore.Foundation.ImageCompression
                 public static readonly string ImageCompressionScheduledTaskEnabled = "ImageCompressionScheduledTaskEnabled";
                 public static readonly string EndpointUrl = "EndpointURL";
                 public static readonly string EndpointKey = "EndpointKey";
+                public static readonly string ImageCompressionInformationField = "ImageCompressionInformationField";
+
+
+                
                 //public static readonly string EndpointUsername = "EndpointUsername";
                 //public static readonly string EndpointPassword = "EndpointPassword";
                 //public static readonly string RemoteFontMap = "RemoteFontMap";

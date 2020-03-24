@@ -25,7 +25,10 @@ namespace Sitecore.Foundation.ImageCompression.Services
     /// </summary>
     public class TinyPngApiGateway : IImageCompressionService
     {
-        private const string Message = "Tiny PNG Remote API caused an error";
+        private const string REMOTE_ERROR = "Tiny PNG Remote API caused an error";
+        
+        private const string TIMY_CONNETION_ERROR = "Could not download Image from Tiny PNG";
+        private const string LOCATON_RESPONSE = "Location";
 
         public string CompressImage(Item currentItem)
         {
@@ -39,51 +42,7 @@ namespace Sitecore.Foundation.ImageCompression.Services
             var client = new RestClient(ImageCompressionSettings.GetApiEndpoint());
             client.Authenticator = new HttpBasicAuthenticator("Api", ImageCompressionSettings.GetApiEndpointKey());
 
-            var request = new RestRequest(Method.POST);
-            //request.AddHeader("Accept", "application/json");
-            request.Parameters.Clear();
-            request.RequestFormat = DataFormat.Json;
-            request.AddHeader("Cache-Control", "no-cache");
-            request.AddHeader("Accept", "*/*");
-            //request.AddHeader("Content-Type", "application/json");
-
-            if (currentItem != null)
-            {
-               var _mediaItem = new MediaItem(currentItem);
-
-                if(_mediaItem != null)
-                {
-                    var imageBytes = ReadMediaStream(_mediaItem);
-
-                    //request.AddHeader("Content-Type", "application/json");
-                    // request.AddFileBytes(_mediaItem.Name, imageBytes, _mediaItem.Name, _mediaItem.MimeType);
-
-                    //request.AddHeader("Content-Type", "multipart/form-data");
-
-                    //client.AddHandler("application/octet-stream", new RestSharp.Deserializers.JsonDeserializer());
-
-                    //string image = System.Convert.ToBase64String(imageBytes);
-
-                    //Dictionary<string, object> dict = new Dictionary<string, object>();
-                    //dict.Add("FILE_EXT", _mediaItem.Extension);
-                    //dict.Add("FILE_MIME_TYPE", _mediaItem.MimeType);
-
-                    //dict.Add("IMAGE_DATA", image);
-                    //byte[] data = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(dict));
-                    //request.AddParameter("application/octet-stream", data, ParameterType.RequestBody);
-                    //request.AddParameter(_mediaItem.MimeType, image, ParameterType.RequestBody);
-
-                    //request.AddHeader("Content-Type", "application/pdf");
-                    request.AddHeader("content-length", imageBytes.Length.ToString());
-                    request.AddHeader("accept-encoding", "gzip, deflate");
-                    request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-                    request.AddHeader("Content-Disposition",
-                        string.Format("file; filename=\"{0}\"; documentid={1}; fileExtension=\"{2}\"",
-                        _mediaItem.Name, 1234, _mediaItem.Extension));
-                    request.AddParameter("application/x-www-form-urlencoded", imageBytes, ParameterType.RequestBody);
-
-                }
-            }
+            var request = CreateUploadRequest(currentItem, client);
 
             client.Timeout = 300000;
 
@@ -95,17 +54,46 @@ namespace Sitecore.Foundation.ImageCompression.Services
                 var content = response2.Content;
 
                 response2.Data.Location = response2.Headers.ToList()
-                .Find(x => x.Name == "Location")
+                .Find(x => x.Name == LOCATON_RESPONSE)
                 .Value.ToString();
-
-                //response2.Data.Location = (string) response2.Headers[response2.Headers.IndexOf()].Value;
+                                                                                                         
                 return response2.Data;
             }
             catch (Exception ex)
             {
-                Diagnostics.Log.Error(Message, ex);
+                Diagnostics.Log.Error(REMOTE_ERROR, ex);
+                RecordError(currentItem, ex.Message);
             }
             return null;
+        }
+
+        private RestRequest CreateUploadRequest(Item currentItem, RestClient client)
+        {
+            var request = new RestRequest(Method.POST);
+            request.Parameters.Clear();
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Cache-Control", "no-cache");
+            request.AddHeader("Accept", "*/*");
+
+            if (currentItem != null)
+            {
+                var _mediaItem = new MediaItem(currentItem);
+
+                if (_mediaItem != null)
+                {
+                    var imageBytes = ReadMediaStream(_mediaItem);
+
+                    request.AddHeader("content-length", imageBytes.Length.ToString());
+                    request.AddHeader("accept-encoding", "gzip, deflate");
+                    request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                    request.AddHeader("Content-Disposition",
+                        string.Format("file; filename=\"{0}\"; documentid={1}; fileExtension=\"{2}\"",
+                        _mediaItem.Name, 1234, _mediaItem.Extension));
+                    request.AddParameter("application/x-www-form-urlencoded", imageBytes, ParameterType.RequestBody);
+
+                }
+            }
+            return request;
         }
 
         public byte[] ReadMediaStream(MediaItem _currentMedia)
@@ -125,34 +113,85 @@ namespace Sitecore.Foundation.ImageCompression.Services
             client.Authenticator = new HttpBasicAuthenticator("Api", ImageCompressionSettings.GetApiEndpointKey());
 
             var request = new RestRequest(Method.GET);
-        
             request.AddHeader("Cache-Control", "no-cache");
             request.AddHeader("Accept", "*/*");
-                                                     
             client.Timeout = 300000;
 
-            // or automatically deserialize result
-            // return content type is sniffed but can be explicitly set via RestClient.AddHandler();
             try
             {
                 byte [] responseData = client.DownloadData(request);
+                string sizeBefore = currentItem.InnerItem.Fields["Size"].Value;
 
-                currentItem.BeginEdit();
-                Media media = MediaManager.GetMedia(currentItem);
-                Stream stream = new MemoryStream(responseData);
-                media.SetStream(stream, currentItem.Extension);
-                currentItem.EndEdit();
+                UpdateImageFile(currentItem, responseData);
 
-                currentItem.InnerItem.Editing.BeginEdit();
-                //currentItem.InnerItem.Fields["Size"].Value = responseData.Length.ToString();
-                currentItem.InnerItem.Fields["Keywords"].Value = "Optimised by TinyPng";
-                currentItem.InnerItem.Editing.EndEdit();
+                string sizeAfter = currentItem.InnerItem.Fields["Size"].Value;
+
+                UpdateImageInformation(currentItem, sizeBefore, sizeAfter);
             }
             catch (Exception ex)
             {
-                Diagnostics.Log.Error("Could not download Image from Tiny PNG", ex);
+                Diagnostics.Log.Error(TIMY_CONNETION_ERROR, ex);
+                RecordError(currentItem, ex.Message);
             }
             return "API ISSUE";
+        }
+
+        private void RecordError(MediaItem currentItem, string message)
+        {
+            currentItem.InnerItem.Editing.BeginEdit();
+            currentItem.InnerItem.Fields[ImageCompressionSettings.GetInformationField()].Value = message;
+            currentItem.InnerItem.Editing.EndEdit();
+        }
+
+        private void UpdateImageFile(MediaItem currentItem, byte[] responseData)
+        {
+            currentItem.BeginEdit();
+            Media media = MediaManager.GetMedia(currentItem);
+            Stream stream = new MemoryStream(responseData);
+            media.SetStream(stream, currentItem.Extension);
+            currentItem.EndEdit();
+        }
+
+        private void UpdateImageInformation(MediaItem currentItem, string sizeBefore, string sizeAfter)
+        {
+            currentItem.InnerItem.Editing.BeginEdit();
+            string sizeBeforeStr = $"Size before {SizeSuffix(Int64.Parse(sizeBefore))}";
+            string sizeAfterStr = $"Size after {SizeSuffix(Int64.Parse(sizeAfter))}";
+            currentItem.InnerItem.Fields[ImageCompressionSettings.GetInformationField()].Value = $"{ImageCompressionConstants.Messages.OPTIMISED_BY} \n\r {sizeBeforeStr} \n\r {sizeAfterStr}";
+            currentItem.InnerItem.Editing.EndEdit();
+        }
+
+        static double ConvertBytesToMegabytes(string bytes)
+        {
+            return (Int32.Parse(bytes) / 1024f) / 1024f;
+        }
+
+        static readonly string[] SizeSuffixes =
+                   { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+        static string SizeSuffix(Int64 value, int decimalPlaces = 1)
+        {
+            if (decimalPlaces < 0) { throw new ArgumentOutOfRangeException("decimalPlaces"); }
+            if (value < 0) { return "-" + SizeSuffix(-value); }
+            if (value == 0) { return string.Format("{0:n" + decimalPlaces + "} bytes", 0); }
+
+            // mag is 0 for bytes, 1 for KB, 2, for MB, etc.
+            int mag = (int)Math.Log(value, 1024);
+
+            // 1L << (mag * 10) == 2 ^ (10 * mag) 
+            // [i.e. the number of bytes in the unit corresponding to mag]
+            decimal adjustedSize = (decimal)value / (1L << (mag * 10));
+
+            // make adjustment when the value is large enough that
+            // it would round up to 1000 or more
+            if (Math.Round(adjustedSize, decimalPlaces) >= 1000)
+            {
+                mag += 1;
+                adjustedSize /= 1024;
+            }
+
+            return string.Format("{0:n" + decimalPlaces + "} {1}",
+                adjustedSize,
+                SizeSuffixes[mag]);
         }
     }
 }

@@ -17,6 +17,11 @@ namespace Sitecore.Foundation.ImageCompression.Settings
             return GetGlobalSettingsItem().Fields[ImageCompressionConstants.GlobalSettings.Fields.EndpointKey].Value;
         }
 
+        public static string GetInformationField()
+        {
+            return GetGlobalSettingsItem().Fields[ImageCompressionConstants.GlobalSettings.Fields.ImageCompressionInformationField].Value;
+        }
+
         public static bool IsImageCompressionEnabled()
         {
             var item = GetGlobalSettingsItem();

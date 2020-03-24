@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Command\ImageCompressionRunCommand.cs" />
+    <Compile Include="Model\AllTemplatesSearchResultItem.cs" />
     <Compile Include="Model\ImageUpload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scheduler\SyncImages.cs" />
