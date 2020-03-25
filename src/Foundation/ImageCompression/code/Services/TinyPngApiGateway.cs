@@ -41,6 +41,8 @@ namespace Sitecore.Foundation.ImageCompression.Services
         public string CompressImage(Item currentItem)
         {
             var uploadedImage = SendToTinyForCompression(currentItem);
+            if (uploadedImage == null)
+                return null;
             DownloadImage(currentItem, uploadedImage);
             return uploadedImage.Location;
         }
@@ -57,7 +59,7 @@ namespace Sitecore.Foundation.ImageCompression.Services
                 var response = client.Execute<ImageUpload>(request);
                 var content = response.Content;
 
-                if(response.StatusCode != System.Net.HttpStatusCode.OK)
+                if(response.StatusCode != System.Net.HttpStatusCode.OK && response.StatusCode != System.Net.HttpStatusCode.Created)
                 {
                     Sitecore.Diagnostics.Log.Info($"Image Upload failed {response.StatusCode} | response content: {response.Content}", this);
                     ShouldContinue = false;

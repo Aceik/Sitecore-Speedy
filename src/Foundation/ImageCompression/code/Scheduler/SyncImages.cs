@@ -29,6 +29,8 @@ namespace Sitecore.Foundation.ImageCompression.Scheduler
                 {
                     try
                     {
+                        if (result.Name == "__Standard Values")
+                            continue;
                         Sitecore.Diagnostics.Log.Info($"STARTED - Image Compression task processing {result.ID} - {result.Name}", this);
                         imageCompressionService.CompressImage(result);
                         Sitecore.Diagnostics.Log.Info($"COMPLETED - Image Compression task processing {result.ID} - {result.Name}", this);
