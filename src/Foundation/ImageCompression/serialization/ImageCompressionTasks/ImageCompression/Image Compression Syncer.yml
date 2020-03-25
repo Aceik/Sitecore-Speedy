@@ -1,0 +1,17 @@
+﻿---
+ID: "764dc047-f89b-4ff0-93f2-29e887f7e70b"
+Parent: "54efc3af-9a21-4573-b633-2040e24cca17"
+Template: "70244923-fa84-477c-8cbd-62f39642c42b"
+Path: /sitecore/system/Tasks/Schedules/ImageCompression/Image Compression Syncer
+DB: master
+SharedFields:
+- ID: "50be51f8-746d-4dc2-9c3b-b14abc5ce9b7"
+  Hint: Schedule
+  Value: "1900101|21000101|127|01:00:00"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Value: "20200324T212109:637206816697692065Z"

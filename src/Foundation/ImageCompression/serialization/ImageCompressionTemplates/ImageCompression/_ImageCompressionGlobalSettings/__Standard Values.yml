@@ -51,6 +51,9 @@ Languages:
     - ID: "3d90972c-d661-48ca-80d8-3eec2beaa230"
       Hint: DefaultCriticalWidth
       Value: 1800
+    - ID: "41182b5f-bc24-4f87-8097-15f09af7eec1"
+      Hint: ImageCompressionInformationField
+      Value: Keywords
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
