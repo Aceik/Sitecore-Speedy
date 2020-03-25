@@ -3,5 +3,6 @@
     public interface IImageCompressionService
     {
         string CompressImage(Data.Items.Item currentItem);
+        bool ShouldContinue { get; set; }
     }
 }

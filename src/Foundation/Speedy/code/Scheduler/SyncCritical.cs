@@ -21,6 +21,8 @@ namespace Sitecore.Foundation.Speedy.Scheduler
             if (!SpeedyGenerationSettings.IsPublicFacingEnvironment())
                 return;
 
+            Sitecore.Diagnostics.Log.Info("Commencing the critical sync task", this);
+
             var criticalCSSRepository = ServiceLocator.ServiceProvider.GetService<ICriticalCSSRepository>();
 
             using (var context = ContentSearchManager.GetIndex(GlobalSettings.Index.Master).CreateSearchContext())

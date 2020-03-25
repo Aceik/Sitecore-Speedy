@@ -29,6 +29,14 @@ namespace Sitecore.Foundation.ImageCompression.Services
         
         private const string TIMY_CONNETION_ERROR = "Could not download Image from Tiny PNG";
         private const string LOCATON_RESPONSE = "Location";
+        private const string COMPRESSION_COUNT = "Compression-Count";
+
+        public bool ShouldContinue { get; set; }
+
+        public TinyPngApiGateway()
+        {
+            ShouldContinue = true;
+        }
 
         public string CompressImage(Item currentItem)
         {
@@ -41,23 +49,29 @@ namespace Sitecore.Foundation.ImageCompression.Services
         {
             var client = new RestClient(ImageCompressionSettings.GetApiEndpoint());
             client.Authenticator = new HttpBasicAuthenticator("Api", ImageCompressionSettings.GetApiEndpointKey());
-
             var request = CreateUploadRequest(currentItem, client);
-
             client.Timeout = 300000;
 
-            // or automatically deserialize result
-            // return content type is sniffed but can be explicitly set via RestClient.AddHandler();
             try
             {
-                var response2 = client.Execute<ImageUpload>(request);
-                var content = response2.Content;
+                var response = client.Execute<ImageUpload>(request);
+                var content = response.Content;
 
-                response2.Data.Location = response2.Headers.ToList()
-                .Find(x => x.Name == LOCATON_RESPONSE)
-                .Value.ToString();
-                                                                                                         
-                return response2.Data;
+                if(response.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    Sitecore.Diagnostics.Log.Info($"Image Upload failed {response.StatusCode} | response content: {response.Content}", this);
+                    ShouldContinue = false;
+                    return null;
+                }
+
+                response.Data.Location = GetHeader(response, LOCATON_RESPONSE);
+
+                if (string.IsNullOrEmpty(response.Data.Location))
+                    return null;
+
+                Sitecore.Diagnostics.Log.Info($"Image Uploaded to Tiny PNG {response.Data.Location} | Compression count so far: {GetHeader(response, COMPRESSION_COUNT)}", this);
+
+                return response.Data;
             }
             catch (Exception ex)
             {
@@ -65,6 +79,16 @@ namespace Sitecore.Foundation.ImageCompression.Services
                 RecordError(currentItem, ex.Message);
             }
             return null;
+        }
+
+        private string GetHeader(IRestResponse response, string key)
+        {
+            var headers = response.Headers.ToList();
+
+            if (!headers.Exists(x => x.Name == key))
+                return null;
+
+             return headers.Find(x => x.Name == key).Value.ToString();
         }
 
         private RestRequest CreateUploadRequest(Item currentItem, RestClient client)
@@ -155,9 +179,11 @@ namespace Sitecore.Foundation.ImageCompression.Services
         private void UpdateImageInformation(MediaItem currentItem, string sizeBefore, string sizeAfter)
         {
             currentItem.InnerItem.Editing.BeginEdit();
-            string sizeBeforeStr = $"Size before {SizeSuffix(Int64.Parse(sizeBefore))}";
-            string sizeAfterStr = $"Size after {SizeSuffix(Int64.Parse(sizeAfter))}";
-            currentItem.InnerItem.Fields[ImageCompressionSettings.GetInformationField()].Value = $"{ImageCompressionConstants.Messages.OPTIMISED_BY} \n\r {sizeBeforeStr} \n\r {sizeAfterStr}";
+            string sizeBeforeStr = $"{SizeSuffix(Int64.Parse(sizeBefore))}";
+            string sizeAfterStr = $"{SizeSuffix(Int64.Parse(sizeAfter))}";
+            var compressionEntry = $"{ImageCompressionConstants.Messages.OPTIMISED_BY} | Before: {sizeBeforeStr} | After: {sizeAfterStr}";
+            currentItem.InnerItem.Fields[ImageCompressionSettings.GetInformationField()].Value = compressionEntry;
+            Sitecore.Diagnostics.Log.Info($"{currentItem.ID} {currentItem.Name} {compressionEntry}", "TinyPng");
             currentItem.InnerItem.Editing.EndEdit();
         }
 
