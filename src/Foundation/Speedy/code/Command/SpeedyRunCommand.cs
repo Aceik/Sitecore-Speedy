@@ -1,36 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using Sitecore.Foundation.Speedy.Events;
+﻿using Sitecore.Diagnostics;
+using Sitecore.Foundation.Speedy.Repositories;
 using Sitecore.Foundation.Speedy.Settings;
 using Sitecore.Shell.Framework.Commands;
 using static Sitecore.Foundation.Speedy.SpeedyConstants;
 
-/// <summary>
-/// https://community.sitecore.net/technical_blogs/b/sitecore_what39s_new/posts/adding-a-custom-button-to-the-ribbon
-/// </summary>
+
 namespace Sitecore.Foundation.Speedy.Command
 {
+    /// <summary>
+    /// https://community.sitecore.net/technical_blogs/b/sitecore_what39s_new/posts/adding-a-custom-button-to-the-ribbon
+    /// </summary>
     public class SpeedyRunCommand  : Sitecore.Shell.Framework.Commands.Command
     {
+        private readonly ICriticalCSSRepository _criticalCSSRepository;
+
+        public SpeedyRunCommand(ICriticalCSSRepository criticalCSSRepository)
+        {
+            _criticalCSSRepository = criticalCSSRepository;
+        }
+
         public override void Execute(CommandContext context)
         {
-            if (context.Items.Length == 1)
-            {
-                if (!SpeedyGenerationSettings.IsPublicFacingEnvironment())
-                    return;
+            if (context.Items.Length != 1)
+                return;
 
-                var speedyPageEvt = new SpeedyPageOnSaveEvent();
-                speedyPageEvt.Database = GlobalSettings.Database.Master;
+            if (!SpeedyGenerationSettings.IsPublicFacingEnvironment() && !SpeedyGenerationSettings.UseLocalCriticalCssGenerator())
+                return;
 
-                var currentItem = context.Items[0];
-                currentItem.Editing.BeginEdit();
-                speedyPageEvt.UpdateCritical(currentItem);
-                currentItem.Editing.EndEdit();
-            }
+            //var criticalCSSRepository = ServiceLocator.ServiceProvider.GetService<ICriticalCSSRepository>();
+
+            var currentItem = context.Items[0];
+            currentItem.Editing.BeginEdit();
+            _criticalCSSRepository.UpdateCriticalCSS(currentItem, GlobalSettings.Database.Master);
+            currentItem.Editing.EndEdit();
         }
 
         /// <summary>
@@ -42,7 +44,7 @@ namespace Sitecore.Foundation.Speedy.Command
         {
             Assert.ArgumentNotNull(context, "context");
 
-            if (!SpeedyGenerationSettings.IsPublicFacingEnvironment())
+            if (!SpeedyGenerationSettings.IsPublicFacingEnvironment() && !SpeedyGenerationSettings.UseLocalCriticalCssGenerator())
                 return CommandState.Hidden;
 
             if (context.Items.Length != 1)
@@ -50,17 +52,9 @@ namespace Sitecore.Foundation.Speedy.Command
                 return CommandState.Hidden;
             }
 
-            Item item = context.Items[0];
-            if(item.IsSpeedyEnabledForPage())
-            {
-                return CommandState.Enabled;
-            }
-            else
-            {
-                return CommandState.Disabled;
-            }
-            
-            return base.QueryState(context);
+            var item = context.Items[0];
+
+            return item.IsSpeedyEnabledForPage() ? CommandState.Enabled : CommandState.Disabled;
         }
     }
 }

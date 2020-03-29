@@ -6,7 +6,8 @@
   "timeout": 30000,
   "width": 1800,
   "height": 1200,
-  "fontmap": [
+  "nodePort": 3000,
+  "fontMap": [
     {
       "find": "/Users/thomas/AppData/Local/fonts/national2web/",
       "replace": "/-/media/Themes/Site/Web/Web/fonts/national2web/"
@@ -36,7 +37,7 @@
       "replace": "@font-face{font-display: swap;"
     }
   ],
-  "removeduplicates": [
+  "removeDuplicates": [
     {
       "find": "@font-face{font-display: swap;font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:300;font-display:auto;src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-300-eot.eot);src:url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-300-eot.eot?#iefix) format(\"embedded-opentype\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-300-woff2.woff2) format(\"woff2\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-300-woff.woff) format(\"woff\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-300-ttf.ttf) format(\"truetype\"),url(/-/media/Themes/Site/Web/Web/fonts/fontawesome/fa-light-300-svg.svg#fontawesome) format(\"svg\")}"
     },

@@ -1,11 +1,13 @@
 {
-  "name": "Speedy",
+  "name": "speedy",
   "version": "1.0.0",
   "description": "An SXA module that supports best practice Google Page Speed Techniques",
   "main": "Critical.js",
   "dependencies": {
     "log4js": "^4.1.1",
-    "make-runnable": "^1.3.6"
+    "make-runnable": "^1.3.6",
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0"
   },
   "devDependencies": {
     "chromium": "^2.1.0",
