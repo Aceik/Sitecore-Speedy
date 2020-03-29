@@ -98,6 +98,16 @@ namespace Sitecore.Foundation.Speedy.Settings
             return Database.GetDatabase(SpeedyConstants.GlobalSettings.Database.Master);
         }
 
+        private static Item GetGlobalSettingsItemFromContext()
+        {
+            return GetContextDatabase().GetItem(SpeedyConstants.GlobalSettings.SpeedyGlobalSettingsId);
+        }
+
+        private static Database GetContextDatabase()
+        {
+            return Sitecore.Context.Database;
+        }
+
         public static string GetCookieExpiration()
         {
             return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.CookieExpiration].Value;
@@ -105,17 +115,17 @@ namespace Sitecore.Foundation.Speedy.Settings
 
         public static string GetDeferJSLoadForMilliseconds()
         {
-            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.DeferJSLoadForMilliseconds].Value;
+            return GetGlobalSettingsItemFromContext().Fields[SpeedyConstants.GlobalSettings.Fields.DeferJSLoadForMilliseconds].Value;
         }
 
         public static string GetDeferCSSLoadForMilliseconds()
         {
-            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.DeferCSSLoadForMilliseconds].Value;
+            return GetGlobalSettingsItemFromContext().Fields[SpeedyConstants.GlobalSettings.Fields.DeferCSSLoadForMilliseconds].Value;
         }
 
         public static string GetDeferFallbackMilliseconds()
         {
-            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.DeferFallbackForMilliseconds].Value;
+            return GetGlobalSettingsItemFromContext().Fields[SpeedyConstants.GlobalSettings.Fields.DeferFallbackForMilliseconds].Value;
         }
 
         public static string GetFallbackExperienceSelector()
