@@ -7,7 +7,9 @@
       <Revision />
       <License />
       <Comment>Supports SXA 9.3 
-All documentation and setup instructions head over to: https://github.com/Aceik/Sitecore-Speedy</Comment>
+All documentation and setup instructions head over to: https://github.com/Aceik/Sitecore-Speedy
+
+10/05/2020 - Added in the Services config</Comment>
       <Attributes />
       <Readme>All documentation and setup instructions head over to: https://github.com/Aceik/Sitecore-Speedy</Readme>
       <Publisher>Thomas Tyack</Publisher>
@@ -23,7 +25,7 @@ All documentation and setup instructions head over to: https://github.com/Aceik/
         <x-item>/App_Config/Include/Speedy/Foundation/Foundation.Speedy.Commands.config</x-item>
         <x-item>/App_Config/Include/Speedy/Foundation/Foundation.Speedy.Events.config</x-item>
         <x-item>/App_Config/Include/Speedy/Foundation/Foundation.Speedy.Routes.config</x-item>
-        <x-item>/App_Config/Include/Speedy/Foundation/Foundation.Speedy.Serialization.config</x-item>
+        <x-item>/App_Config/Include/Speedy/Foundation/Foundation.Speedy.Services.config</x-item>
         <x-item>/App_Config/Include/Speedy/Foundation/Foundation.Speedy.Settings.config</x-item>
       </Entries>
       <Converter>
