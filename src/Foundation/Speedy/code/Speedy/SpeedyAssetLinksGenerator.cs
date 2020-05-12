@@ -162,7 +162,15 @@ namespace Sitecore.Foundation.Speedy.Speedy
             var assetsGenerator = new SpeedyAssetLinksGenerator();
             var links = assetsGenerator.GenerateSpeedyAssetLinks(themesProvider);
             var linkSpeedy = new SpeedyAssetLinks(links);
-            assetsGenerator.GenerateSpeedyScripts(linkSpeedy);
+
+            var AreScriptsDeferred = SpeedyGenerationSettings.IsCriticalJavascriptEnabledAndPossible(Sitecore.Context.Item);
+            if(AreScriptsDeferred)
+                assetsGenerator.GenerateSpeedyScripts(linkSpeedy);
+            else
+            {
+                var linksa = AssetLinksGenerator.GenerateLinks(new ThemesProvider());
+                linkSpeedy.Scripts = linksa.Scripts;
+            }
             return linkSpeedy;
         }
 
