@@ -3,13 +3,14 @@
     <metadata>
       <PackageName>Sitecore Speedy</PackageName>
       <Author>Thomas Tyack @ Aceik</Author>
-      <Version>1.1</Version>
+      <Version>1.2</Version>
       <Revision />
       <License />
       <Comment>Supports SXA 9.3 
 All documentation and setup instructions head over to: https://github.com/Aceik/Sitecore-Speedy
 
-10/05/2020 - Added in the Services config</Comment>
+10/05/2020 - Added in the Services config
+18/05/2020 - Fix for having styles off and JS on.  Plus fix layout Flag</Comment>
       <Attributes />
       <Readme>All documentation and setup instructions head over to: https://github.com/Aceik/Sitecore-Speedy</Readme>
       <Publisher>Thomas Tyack</Publisher>
