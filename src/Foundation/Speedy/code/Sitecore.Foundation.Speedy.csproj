@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sitecore.Foundation.Speedy</RootNamespace>
     <AssemblyName>Sitecore.Foundation.Speedy</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -101,7 +101,22 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Reference Include="Microsoft.Configuration.ConfigurationBuilders.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Configuration.ConfigurationBuilders.Base.1.0.2\lib\Net471\Microsoft.Configuration.ConfigurationBuilders.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Configuration.ConfigurationBuilders.Environment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Configuration.ConfigurationBuilders.Environment.1.0.2\lib\Net471\Microsoft.Configuration.ConfigurationBuilders.Environment.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Configuration, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Configuration.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Configuration.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Microsoft.Extensions.Configuration.Binder.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Microsoft.Extensions.DependencyInjection.2.1.1\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
       <Private>False</Private>
@@ -116,57 +131,82 @@
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.ContentSearch, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.9.3.0\lib\net471\Sitecore.ContentSearch.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Sitecore.Annotations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.Annotations.10.0.0\lib\net471\Sitecore.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.ContentSearch.ContentExtraction, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.ContentExtraction.9.3.0\lib\net471\Sitecore.ContentSearch.ContentExtraction.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Sitecore.Buckets, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.Buckets.10.0.0\lib\net48\Sitecore.Buckets.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.ContentSearch.Data, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.Data.9.3.0\lib\net471\Sitecore.ContentSearch.Data.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Sitecore.Buckets.Client, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.Buckets.Client.10.0.0\lib\net48\Sitecore.Buckets.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.ContentSearch.Linq, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.Linq.9.3.0\lib\net471\Sitecore.ContentSearch.Linq.dll</HintPath>
-      <Private>False</Private>
+
+    <Reference Include="Sitecore.ContentSearch, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.10.0.0\lib\net48\Sitecore.ContentSearch.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Kernel, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Kernel.9.3.0\lib\net471\Sitecore.Kernel.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Sitecore.ContentSearch.Client, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.Client.10.0.0\lib\net48\Sitecore.ContentSearch.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Logging, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Logging.9.3.0\lib\net471\Sitecore.Logging.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Sitecore.ContentSearch.ContentExtraction, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.ContentExtraction.10.0.0\lib\net48\Sitecore.ContentSearch.ContentExtraction.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Logging.Client, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Logging.Client.9.3.0\lib\net471\Sitecore.Logging.Client.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Sitecore.ContentSearch.Data, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.Data.10.0.0\lib\net48\Sitecore.ContentSearch.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Mvc, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Mvc.9.3.0\lib\net471\Sitecore.Mvc.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Sitecore.ContentSearch.Linq, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.Linq.10.0.0\lib\net48\Sitecore.ContentSearch.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Web, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Web.9.3.0\lib\net471\Sitecore.Web.dll</HintPath>
-      <Private>False</Private>
+
+
+
+    <Reference Include="Sitecore.Kernel, Version=15.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.Kernel.10.0.0\lib\net48\Sitecore.Kernel.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.XA.Foundation.Abstractions, Version=6.10.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.Abstractions.9.3.0\lib\net471\Sitecore.XA.Foundation.Abstractions.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Sitecore.Logging, Version=13.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.Logging.10.0.0\lib\net48\Sitecore.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.XA.Foundation.SitecoreExtensions, Version=6.10.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.SitecoreExtensions.9.3.0\lib\net471\Sitecore.XA.Foundation.SitecoreExtensions.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Sitecore.Logging.Client, Version=13.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.Logging.Client.10.0.0\lib\net48\Sitecore.Logging.Client.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.XA.Foundation.Theming, Version=6.10.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.Theming.9.3.0\lib\net471\Sitecore.XA.Foundation.Theming.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Sitecore.Mvc, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.Mvc.10.0.0\lib\net48\Sitecore.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Zip, Version=12.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Zip.9.3.0\lib\net471\Sitecore.Zip.dll</HintPath>
-      <Private>False</Private>
+
+
+
+    <Reference Include="Sitecore.Web, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.Web.10.0.0\lib\net48\Sitecore.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.XA.Foundation.Abstractions, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.Abstractions.10.0.0\lib\net48\Sitecore.XA.Foundation.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.XA.Foundation.Caching, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.Caching.10.0.0\lib\net48\Sitecore.XA.Foundation.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.XA.Foundation.Common, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.Common.10.0.0\lib\net48\Sitecore.XA.Foundation.Common.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Sitecore.XA.Foundation.MediaRequestHandler, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.MediaRequestHandler.10.0.0\lib\net48\Sitecore.XA.Foundation.MediaRequestHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.XA.Foundation.Multisite, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.Multisite.10.0.0\lib\net48\Sitecore.XA.Foundation.Multisite.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.XA.Foundation.Presentation, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.Presentation.10.0.0\lib\net48\Sitecore.XA.Foundation.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.XA.Foundation.Scaffolding, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.Scaffolding.10.0.0\lib\net48\Sitecore.XA.Foundation.Scaffolding.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.XA.Foundation.SitecoreExtensions, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.SitecoreExtensions.10.0.0\lib\net48\Sitecore.XA.Foundation.SitecoreExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.XA.Foundation.Theming, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.Theming.10.0.0\lib\net48\Sitecore.XA.Foundation.Theming.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.XA.Foundation.TokenResolution, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.TokenResolution.10.0.0\lib\net48\Sitecore.XA.Foundation.TokenResolution.dll</HintPath>
     </Reference>
     <Reference Include="sysglobl" />
     <Reference Include="System" />
