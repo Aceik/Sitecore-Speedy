@@ -75,8 +75,13 @@ namespace Sitecore.Foundation.Speedy.Services
             try
             {
                 var response2 = client.Execute<CriticalJson>(request);
-                var content = response2.Content;
-                return response2.Data.Result;
+                
+                if(response2.StatusCode == System.Net.HttpStatusCode.OK)
+                    return response2.Content;
+                else
+                {
+                    return $"Critical Node Response server code {response2.StatusCode}";
+                }
             }
             catch (Exception ex)
             {

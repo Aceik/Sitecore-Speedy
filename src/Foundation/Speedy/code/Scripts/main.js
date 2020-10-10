@@ -47,28 +47,18 @@ var processCritical = function (pageUrl, width, height, cb) {
             base: '/',
             //strict: false,
             minify: true,
-            //target: {css: 'critical.css' , html: 'index-critical.html' , uncritical: 'uncritical.css'},
             rebase: asset => `${asset.absolutePath}`,
-            //rebase: false,
-            //inline: false,
-            //extract: false,
             width: parseInt(width),
             height: parseInt(height),
             penthouse: {
                 timeout: parseInt(config.timeout),
-                //cssString: '',
                 //renderWaitTime: 2000,
                 //puppeteer: options,
                 //strict: false
             },
         }).then(function (result) {
             criticalLogger("critical node tool -> promise resolved", result);
-
-            // const cleanuoTool = new CleanCss({ compress: true });
-            // const cleanupREsult = cleanuoTool.minify(result);
-            // let cleanedUpCcss = cleanupREsult.styles;
             let cleanedUpCcss = result.css;
-
             criticalLogger('html: ' + cleanedUpCcss);
 
             criticalLogger("--------------------------------------------");
@@ -96,19 +86,6 @@ var testFunction = function a(input) {
     criticalLogger("fontReplacement.find -- " + testFunction);
 
     return input;
-};
-
-
-var switchFontPaths = function replaceAll(input, fontMaps) {
-    if(!fontMaps)
-        return input;
-    var output2 = input;
-    fontMaps.forEach(function (fontReplacement) {
-        criticalLogger("fontReplacement.find -- " + fontReplacement.find + " -> " + fontReplacement.replace);
-        if(typeof(fontReplacement) !== 'undefined' && fontReplacement.find && fontReplacement.replace)
-            output2 = findReplace(output2, fontReplacement.find, fontReplacement.replace);
-    });
-    return output2;
 };
 
 var switchFontFaceNames = function replaceAll(input, fontFaceSwitch) {
@@ -178,9 +155,9 @@ app.post('/', function(req, res){
                 return;
             }
 
-            if(req.body.fontMap){
-                criticalCss = switchFontPaths(criticalCss, req.body.fontMap);
-            }
+            // if(req.body.fontMap){
+            //     criticalCss = switchFontPaths(criticalCss, req.body.fontMap);
+            // }
      
             if(req.body.removeDuplicates){
                 criticalCss = removeDuplicates(criticalCss, req.body.removeDuplicates);
