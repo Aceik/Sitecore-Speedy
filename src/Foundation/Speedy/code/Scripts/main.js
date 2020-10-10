@@ -24,31 +24,32 @@ var processCritical = function (pageUrl, width, height, cb) {
 
     try {
 
-        const args = [
-            //'--no-sandbox',
-           // '--disable-dev-shm-usage',
-            '--enable-features=NetworkService',
-            '--ignore-certificate-errors',
-            '--ignore-certificate-errors-spki-list'
-          ];
-          const options = {
-            args,
-            ignoreHTTPSErrors: true,
-            //headless: true,
-          };
+        // const args = [
+        //     //'--no-sandbox',
+        //    // '--disable-dev-shm-usage',
+        //     '--enable-features=NetworkService',
+        //     '--ignore-certificate-errors',
+        //     '--ignore-certificate-errors-spki-list'
+        //   ];
+        //   const options = {
+        //     args,
+        //     ignoreHTTPSErrors: true,
+        //     //headless: true,
+        //   };
 
         critical.generate({
-            request: { /* got options */ 
-                strictSSL: false,
-                https: { rejectUnauthorized: false }
-            },
+            // request: { /* got options */ 
+            //     strictSSL: false,
+            //     https: { rejectUnauthorized: false }
+            // },
+            //src: url,
             src: 'http://sc10aceik.australiaeast.cloudapp.azure.com:700/?speedyByPass=true',
             base: '/',
             //strict: false,
             minify: true,
-            target: {css: 'critical.css' , html: 'index-critical.html' , uncritical: 'uncritical.css'},
-            // rebase: asset => testFunction(`${url}${asset.absolutePath}`),
-            rebase: false,
+            //target: {css: 'critical.css' , html: 'index-critical.html' , uncritical: 'uncritical.css'},
+            rebase: asset => `${asset.absolutePath}`,
+            //rebase: false,
             //inline: false,
             //extract: false,
             width: parseInt(width),
@@ -57,7 +58,7 @@ var processCritical = function (pageUrl, width, height, cb) {
                 timeout: parseInt(config.timeout),
                 //cssString: '',
                 //renderWaitTime: 2000,
-                puppeteer: options,
+                //puppeteer: options,
                 //strict: false
             },
         }).then(function (result) {
