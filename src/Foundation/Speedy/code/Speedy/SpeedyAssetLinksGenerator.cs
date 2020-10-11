@@ -120,8 +120,18 @@ namespace Sitecore.Foundation.Speedy.Speedy
             {
                 string uri = style.ValueOrEmpty();
                 string cssContents = DownloadCssFile(uri);
-                if (!string.IsNullOrWhiteSpace(cssContents))
+                string[] parts = uri.Split('/');
+                if (!string.IsNullOrWhiteSpace(cssContents) && parts.Length > 5)
                 {
+                    string replacementSection = $"url(/-/media/Themes/{parts[4]}/{parts[5]}/fonts/";
+
+                    // Yes as crazy as it seems all three of the following combos were in the habitat example site. So lets deal with all the cases
+                    cssContents = cssContents.Replace("url('../fonts/", replacementSection); // With a '
+                    cssContents = cssContents.Replace("url(\"../fonts/", replacementSection); // With a "
+                    cssContents = cssContents.Replace("url(../fonts/", replacementSection);  // Without a '
+                    cssContents = cssContents.Replace("src: url(/-/media/Themes/", "font-display: swap;src: url(/-/media/Themes/");
+                    cssContents = cssContents.Replace("src:url(/-/media/Themes/", "font-display: swap;src: url(/-/media/Themes/");
+
                     entireCriticalBlock = entireCriticalBlock.Append(cssContents);
                 }
             }
