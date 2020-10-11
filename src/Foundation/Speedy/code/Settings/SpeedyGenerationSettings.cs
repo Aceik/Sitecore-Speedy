@@ -83,6 +83,16 @@ namespace Sitecore.Foundation.Speedy.Settings
             return item.IsEnabled(SpeedyConstants.Fields.EnableStylesheetLoadDefer) && item.Fields[SpeedyConstants.Fields.CriticalCss].HasValue;
         }
 
+        public static bool IsCriticalStylesEnabled(this Item item)
+        {
+            return item.IsEnabled(SpeedyConstants.Fields.EnableStylesheetLoadDefer);
+        }
+
+        public static bool IsEasyCriticalEnabled(this Item item)
+        {
+            return item.IsCriticalStylesEnabled() && item.IsEnabled(SpeedyConstants.Fields.EnableEasyCriticalMode);
+        }
+
         public static bool IsCriticalJavascriptEnabledAndPossible(this Item item)
         {
             return item.Fields[SpeedyConstants.Fields.EnableJavascriptLoadDefer] != null && item.IsEnabled(SpeedyConstants.Fields.EnableJavascriptLoadDefer);

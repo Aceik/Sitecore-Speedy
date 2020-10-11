@@ -1,4 +1,5 @@
-﻿using Sitecore.XA.Foundation.Theming.Bundler;
+﻿using System.Collections.Generic;
+using Sitecore.XA.Foundation.Theming.Bundler;
 
 namespace Sitecore.Foundation.Speedy.Model
 {

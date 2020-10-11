@@ -97,28 +97,5 @@ namespace Sitecore.Foundation.Speedy.Services
             fontReplaceStr = fontReplaceStr.Replace("\n", string.Empty);
             return fontReplaceStr;
         }
-
-        /**
-         * Font Map example:
-         *
-         
-            { 
-	            "url" : "https%3a%2f%2fwww.australia.com%2f",
-	            "width" : "1800",
-	            "height": "1200",
-	            "fontmap": [
-                {
-                  "find": "/Users/test/AppData/Local/fonts/fontawesome/",
-                  "replace": "/-/media/Themes/Habitat-Sites/Habitat-Home-v2/fonts/fontawesome/"
-                },
-                {
-                  "find": "/Users/test/AppData/Local/fonts/",
-                  "replace": "/-/media/Themes/Habitat-Sites/Habitat-Home-v2/fonts/"
-                }
-              ]
-            }
-
-
-         */
     }
 }

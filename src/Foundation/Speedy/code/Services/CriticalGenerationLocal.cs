@@ -26,14 +26,14 @@ namespace Sitecore.Foundation.Speedy.Services
 
             if (fontReplace)
             {
-                var fontReplaceStr = GetRemoteJsonField(SpeedyGenerationSettings.GetCriticalApiRemoteFontMap());
+                //var fontReplaceStr = GetRemoteJsonField(SpeedyGenerationSettings.GetCriticalApiRemoteFontMap());
                 var duplicatesStr = GetRemoteJsonField(SpeedyGenerationSettings.GetCriticalApiRemoteDuplicates());
                 var fontSwapStr = GetRemoteJsonField(SpeedyGenerationSettings.GetCriticalApiRemoteFontSwitch());
 
                 var requestBody = new RemoteCriticalParameters();
 
-                if (!string.IsNullOrWhiteSpace(fontReplaceStr))
-                    requestBody.FontMap = JsonConvert.DeserializeObject<RemoteCriticalParameters>(fontReplaceStr).FontMap;
+                //if (!string.IsNullOrWhiteSpace(fontReplaceStr))
+                //    requestBody.FontMap = JsonConvert.DeserializeObject<RemoteCriticalParameters>(fontReplaceStr).FontMap;
                 if (!string.IsNullOrWhiteSpace(duplicatesStr))
                     requestBody.RemoveDuplicates = JsonConvert.DeserializeObject<RemoteCriticalParameters>(duplicatesStr).RemoveDuplicates;
                 if (!string.IsNullOrWhiteSpace(fontSwapStr))
