@@ -19,6 +19,7 @@
         document.body.appendChild(replacement);
         addStylesNode.parentElement.removeChild(addStylesNode);
     };
+    if(!Speedy && !Speedy.settings) {var Speedy = {}; Speedy.settings = {}; Speedy.settings.stylesDeferMilliseconds = 6000;}
     var raf = requestAnimationFrame ||
         mozRequestAnimationFrame ||
         webkitRequestAnimationFrame ||
