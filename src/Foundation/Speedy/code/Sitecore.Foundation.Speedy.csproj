@@ -98,6 +98,7 @@
     <None Include="Scripts\Critical.json" />
     <Content Include="Views\Speedy\Critical.cshtml" />
     <Content Include="Views\Speedy\SpeedyJavascriptLoaderSettings.cshtml" />
+    <Content Include="Views\Speedy\SpeedyJavascriptPreLoader.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

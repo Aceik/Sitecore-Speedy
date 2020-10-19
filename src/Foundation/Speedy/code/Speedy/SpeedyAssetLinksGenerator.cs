@@ -22,6 +22,8 @@ using System;
 using Sitecore.Mvc.Extensions;
 using System.Web.Caching;
 using Sitecore.XA.Foundation.SitecoreExtensions.Repositories;
+using System.Web.UI;
+using System.Net;
 
 namespace Sitecore.Foundation.Speedy.Speedy
 {
@@ -119,42 +121,59 @@ namespace Sitecore.Foundation.Speedy.Speedy
             foreach(var style in assetLinks.PlainStyles)
             {
                 string uri = style.ValueOrEmpty();
-                string cssContents = DownloadCssFile(uri);
+                var cssContents = new StringBuilder(DownloadCssFile(uri));
                 string[] parts = uri.Split('/');
-                if (!string.IsNullOrWhiteSpace(cssContents) && parts.Length > 5)
+                if (cssContents.Length > 10 && parts.Length > 5)
                 {
-                    string replacementSection = $"url(/-/media/Themes/{parts[4]}/{parts[5]}/fonts/";
+                    string replacementSection = $"/-/media/Themes/{parts[4]}/{parts[5]}/fonts/";
 
                     // Yes as crazy as it seems all three of the following combos were in the habitat example site. So lets deal with all the cases
-                    cssContents = cssContents.Replace("url('../fonts/", replacementSection); // With a '
-                    cssContents = cssContents.Replace("url(\"../fonts/", replacementSection); // With a "
-                    cssContents = cssContents.Replace("url(../fonts/", replacementSection);  // Without a '
-                    cssContents = cssContents.Replace("src: url(/-/media/Themes/", "font-display: swap;src: url(/-/media/Themes/");
-                    cssContents = cssContents.Replace("src:url(/-/media/Themes/", "font-display: swap;src: url(/-/media/Themes/");
+                    cssContents = cssContents.Replace("url('../fonts/", $"url('{replacementSection}"); // With a '
+                    cssContents = cssContents.Replace("url(\"../fonts/", $"url(\"{replacementSection}"); // With a "
+                    cssContents = cssContents.Replace("url(../fonts/", $"url({replacementSection}");  // Without a '
 
                     entireCriticalBlock = entireCriticalBlock.Append(cssContents);
                 }
             }
+
+            //entireCriticalBlock = entireCriticalBlock.Replace("src:url('/-/media/Themes/", "font-display:swap;src:url('/-/media/Themes/");
+            //entireCriticalBlock = entireCriticalBlock.Replace("src:url(/-/media/Themes/", "font-display:swap;src:url(/-/media/Themes/");
+            //entireCriticalBlock = entireCriticalBlock.Replace("src:url(\"/-/media/Themes/", "font-display:swap;src:url(\"/-/media/Themes/");
+
+            entireCriticalBlock = entireCriticalBlock.Replace("font-family:", "font-display:swap;font-family:");
+
             return entireCriticalBlock.ToString();
         }
 
         private static string DownloadCssFile(string url)
         {
-            var uri = HttpContext.Current.Request.Url;
-            var host = uri.Scheme + Uri.SchemeDelimiter + uri.Host + ":" + uri.Port;
-
-            var client = new RestClient(host + url);
-            var request = new RestRequest(Method.GET) { RequestFormat = DataFormat.Json };
-            // or automatically deserialize result
-            // return content type is sniffed but can be explicitly set via RestClient.AddHandler();
-            try
+            string cssFileCacheKey = $"speedy-external-css-{url}";
+            string cssFileCache = HttpContext.Current.Cache[cssFileCacheKey] as string;
+            if (!string.IsNullOrWhiteSpace(cssFileCache))
             {
-                var response2 = client.Execute(request);
-                return response2.Content;
+                return cssFileCache;
             }
-            catch (Exception ex)
+            else
             {
-                Diagnostics.Log.Error("Download CSS SpeedyAssetLinksGenerator", ex);
+                var uri = HttpContext.Current.Request.Url;
+                var host = uri.Scheme + Uri.SchemeDelimiter + uri.Host + ":" + uri.Port;
+
+                ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+                var client = new RestClient(host + url);
+                var request = new RestRequest(Method.GET) { RequestFormat = DataFormat.Json };
+                // or automatically deserialize result
+                // return content type is sniffed but can be explicitly set via RestClient.AddHandler();
+                try
+                {
+                    var response2 = client.Execute(request);
+                    if(response2?.Content != null)
+                        CacheObject(cssFileCacheKey, response2.Content, GetDependencies(null));
+                    return response2.Content;
+                }
+                catch (Exception ex)
+                {
+                    Diagnostics.Log.Error("Download CSS SpeedyAssetLinksGenerator", ex);
+                }
             }
             return string.Empty;
         }
@@ -272,6 +291,7 @@ namespace Sitecore.Foundation.Speedy.Speedy
             assetLinks.ClientScriptsRendered = "";
 
             string result = string.Empty;
+            string resultPreloaded = string.Empty;
             int count = 0;
             foreach (var scripts in assetLinks.Scripts)
             {
@@ -280,12 +300,14 @@ namespace Sitecore.Foundation.Speedy.Speedy
                     comma = string.Empty;
 
                 result += $"'{scripts}'{comma}";
+                resultPreloaded += $"<link rel=\"preload\" href=\"{scripts}\" as=\"script\">";
                 count++;
             }
 
             var phase = $"var clientScripts = [{result}]\r";
 
             assetLinks.ClientScriptsRendered += phase;
+            assetLinks.ClientScriptsPreload = resultPreloaded;
         }
 
         public static string GetPageKey(string url)

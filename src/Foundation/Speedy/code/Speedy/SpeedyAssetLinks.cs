@@ -21,5 +21,6 @@ namespace Sitecore.Foundation.Speedy.Speedy
         public Dictionary<int, Dictionary<string, AssetLinks>> OrderedScripts { get; set; }
 
         public string ClientScriptsRendered { get; set; }
+        public string ClientScriptsPreload { get; set; }
     }
 }

@@ -70,7 +70,7 @@ namespace Sitecore.Foundation.Speedy.Settings
         }
         public static bool IsSpeedyEnabledForPage(this Item item)
         {
-            return item.Fields[SpeedyConstants.Fields.SpeedyEnabled] != null && item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled);
+            return item.Fields[SpeedyConstants.Fields.SpeedyEnabled] != null && item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled) && !Sitecore.Context.PageMode.IsExperienceEditor;
         }
 
         public static bool IsOnePassCookieEnabled(this Item item)

@@ -1,0 +1,9 @@
+﻿@using Sitecore.Foundation.Speedy.Model
+@using Sitecore.Foundation.Speedy.Speedy
+@{
+    SpeedyLayoutModel model = SpeedyAssetLinksGenerator.GetSpeedyLayoutModel();
+    var assetLinks = (SpeedyAssetLinks)model.AssetLinks;
+}
+
+@Html.Raw(assetLinks.ClientScriptsPreload)
+

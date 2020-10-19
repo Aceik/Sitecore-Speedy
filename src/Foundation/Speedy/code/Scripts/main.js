@@ -24,37 +24,17 @@ var processCritical = function (pageUrl, width, height, cb) {
 
     try {
 
-        // const args = [
-        //     //'--no-sandbox',
-        //    // '--disable-dev-shm-usage',
-        //     '--enable-features=NetworkService',
-        //     '--ignore-certificate-errors',
-        //     '--ignore-certificate-errors-spki-list'
-        //   ];
-        //   const options = {
-        //     args,
-        //     ignoreHTTPSErrors: true,
-        //     //headless: true,
-        //   };
+        // Please note that invalid SSL certificates will break the generation.
 
         critical.generate({
-            // request: { /* got options */ 
-            //     strictSSL: false,
-            //     https: { rejectUnauthorized: false }
-            // },
-            //src: url,
-            src: 'http://sc10aceik.australiaeast.cloudapp.azure.com:700/?speedyByPass=true',
+            src: 'http://sc10aceik.australiaeast.cloudapp.azure.com:500/?speedyByPass=true',
             base: '/',
-            //strict: false,
             minify: true,
             rebase: asset => `${asset.absolutePath}`,
             width: parseInt(width),
             height: parseInt(height),
             penthouse: {
-                timeout: parseInt(config.timeout),
-                //renderWaitTime: 2000,
-                //puppeteer: options,
-                //strict: false
+                timeout: parseInt(config.timeout)
             },
         }).then(function (result) {
             criticalLogger("critical node tool -> promise resolved", result);

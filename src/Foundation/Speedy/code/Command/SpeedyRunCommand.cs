@@ -27,8 +27,6 @@ namespace Sitecore.Foundation.Speedy.Command
             if (!SpeedyGenerationSettings.IsPublicFacingEnvironment() && !SpeedyGenerationSettings.UseLocalCriticalCssGenerator())
                 return;
 
-            //var criticalCSSRepository = ServiceLocator.ServiceProvider.GetService<ICriticalCSSRepository>();
-
             var currentItem = context.Items[0];
             currentItem.Editing.BeginEdit();
             _criticalCSSRepository.UpdateCriticalCSS(currentItem, GlobalSettings.Database.Master);
