@@ -70,7 +70,7 @@ namespace Sitecore.Foundation.Speedy.Settings
         }
         public static bool IsSpeedyEnabledForPage(this Item item)
         {
-            return item.Fields[SpeedyConstants.Fields.SpeedyEnabled] != null && item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled);
+            return item.Fields[SpeedyConstants.Fields.SpeedyEnabled] != null && item.IsEnabled(SpeedyConstants.Fields.SpeedyEnabled) && !Sitecore.Context.PageMode.IsExperienceEditor;
         }
 
         public static bool IsOnePassCookieEnabled(this Item item)
@@ -81,6 +81,16 @@ namespace Sitecore.Foundation.Speedy.Settings
         public static bool IsCriticalStylesEnabledAndPossible(this Item item)
         {
             return item.IsEnabled(SpeedyConstants.Fields.EnableStylesheetLoadDefer) && item.Fields[SpeedyConstants.Fields.CriticalCss].HasValue;
+        }
+
+        public static bool IsCriticalStylesEnabled(this Item item)
+        {
+            return item.IsEnabled(SpeedyConstants.Fields.EnableStylesheetLoadDefer);
+        }
+
+        public static bool IsEasyCriticalEnabled(this Item item)
+        {
+            return item.IsCriticalStylesEnabled() && item.IsEnabled(SpeedyConstants.Fields.EnableEasyCriticalMode);
         }
 
         public static bool IsCriticalJavascriptEnabledAndPossible(this Item item)

@@ -19,6 +19,7 @@ namespace Sitecore.Foundation.Speedy
 
             public static readonly string EnableJavascriptLoadDefer = "EnableJavascriptLoadDefer";
             public static readonly string EnableStylesheetLoadDefer = "EnableStylesheetLoadDefer";
+            public static readonly string EnableEasyCriticalMode = "EnableEasyCriticalMode";
             public static readonly string OnePassCookieEnabled = "OnePassCookieEnabled";
             
             public static readonly string FallbackSelectorFieldName = "CssFallbackSelector";
