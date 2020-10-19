@@ -27,7 +27,7 @@ var processCritical = function (pageUrl, width, height, cb) {
         // Please note that invalid SSL certificates will break the generation.
 
         critical.generate({
-            src: 'http://sc10aceik.australiaeast.cloudapp.azure.com:500/?speedyByPass=true',
+            src: url,
             base: '/',
             minify: true,
             rebase: asset => `${asset.absolutePath}`,
