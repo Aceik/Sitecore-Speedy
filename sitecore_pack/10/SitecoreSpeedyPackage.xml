@@ -1,0 +1,307 @@
+<project>
+  <Metadata>
+    <metadata>
+      <PackageName>Sitecore Speedy</PackageName>
+      <Author>Thomas Tyack @ Aceik</Author>
+      <Version>v1.3</Version>
+      <Revision />
+      <License />
+      <Comment>Supports SXA 9.3 
+All documentation and setup instructions head over to: https://github.com/Aceik/Sitecore-Speedy
+
+10/05/2020 - Added in the Services config
+18/05/2020 - Fix for having styles off and JS on.  Plus fix layout Flag
+
+
+Changelog
+
+Oct 2020 - Sitecore 10 updates
+- FontMap field removed, this is no longer needed
+- main.js improved logging
+- Critical NPM package updated to 2.0.4 from 1.x
+- Ability to set entire CSS Theme into critical added. The lazy mans critical. 
+- Sections of Speedy in the pipeline involved in script gathering added to cache. 
+- Missing field in package RemoteFontSwitch added back in
+- Invalid SSL certificates on Dev now need to be added to the Trusted Root SA.
+- Bypass speedy when in Experience Editor Mode.
+- Fix for logic switch when Critical is on but CSS is not
+- Added Preloader for javascript files, to speed up resource availabilty over the network</Comment>
+      <Attributes />
+      <Readme>All documentation and setup instructions head over to: https://github.com/Aceik/Sitecore-Speedy</Readme>
+      <Publisher>Thomas Tyack</Publisher>
+      <PostStep />
+      <PackageID />
+    </metadata>
+  </Metadata>
+  <SaveProject>True</SaveProject>
+  <Sources>
+    <xfiles>
+      <Entries>
+        <x-item>/App_Config/Include/Speedy/Foundation/Foundation.Speedy.API.config</x-item>
+        <x-item>/App_Config/Include/Speedy/Foundation/Foundation.Speedy.Commands.config</x-item>
+        <x-item>/App_Config/Include/Speedy/Foundation/Foundation.Speedy.Events.config</x-item>
+        <x-item>/App_Config/Include/Speedy/Foundation/Foundation.Speedy.Routes.config</x-item>
+        <x-item>/App_Config/Include/Speedy/Foundation/Foundation.Speedy.Services.config</x-item>
+        <x-item>/App_Config/Include/Speedy/Foundation/Foundation.Speedy.Settings.config</x-item>
+      </Entries>
+      <Converter>
+        <FileToEntryConverter>
+          <Root>/</Root>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </FileToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Config Files</Name>
+    </xfiles>
+    <xfiles>
+      <Entries>
+        <x-item>/scripts/Critical.js</x-item>
+        <x-item>/scripts/Critical.json</x-item>
+        <x-item>/Scripts/main.js</x-item>
+        <x-item>/Scripts/package.json</x-item>
+      </Entries>
+      <Converter>
+        <FileToEntryConverter>
+          <Root>/</Root>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </FileToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Critical JS Files</Name>
+    </xfiles>
+    <xfiles>
+      <Entries>
+        <x-item>/Views/Speedy/Critical.cshtml</x-item>
+        <x-item>/Views/Speedy/OriginalScriptsLoader.cshtml</x-item>
+        <x-item>/Views/Speedy/OriginalStylesLoader.cshtml</x-item>
+        <x-item>/Views/Speedy/SpeedyJavascriptLoader.cshtml</x-item>
+        <x-item>/Views/Speedy/SpeedyJavascriptLoaderSettings.cshtml</x-item>
+        <x-item>/Views/Speedy/SpeedyStylesLoader.cshtml</x-item>
+        <x-item>/Views/SxaLayout/SxaLayoutPageSpeed.cshtml</x-item>
+        <x-item>/Views/Speedy/SpeedyJavascriptPreLoader.cshtml</x-item>
+        <x-item>/Views/Speedy/Lazy.cshtml</x-item>
+      </Entries>
+      <Converter>
+        <FileToEntryConverter>
+          <Root>/</Root>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </FileToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Layouts and Views</Name>
+    </xfiles>
+    <xfiles>
+      <Entries>
+        <x-item>/bin/Sitecore.Foundation.Speedy.dll</x-item>
+      </Entries>
+      <Converter>
+        <FileToEntryConverter>
+          <Root>/</Root>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </FileToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>DLL</Name>
+    </xfiles>
+    <xitems>
+      <Entries>
+        <x-item>/core/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Speedy/{EAE1C736-ECE2-4948-AC17-CB7F9B14AE21}/invariant/0</x-item>
+        <x-item>/core/sitecore/content/Applications/Content Editor/Ribbons/Chunks/Speedy/Generate/{B2238F40-6C4B-4BED-A6F1-6B40407B7FC7}/invariant/0</x-item>
+        <x-item>/core/sitecore/content/Applications/Content Editor/Ribbons/Strips/Configure/Speedy/{B9DB9D2C-239F-4912-A629-A57CD0564348}/invariant/0</x-item>
+      </Entries>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </ItemToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Core Content Items</Name>
+    </xitems>
+    <xitems>
+      <Entries>
+        <x-item>/master/sitecore/layout/Layouts/Foundation/Speedy/{77AAD200-E12E-43ED-BA40-E0C0378005F3}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Layouts/Foundation/Speedy/MVC/{677B265B-9D9B-4272-9004-4AE9C2E1E93A}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Layouts/Foundation/Speedy/MVC/MVC Layout Page Speed/{F7A3FA28-12C6-4477-B0B6-8779DAE5BED3}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Foundation/Speedy/{35DC3879-225C-4846-ADD9-79B64CFB738C}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Foundation/Speedy/SpeedyCriticalCss/{8A3B4A25-EAD1-4B93-BF43-45C333F9129E}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Foundation/Speedy/SpeedyJavascriptLoader/{645086C0-B7F8-455B-AC12-4A8971311652}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Foundation/Speedy/SpeedyOriginalScriptsLoader/{A41DEEAE-2E35-416C-AF04-F97A5F174C07}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Foundation/Speedy/SpeedyOriginalStylesLoader/{259F2B85-03C3-4A93-92A8-590E854345A6}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Foundation/Speedy/SpeedyOriginalStylesLoader/{B623677C-0D6A-42C1-8D96-22BF2C0DCC87}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Foundation/Speedy/SpeedyStylesLoader/{77C679DE-CFF5-40C1-A386-8AD1D953FC99}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Foundation/Speedy/{BD320C29-A67E-4B4B-8E79-AF5214421AD9}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Foundation/Speedy/Speedy Global Settings/{7C852721-7717-41CF-B729-473859228964}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Tasks/Commands/Speedy/{784EC36A-DF0D-42E2-80A6-9CCC62F7B03D}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Tasks/Commands/Speedy/Critical Syncer/{CF458E5F-9B87-4A57-BE2C-FD2658650338}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Tasks/Schedules/Speedy/{DEDE2324-6029-46EB-9E33-3568327B508D}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Tasks/Schedules/Speedy/Critical Syncer/{0C11160D-DFFF-4672-99BA-0E17006C408C}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_Critical/__Standard Values/{DC098258-5FBB-4026-9AC3-4DD167AF2788}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_Critical/{CD50F100-0FAE-4A18-94F2-A304FCCEEC98}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_Critical/Speedy/{9639C84F-79B5-42BC-9102-3F4BE236425B}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_Critical/Speedy/CriticalCSS/{EA0DF707-C97F-45F0-82E3-3BCC0B5F52C3}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_Critical/Speedy/SpecialCaseCriticalCSS/{FE95D1F4-3EB5-4F40-8FF1-DB7D935FE13D}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPage/{AFB9A38D-7ECA-4C13-848C-F6A5DF08C11E}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/__Standard Values/{F78E3CF4-5E8D-4465-ACB5-D3C2A029E7E4}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/{FDED441C-0186-42A2-9786-60A81B603330}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/{4B4CBB97-0C6A-4710-BC7A-C4A43E6624B4}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/CriticalViewPortHeightPixels/{2D520EFB-094E-4387-ABEF-3F784BD933A7}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/CriticalViewPortWidthPixels/{D2B28A93-8173-44DF-86A5-9751528ED0BE}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/CssFallbackSelector/{AEFF1DB4-F4DC-4F05-8144-8275F18C35A8}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/DeferStylesheetMilliseconds/{288B994F-9219-449F-9960-18A05DC5DB54}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/EnableJavascriptLoadDefer/{A28C9D2C-5AF8-45AE-8AED-70BF86BF2C8B}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/EnableStylesheetLoadDefer/{36CA5A14-F010-46A9-A9E8-7EEEA06AE3B3}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/OnePassCookieEnabled/{E5FAB53D-6C09-49D5-ACC7-CC53F4BA9E90}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/SpeedyEnabled/{CFCC9511-C7E2-47BC-B8D4-86734CE26A93}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/{D3434909-6A00-43A3-88A5-20C305351612}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/EnableEasyCriticalMode/{21F34136-BFC9-4FC2-8A28-21A6170282DE}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/__Standard Values/{76CCC6FD-80DB-4D36-95C6-FDA2CE6521F5}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/{B06F7C55-9717-4BFA-86D5-875B2DDAC17C}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint/{E4D3BA94-E967-477F-8E3D-DE3BDA8712A3}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint/CookieExpirationDays/{32C93514-942E-4411-A8B1-9432CB055BC1}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint/DeferCSSLoadForMilliseconds/{4FDA48E4-0A51-4AA7-9D98-5008502377E6}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint/DeferFallbackForMilliseconds/{6C44F9AB-65F2-4730-87E3-FFDA8AEC3DA5}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint/DeferJSLoadForMilliseconds/{AF9FA73F-F0A8-4D58-8DEA-CB2169147C87}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint/EndpointPassword/{167A1FDF-2465-4131-8877-03FBE4F1DCEB}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint/EndpointURL/{5A158A54-B524-483C-A3A0-6E2A5FCC5CBE}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint/EndpointUsername/{D261C023-5E72-4901-A7B7-95FADF754DEF}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Generation Options/{0F96B813-D291-41C9-8BFE-8767FB6CB86A}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Generation Options/ShouldGenerateOnScheduledTask/{AEDD85C7-67C6-4F54-8E59-AC0CE9F8A1B5}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Generation Options/ShouldRegenerateOnEverySaveEvent/{3CC49F95-C8F9-482E-A7A8-AF6BAAEA0FA6}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Global Defaults/{2C6B2AD1-B83F-4914-9E0D-DFE9CAD01221}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Global Defaults/DefaultCriticalHeight/{97197D2E-4289-4A4E-8BCC-789897DE907F}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Global Defaults/DefaultCriticalWidth/{3D90972C-D661-48CA-80D8-3EEC2BEAA230}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Remote API Parameters/{C4CBADC5-87EF-4593-8A51-D71A7BE4626D}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Remote API Parameters/RemoteDuplicatesToRemove/{FD516369-705F-42CA-B734-F4F13198BDAB}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Remote API Parameters/RemoteFontMap/{F4006C48-6487-43B7-8D65-A3C32C637E29}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Remote API Parameters/RemoteFontsToSwitch/{995DE8C0-C864-460B-BEEB-B761F5E874B7}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Foundation/Speedy/SpeedyJavascriptPreLoader/{64576A9D-5953-4161-92F5-8FEC72D90D6E}/invariant/0</x-item>
+      </Entries>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </ItemToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Master Items</Name>
+    </xitems>
+    <xitems>
+      <Entries>
+        <x-item>/master/sitecore/layout/Layouts/Foundation/{10335194-8652-470A-9445-FD7C4FB21B4E}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Foundation/{180D4942-2B10-4375-BC06-E0D94220A68F}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Foundation/{31C85853-D86D-46B0-A418-86DF28F7294F}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/{B26BD035-8D0A-4DF3-8F67-2DE3C7FDD74A}/invariant/0</x-item>
+      </Entries>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Merge</ItemMode>
+                  <ItemMergeMode>Append</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </ItemToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Base Foundation Folders</Name>
+    </xitems>
+    <xfiles>
+      <Entries>
+        <x-item>/bin/RestSharp.dll</x-item>
+      </Entries>
+      <Converter>
+        <FileToEntryConverter>
+          <Root>/</Root>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </FileToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>RestSharp</Name>
+    </xfiles>
+  </Sources>
+  <Converter>
+    <TrivialConverter>
+      <Transforms />
+    </TrivialConverter>
+  </Converter>
+  <Include />
+  <Exclude />
+  <Name />
+</project>
