@@ -24,12 +24,6 @@
 <html class="no-js" lang="@Model.Item.Language.Name">
 <!--<![endif]-->
 <head>
-
-    @if (model.SpeedyJsEnabled)
-    {
-        @Html.Sitecore().Rendering("{64576A9D-5953-4161-92F5-8FEC72D90D6E}", new { Cacheable = true, CacheKey = model.CacheKey + "js-preloader" })
-    }
-
     @if (!model.SpeedyCssEnabled)
     {
         @Html.Sitecore().Rendering("{B623677C-0D6A-42C1-8D96-22BF2C0DCC87}", new { Cacheable = true, CacheKey = model.CacheKey + "OriginalStylesLoader" })
@@ -60,6 +54,7 @@
     @if (model.SpeedyCssEnabled)
     {
         @Html.Sitecore().Rendering("{77C679DE-CFF5-40C1-A386-8AD1D953FC99}", new { Cacheable = true, CacheKey = model.CacheKey + "SpeedyStylesLoader" })
+        @Html.Sitecore().Rendering("{64576A9D-5953-4161-92F5-8FEC72D90D6E}", new { Cacheable = true, CacheKey = model.CacheKey + "js-preloader" })
     }
 
     @if (!model.SpeedyJsEnabled)

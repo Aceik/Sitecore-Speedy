@@ -17,11 +17,11 @@ SharedFields:
     { "fontMap": [
         {
           "find": "/Users/sitecore/AppData/Local/fonts/tahoma/",
-          "replace": "/-/media/themes/mysite/mysite-theme/fonts/tahoma/"
+          "replace": "/-/media/themes/anziif/anziif-theme/fonts/tahoma/"
         },
         {
           "find": "/Users/sitecore/AppData/Local/fonts/fontawesome/",
-          "replace": "/-/media/themes/mysite/mysite-theme/fonts/fontawesome/"
+          "replace": "/-/media/themes/anziif/anziif-theme/fonts/fontawesome/"
         },            
         {
           "find": "content:\"\"",
@@ -49,52 +49,7 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20190426T102857Z
-    - ID: "3bd89967-8179-41eb-b4d0-30bb21f892fe"
-      Hint: RemoteFontsToSwitch
-      Value: |
-        {"fontFaceSwitch": [
-            {
-              "find": "font-family:NationalWebExtraBold;",
-              "replace": "font-family:NationalWebExtraBold-Critical;"
-            },
-            {
-              "find": "font-family:NationalWeb;",
-              "replace": "font-family:NationalWeb-Critical;"
-            },
-            {
-              "find": "font-family:NationalWebExtraBold;",
-              "replace": "font-family:NationalWebExtraBold-critical;"
-            },
-            {
-              "find": "font-family:NationalWebMedium;",
-              "replace": "font-family:NationalWebMedium-critical;"
-            },
-            {
-              "find": "font-family:NationalWeb;",
-              "replace": "font-family:NationalWeb-critical;"
-            },
-            {
-              "find": "font-family:NationalWebBold;",
-              "replace": "font-family:NationalWebBold-critical;"
-            }
-          ]}
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
         sitecore\admin
-    - ID: "c86e2356-39db-45c9-9451-5232660b8074"
-      Hint: RemoteDuplicatesToRemove
-      Value: |
-        {
-        "removeDuplicates": [
-            {
-              "find": "@font-face{font-display: swap;font-family:Conv_tahoma;src:url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_eot.eot);src:local(\"☺\"),url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_woff.woff) format(\"woff\"),url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_ttf.ttf) format(\"truetype\"),url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_svg.svg) format(\"svg\");font-weight:400;font-style:normal}"
-            },
-            {
-              "find": "@font-face{font-display: swap;src:url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_eot.eot);src:local(\"☺\"),url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_woff.woff) format(\"woff\"),url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_ttf.ttf) format(\"truetype\"),url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_svg.svg) format(\"svg\");font-weight:400;font-style:normal}"
-            },
-            {
-              "find":"@font-face{font-display: swap;font-family:FontAwesome;src:url(/-/media/themes/mysite/mysite-theme/fonts/fontawesome/fontawesome-webfont-eot.eot?v=4.7.0);src:url(/-/media/themes/mysite/mysite-theme/fonts/fontawesome/fontawesome-webfont-eot.eot?#iefix&v=4.7.0) format(\"embedded-opentype\"),url(/-/media/themes/mysite/mysite-theme/fonts/fontawesome/fontawesome-webfont-woff2.woff2?v=4.7.0) format(\"woff2\"),url(/-/media/themes/mysite/mysite-theme/fonts/fontawesome/fontawesome-webfont-woff.woff?v=4.7.0) format(\"woff\"),url(/-/media/themes/mysite/mysite-theme/fonts/fontawesome/fontawesome-webfont-ttf.ttf?v=4.7.0) format(\"truetype\"),url(/-/media/themes/mysite/mysite-theme/fonts/fontawesome/fontawesome-webfont-svg.svg?v=4.7.0#fontawesomeregular) format(\"svg\");font-weight:400;font-style:normal}"
-            }
-          ]
-        }

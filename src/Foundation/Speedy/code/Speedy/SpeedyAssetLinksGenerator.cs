@@ -73,32 +73,22 @@ namespace Sitecore.Foundation.Speedy.Speedy
             {
                 var speedyLinks = GenerateDeferedLinks(new ThemesProvider());
                 model.AssetLinks = speedyLinks;
+                model.VanillaJavasript = GetVanillaJavascript();
                 model.SpeedyJsEnabled = SpeedyGenerationSettings.IsCriticalJavascriptEnabledAndPossible(Sitecore.Context.Item);
-                model.SpeedyCssEnabled = SpeedyGenerationSettings.IsCriticalStylesEnabledAndPossible(Sitecore.Context.Item);
-                bool easySpeedyEnabled = SpeedyGenerationSettings.IsEasyCriticalEnabled(Sitecore.Context.Item);
+                model.SpeedyCssEnabled = SpeedyGenerationSettings.IsCriticalStylesEnabled(Sitecore.Context.Item);
 
-                if(easySpeedyEnabled) // Its cheating a bit, but for the lazy web team that won't do maintanence it still give a page speed boost.
+                string largeCiticalCssBlockCacheKey = $"speedy-entire-css-critical-page-block-{Sitecore.Context.Item.ID}";
+                string largeCriticalCssBlockCache = HttpContext.Current.Cache[largeCiticalCssBlockCacheKey] as string;
+                if (!string.IsNullOrWhiteSpace(largeCriticalCssBlockCache))
                 {
-                    model.SpeedyCssEnabled = true;
-
-                    string largeCiticalCssBlockCacheKey = $"speedy-entire-css-critical-page-block-{Sitecore.Context.Item.ID}";
-                    string largeCriticalCssBlockCache = HttpContext.Current.Cache[largeCiticalCssBlockCacheKey] as string;
-                    if (!string.IsNullOrWhiteSpace(largeCriticalCssBlockCache))
-                    {
-                        model.CriticalHtml = largeCriticalCssBlockCache;
-                    }
-                    else
-                    {
-                        model.CriticalHtml = BuildEntireCssBlock(speedyLinks);
-                        CacheObject(largeCiticalCssBlockCacheKey, model.CriticalHtml, GetDependencies(null));
-                    }   
-                    model.SpecialCaseCriticalCss = string.Empty;
+                    model.CriticalHtml = largeCriticalCssBlockCache;
                 }
-                else if (model.SpeedyCssEnabled)
+                else
                 {
-                    model.CriticalHtml = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.CriticalCss].Value;
-                    model.SpecialCaseCriticalCss = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.SpecialCaseCriticalCss].Value;
+                    model.CriticalHtml = BuildEntireCssBlock(speedyLinks);
+                    CacheObject(largeCiticalCssBlockCacheKey, model.CriticalHtml, GetDependencies(null));
                 }
+                model.SpecialCaseCriticalCss = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.SpecialCaseCriticalCss].Value;
             }
             else
             {
@@ -106,6 +96,15 @@ namespace Sitecore.Foundation.Speedy.Speedy
             }
 
             return model;
+        }
+
+        private static string GetVanillaJavascript()
+        {
+            string url = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.MobileCriticalJavascript].Value;
+            if (!string.IsNullOrWhiteSpace(url))
+                return DownloadCssFile(url, true);
+            else
+                return string.Empty;
         }
 
         /// <summary>
@@ -136,16 +135,12 @@ namespace Sitecore.Foundation.Speedy.Speedy
                 }
             }
 
-            //entireCriticalBlock = entireCriticalBlock.Replace("src:url('/-/media/Themes/", "font-display:swap;src:url('/-/media/Themes/");
-            //entireCriticalBlock = entireCriticalBlock.Replace("src:url(/-/media/Themes/", "font-display:swap;src:url(/-/media/Themes/");
-            //entireCriticalBlock = entireCriticalBlock.Replace("src:url(\"/-/media/Themes/", "font-display:swap;src:url(\"/-/media/Themes/");
-
             entireCriticalBlock = entireCriticalBlock.Replace("font-family:", "font-display:swap;font-family:");
 
             return entireCriticalBlock.ToString();
         }
 
-        private static string DownloadCssFile(string url)
+        private static string DownloadCssFile(string url, bool acceptJs = false)
         {
             string cssFileCacheKey = $"speedy-external-css-{url}";
             string cssFileCache = HttpContext.Current.Cache[cssFileCacheKey] as string;
@@ -161,6 +156,13 @@ namespace Sitecore.Foundation.Speedy.Speedy
                 ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
                 var client = new RestClient(host + url);
                 var request = new RestRequest(Method.GET) { RequestFormat = DataFormat.Json };
+
+                if(acceptJs)
+                {
+                    request.AddHeader("Accept", "application/javascript");
+                    request.AddHeader("Content-Type", "application/javascript");
+                }
+
                 // or automatically deserialize result
                 // return content type is sniffed but can be explicitly set via RestClient.AddHandler();
                 try
@@ -242,7 +244,9 @@ namespace Sitecore.Foundation.Speedy.Speedy
                                         select $"<link async=\"true\" href=\"{link}\" rel=\"stylesheet\" />")
                 {
                     var cssFileUri = item.Replace($"<link async=\"true\" href=\"", string.Empty).Replace($"\" rel=\"stylesheet\" />", string.Empty);
+                    var prefetchInclude = item.Replace($"async=\"true\"", $"async=\"true\" rel=\"prefetch\"");
                     result.PlainStyles.Add(cssFileUri);
+                    result.PrefetchStyles.Add(prefetchInclude);
                     result.Styles.Add(item);
                 }
                 foreach (string item2 in from link in assetLinks.Scripts
@@ -267,15 +271,19 @@ namespace Sitecore.Foundation.Speedy.Speedy
             if (AreScriptsDeferred)
             {
                 string deferredSriptsCacheKey = $"speedy-deferred-page-scripts-{Sitecore.Context.Item.ID}";
+                string preloadSriptsCacheKey = $"speedy-preload-page-scripts-{Sitecore.Context.Item.ID}";
                 string deferredSriptsCache = HttpContext.Current.Cache[deferredSriptsCacheKey] as string;
-                if (!string.IsNullOrWhiteSpace(deferredSriptsCache))
+                string preloadSriptsCache = HttpContext.Current.Cache[preloadSriptsCacheKey] as string;
+                if (!string.IsNullOrWhiteSpace(deferredSriptsCache) && !string.IsNullOrWhiteSpace(preloadSriptsCache))
                 {
                     linkSpeedy.ClientScriptsRendered = deferredSriptsCache;
+                    linkSpeedy.ClientScriptsPreload = preloadSriptsCache;
                 }
                 else
                 {
                     assetsGenerator.GenerateSpeedyScripts(linkSpeedy);
                     CacheObject(deferredSriptsCacheKey, linkSpeedy.ClientScriptsRendered, GetDependencies(null));
+                    CacheObject(preloadSriptsCacheKey, linkSpeedy.ClientScriptsPreload, GetDependencies(null));
                 }
             }
             else
@@ -300,7 +308,7 @@ namespace Sitecore.Foundation.Speedy.Speedy
                     comma = string.Empty;
 
                 result += $"'{scripts}'{comma}";
-                resultPreloaded += $"<link rel=\"preload\" href=\"{scripts}\" as=\"script\">";
+                resultPreloaded += $"<link rel=\"prefetch\" href=\"{scripts}\" as=\"script\">";
                 count++;
             }
 

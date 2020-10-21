@@ -1,8 +1,8 @@
 ﻿---
-ID: "3bd89967-8179-41eb-b4d0-30bb21f892fe"
-Parent: "e4d3ba94-e967-477f-8e3d-de3bda8712a3"
+ID: "fd516369-705f-42ca-b734-f4f13198bdab"
+Parent: "c4cbadc5-87ef-4593-8a51-d71a7be4626d"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint/RemoteFontsToSwitch
+Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Remote API Parameters/RemoteDuplicatesToRemove
 DB: master
 SharedFields:
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
@@ -10,7 +10,7 @@ SharedFields:
   Value: "Multi-Line Text"
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
-  Value: 1000
+  Value: 100
 Languages:
 - Language: en
   Versions:
@@ -18,4 +18,8 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20190823T002245Z
+      Value: 20201010T092814Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

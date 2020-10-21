@@ -8,6 +8,7 @@ namespace Sitecore.Foundation.Speedy.Model
         public bool SpeedyEnabled { get; set; }
         public bool SpeedyJsEnabled { get; set; }
         public bool SpeedyCssEnabled { get; set; }
+        public string VanillaJavasript { get; set; }
         public bool ByPassNotDetected { get; set; }
         public AssetLinks AssetLinks { get; set; }
         public string CriticalHtml { get; set; }

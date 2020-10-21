@@ -1,8 +1,8 @@
 ﻿---
 ID: "f4006c48-6487-43b7-8d65-a3c32c637e29"
-Parent: "e4d3ba94-e967-477f-8e3d-de3bda8712a3"
+Parent: "c4cbadc5-87ef-4593-8a51-d71a7be4626d"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint/RemoteFontMap
+Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Remote API Parameters/RemoteFontMap
 DB: master
 SharedFields:
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"

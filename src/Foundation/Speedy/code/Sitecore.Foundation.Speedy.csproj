@@ -45,10 +45,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Async\AsyncHelpers.cs" />
-    <Compile Include="Command\SpeedyRunCommand.cs" />
-    <Compile Include="Controllers\CriticalController.cs" />
-    <Compile Include="Events\SpeedyPageOnSaveEvent.cs" />
     <Compile Include="Extensions\QuickExtensions.cs" />
     <Compile Include="Models\API\ResponseWrapper\ApiErrorResponse.cs" />
     <Compile Include="Models\API\ResponseWrapper\IGenericResponse.cs" />
@@ -56,19 +52,7 @@
     <Compile Include="Models\API\ResponseWrapper\IWebApiResponse.cs" />
     <Compile Include="Models\API\ResponseWrapper\ServiceError.cs" />
     <Compile Include="Models\API\ResponseWrapper\WebApiResponse.cs" />
-    <Compile Include="Model\FontMap.cs" />
-    <Compile Include="Model\FontMapHolder.cs" />
-    <Compile Include="Model\RemoteCriticalParameters.cs" />
-    <Compile Include="Model\CriticalJson.cs" />
     <Compile Include="Model\SpeedyLayoutModel.cs" />
-    <Compile Include="RegisterCriticalRoutes.cs" />
-    <Compile Include="Repositories\CriticalCSSRepository.cs" />
-    <Compile Include="Repositories\ICriticalCSSRepository.cs" />
-    <Compile Include="Scheduler\AllTemplatesSearchResultItem.cs" />
-    <Compile Include="Scheduler\SyncCritical.cs" />
-    <Compile Include="Services\CriticalGenerationLocal.cs" />
-    <Compile Include="Services\CriticalGenerationGateway.cs" />
-    <Compile Include="Services\ICriticalGenerationGateway.cs" />
     <Compile Include="Settings\SpeedyGenerationSettings.cs" />
     <Compile Include="SpeedyConstants.cs" />
     <Compile Include="Speedy\SpeedyAssetLinks.cs" />
@@ -78,24 +62,14 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.Serialization.config" />
-    <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.Events.config" />
-    <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.Settings.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.API.config" />
-    <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.Routes.config" />
-    <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.Commands.config" />
-    <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.Services.config" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
-    <Content Include="Scripts\Critical.js" />
-    <Content Include="Scripts\main.js" />
+    <Content Include="scripts\mobile-vanilla-critical.js" />
     <Content Include="Views\SxaLayout\SxaLayoutPageSpeed.cshtml" />
     <Content Include="Views\Speedy\SpeedyJavascriptLoader.cshtml" />
     <Content Include="Views\Speedy\SpeedyStylesLoader.cshtml" />
     <Content Include="Views\Speedy\OriginalStylesLoader.cshtml" />
     <Content Include="Views\Speedy\OriginalScriptsLoader.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <None Include="Scripts\Critical.json" />
     <Content Include="Views\Speedy\Critical.cshtml" />
     <Content Include="Views\Speedy\SpeedyJavascriptLoaderSettings.cshtml" />
     <Content Include="Views\Speedy\SpeedyJavascriptPreLoader.cshtml" />

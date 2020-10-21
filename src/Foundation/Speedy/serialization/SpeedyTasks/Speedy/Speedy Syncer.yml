@@ -2,7 +2,7 @@
 ID: "0c11160d-dfff-4672-99ba-0e17006c408c"
 Parent: "dede2324-6029-46eb-9e33-3568327b508d"
 Template: "70244923-fa84-477c-8cbd-62f39642c42b"
-Path: /sitecore/system/Tasks/Schedules/Speedy/Critical Syncer
+Path: /sitecore/system/Tasks/Schedules/Speedy/Speedy Syncer
 DB: master
 SharedFields:
 - ID: "50be51f8-746d-4dc2-9c3b-b14abc5ce9b7"

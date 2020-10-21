@@ -18,7 +18,8 @@
         },
         init: function () {
 			Speedy.variables.firstRunCompleted = Speedy.tools.checkCookie(Speedy.settings.cookieName);
-            Speedy.fallbackExperienceBeforeLoad();
+            if(Speedy.settings.jsDeferLoadForMilliseconds > 0)
+                Speedy.fallbackExperienceBeforeLoad();
             if (Speedy.variables.firstRunCompleted && Speedy.settings.isFirstPassOnlyCookieEnabled) {
 				Speedy.dynamicLoad();
             } else {
@@ -127,8 +128,14 @@
             Speedy.tools.runSelector(Speedy.settings.fallbackHideSelector.display_unset.selector, 'unset');
             if (Speedy.settings.fallbackHideSelector.display_block.selector)
                 Speedy.tools.runSelector(Speedy.settings.fallbackHideSelector.display_block.selector, 'block');
+
+			if(typeof(Lazy) != 'undefined' && Lazy && Lazy.lazyLoading) {
+				Lazy.lazyLoading.prepareNavigationImages();
+			}
 		}, Speedy.settings.fallBackExperienceDelay);
     };
 
     Speedy.init();
+
+    @Html.Raw(model.VanillaJavasript)
 </script>

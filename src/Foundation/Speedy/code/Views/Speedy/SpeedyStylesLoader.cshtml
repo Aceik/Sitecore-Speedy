@@ -1,29 +1,11 @@
 ﻿@using Sitecore.Foundation.Speedy.Model
 @using Sitecore.Foundation.Speedy.Speedy
-
 @{
     SpeedyLayoutModel model = SpeedyAssetLinksGenerator.GetSpeedyLayoutModel();
     var assetLinks = (SpeedyAssetLinks)model.AssetLinks;
 }
-<noscript id="deferred-styles">
-    @foreach (string style in assetLinks.Styles)
-    {
-        @Html.Raw(style)
-    }
-</noscript>
-<script>
-    var loadDeferredStyles = function () {
-        var addStylesNode = document.getElementById("deferred-styles");
-        var replacement = document.createElement("div");
-        replacement.innerHTML = addStylesNode.textContent;
-        document.body.appendChild(replacement);
-        addStylesNode.parentElement.removeChild(addStylesNode);
-    };
-    if(!Speedy && !Speedy.settings) {var Speedy = {}; Speedy.settings = {}; Speedy.settings.stylesDeferMilliseconds = 6000;}
-    var raf = requestAnimationFrame ||
-        mozRequestAnimationFrame ||
-        webkitRequestAnimationFrame ||
-        msRequestAnimationFrame;
-    if (raf) raf(function () { window.setTimeout(loadDeferredStyles, Speedy.settings.stylesDeferMilliseconds); });
-    else window.addEventListener('load', loadDeferredStyles);
-</script>
+
+@foreach (string style in assetLinks.PrefetchStyles)
+{
+    @Html.Raw(style)
+}
