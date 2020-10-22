@@ -63,6 +63,8 @@
     <Content Include="packages.config" />
     <Content Include="App_Config\Include\Speedy\Foundation\Foundation.Speedy.Serialization.config" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="scripts\lazy.js" />
+    <Content Include="scripts\mobile-vanilla-critical.css" />
     <Content Include="scripts\mobile-vanilla-critical.js" />
     <Content Include="Views\SxaLayout\SxaLayoutPageSpeed.cshtml" />
     <Content Include="Views\Speedy\SpeedyJavascriptLoader.cshtml" />

@@ -18,6 +18,7 @@ namespace Sitecore.Foundation.Speedy
             public static readonly string OnePassCookieEnabled = "OnePassCookieEnabled";
             public static readonly string FallbackSelectorFieldName = "CssFallbackSelector";
             public static readonly string MobileCriticalJavascript = "MobileCriticalJavascript";
+            public static readonly string EveryLoadVanillaJavscriptFile = "EveryLoadVanillaJavscriptFile";
         }
 
         public struct CookieNames
@@ -35,6 +36,8 @@ namespace Sitecore.Foundation.Speedy
                 public static readonly string DeferJSLoadForMilliseconds = "DeferJSLoadForMilliseconds";
                 public static readonly string DeferCSSLoadForMilliseconds = "DeferCSSLoadForMilliseconds";
                 public static readonly string DeferFallbackForMilliseconds = "DeferFallbackForMilliseconds";
+                public static readonly string EnableDebugMode = "EnableDebugMode";
+                
             }
 
             public struct Database

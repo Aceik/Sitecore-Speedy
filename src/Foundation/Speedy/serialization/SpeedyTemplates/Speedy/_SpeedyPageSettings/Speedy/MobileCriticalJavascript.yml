@@ -1,24 +1,28 @@
 ﻿---
-ID: "fd516369-705f-42ca-b734-f4f13198bdab"
-Parent: "c4cbadc5-87ef-4593-8a51-d71a7be4626d"
+ID: "71f71177-4015-47c5-a687-1d3cc203c5d8"
+Parent: "4b4cbb97-0c6a-4710-bc7a-c4a43e6624b4"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Remote API Parameters/RemoteDuplicatesToRemove
+Path: /sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/MobileCriticalJavascript
 DB: master
 SharedFields:
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
-  Value: "Multi-Line Text"
+  Value: "Single-Line Text"
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
-  Value: 100
+  Value: 800
 Languages:
 - Language: en
+  Fields:
+  - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
+    Hint: Title
+    Value: Mobile Critical Javascript (Vanilla Javasript that is rendered inline immediately)
   Versions:
   - Version: 1
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20201010T092814Z
+      Value: 20201021T115536Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |

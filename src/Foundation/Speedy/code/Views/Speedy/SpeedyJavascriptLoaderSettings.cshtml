@@ -11,5 +11,6 @@ Speedy.settings = {
     fallBackExperienceDelay: Speedy.isMobile  ? @Html.Raw(SpeedyGenerationSettings.GetDeferFallbackMilliseconds()): 0,
     stylesDeferMilliseconds: @Html.Raw(SpeedyGenerationSettings.GetDeferCSSLoadForMilliseconds()),
     fallbackHideSelector : @Html.Raw(SpeedyGenerationSettings.GetFallbackExperienceSelector()),
-    isFirstPassOnlyCookieEnabled : @Html.Raw(Sitecore.Context.Item.IsOnePassCookieEnabled().ToString().ToLower())
+    isFirstPassOnlyCookieEnabled : @Html.Raw(Sitecore.Context.Item.IsOnePassCookieEnabled().ToString().ToLower()),
+    fallBackExperienceComplete : false
     };

@@ -5,42 +5,9 @@ Template: "b06f7c55-9717-4bfa-86d5-875b2ddac17c"
 Path: /sitecore/system/Settings/Foundation/Speedy/Speedy Global Settings
 DB: master
 SharedFields:
-- ID: "5a158a54-b524-483c-a3a0-6e2a5fcc5cbe"
-  Hint: EndpointURL
-  Value: "http://localhost:3000"
 - ID: "af9fa73f-f0a8-4d58-8dea-cb2169147c87"
   Hint: DeferJSLoadForMilliseconds
   Value: 6000
-- ID: "f4006c48-6487-43b7-8d65-a3c32c637e29"
-  Hint: RemoteFontMap
-  Value: |
-    { "fontMap": [
-        {
-          "find": "/Users/sitecore/AppData/Local/fonts/tahoma/",
-          "replace": "/-/media/themes/anziif/anziif-theme/fonts/tahoma/"
-        },
-        {
-          "find": "/Users/sitecore/AppData/Local/fonts/fontawesome/",
-          "replace": "/-/media/themes/anziif/anziif-theme/fonts/fontawesome/"
-        },            
-        {
-          "find": "content:\"\"",
-          "replace": ""
-        },
-        {
-          "find": "content:\"\"",
-          "replace": ""
-        },
-        {
-          "find": "url(/C:/-/media/",
-          "replace": "url(/-/media/"
-        },
-        {
-          "find": "@font-face{",
-          "replace": "@font-face{font-display: swap;"
-        }
-      ]
-    }
 Languages:
 - Language: en
   Versions:
@@ -53,3 +20,7 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\admin
+    - ID: "737ca5d6-f33f-428c-be56-8f1f7dcec8d1"
+      Hint: EnableDebugMode
+      Type: Checkbox
+      Value: 0

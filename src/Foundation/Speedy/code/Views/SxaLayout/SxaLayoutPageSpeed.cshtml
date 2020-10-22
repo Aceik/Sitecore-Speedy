@@ -24,6 +24,9 @@
 <html class="no-js" lang="@Model.Item.Language.Name">
 <!--<![endif]-->
 <head>
+    <script>
+        @Html.Raw(model.VanillaJavasriptAllLoads)
+    </script>
     @if (!model.SpeedyCssEnabled)
     {
         @Html.Sitecore().Rendering("{B623677C-0D6A-42C1-8D96-22BF2C0DCC87}", new { Cacheable = true, CacheKey = model.CacheKey + "OriginalStylesLoader" })

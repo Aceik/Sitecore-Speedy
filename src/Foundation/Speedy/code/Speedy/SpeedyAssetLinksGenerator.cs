@@ -53,6 +53,10 @@ namespace Sitecore.Foundation.Speedy.Speedy
         {
             string text = GetPageKey(HttpContext.Current.Request.Url.AbsolutePath) + "speedysettings";
             SpeedyLayoutModel speedyModel = HttpContext.Current.Cache[text] as SpeedyLayoutModel;
+
+            if (SpeedyGenerationSettings.IsDebugModeEnabled())
+                speedyModel = null;
+
             if (speedyModel != null)
             {
                 return speedyModel;
@@ -68,17 +72,24 @@ namespace Sitecore.Foundation.Speedy.Speedy
 
             if (!model.ByPassNotDetected)
                 model.SpeedyEnabled = false;
+            
+            model.VanillaJavasriptAllLoads = GetVanillaJavascriptAllLoades();
 
             if (model.SpeedyEnabled && model.ByPassNotDetected)
             {
                 var speedyLinks = GenerateDeferedLinks(new ThemesProvider());
                 model.AssetLinks = speedyLinks;
                 model.VanillaJavasript = GetVanillaJavascript();
+                
                 model.SpeedyJsEnabled = SpeedyGenerationSettings.IsCriticalJavascriptEnabledAndPossible(Sitecore.Context.Item);
                 model.SpeedyCssEnabled = SpeedyGenerationSettings.IsCriticalStylesEnabled(Sitecore.Context.Item);
 
                 string largeCiticalCssBlockCacheKey = $"speedy-entire-css-critical-page-block-{Sitecore.Context.Item.ID}";
                 string largeCriticalCssBlockCache = HttpContext.Current.Cache[largeCiticalCssBlockCacheKey] as string;
+
+                if (SpeedyGenerationSettings.IsDebugModeEnabled())
+                     largeCriticalCssBlockCache = null;
+
                 if (!string.IsNullOrWhiteSpace(largeCriticalCssBlockCache))
                 {
                     model.CriticalHtml = largeCriticalCssBlockCache;
@@ -101,6 +112,15 @@ namespace Sitecore.Foundation.Speedy.Speedy
         private static string GetVanillaJavascript()
         {
             string url = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.MobileCriticalJavascript].Value;
+            if (!string.IsNullOrWhiteSpace(url))
+                return DownloadCssFile(url, true);
+            else
+                return string.Empty;
+        }
+
+        private static string GetVanillaJavascriptAllLoades()
+        {
+            string url = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.EveryLoadVanillaJavscriptFile].Value;
             if (!string.IsNullOrWhiteSpace(url))
                 return DownloadCssFile(url, true);
             else
@@ -144,6 +164,10 @@ namespace Sitecore.Foundation.Speedy.Speedy
         {
             string cssFileCacheKey = $"speedy-external-css-{url}";
             string cssFileCache = HttpContext.Current.Cache[cssFileCacheKey] as string;
+
+            if (SpeedyGenerationSettings.IsDebugModeEnabled())
+                cssFileCache = null;
+
             if (!string.IsNullOrWhiteSpace(cssFileCache))
             {
                 return cssFileCache;
@@ -186,6 +210,10 @@ namespace Sitecore.Foundation.Speedy.Speedy
             CorePipeline.Run("assetService", assetsArgs);
             string text = GenerateCacheKey(assetsArgs.GetHashCode()) + "speedylinks-" + Sitecore.Context.Item.ID;
             SpeedyAssetLinks assetLinks = HttpContext.Current.Cache[text] as SpeedyAssetLinks;
+
+            if (SpeedyGenerationSettings.IsDebugModeEnabled())
+                assetLinks = null;
+
             if (assetLinks == null || _configuration.RequestAssetsOptimizationDisabled)
             {
                 assetLinks = new SpeedyAssetLinks();
@@ -274,6 +302,13 @@ namespace Sitecore.Foundation.Speedy.Speedy
                 string preloadSriptsCacheKey = $"speedy-preload-page-scripts-{Sitecore.Context.Item.ID}";
                 string deferredSriptsCache = HttpContext.Current.Cache[deferredSriptsCacheKey] as string;
                 string preloadSriptsCache = HttpContext.Current.Cache[preloadSriptsCacheKey] as string;
+
+                if (SpeedyGenerationSettings.IsDebugModeEnabled())
+                {
+                    deferredSriptsCache = null;
+                    preloadSriptsCache = null;
+                }
+
                 if (!string.IsNullOrWhiteSpace(deferredSriptsCache) && !string.IsNullOrWhiteSpace(preloadSriptsCache))
                 {
                     linkSpeedy.ClientScriptsRendered = deferredSriptsCache;

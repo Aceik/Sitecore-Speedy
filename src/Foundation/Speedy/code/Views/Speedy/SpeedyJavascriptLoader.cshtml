@@ -131,7 +131,8 @@
 
 			if(typeof(Lazy) != 'undefined' && Lazy && Lazy.lazyLoading) {
 				Lazy.lazyLoading.prepareNavigationImages();
-			}
+            }
+            Speedy.settings.fallBackExperienceComplete = true;
 		}, Speedy.settings.fallBackExperienceDelay);
     };
 

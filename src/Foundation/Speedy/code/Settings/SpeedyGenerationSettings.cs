@@ -69,6 +69,11 @@ namespace Sitecore.Foundation.Speedy.Settings
             return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.CookieExpiration].Value;
         }
 
+        public static bool IsDebugModeEnabled()
+        {
+            return GetGlobalSettingsItem().IsEnabled(SpeedyConstants.GlobalSettings.Fields.EnableDebugMode);
+        }
+
         public static string GetDeferJSLoadForMilliseconds()
         {
             return GetGlobalSettingsItemFromContext().Fields[SpeedyConstants.GlobalSettings.Fields.DeferJSLoadForMilliseconds].Value;

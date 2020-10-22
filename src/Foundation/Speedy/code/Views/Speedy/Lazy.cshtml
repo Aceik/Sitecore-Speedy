@@ -1,134 +1,128 @@
-﻿<!-- https://cdn.jsdelivr.net/npm/progressively/dist/progressively.min.js -->
-<script>
-!function(e,t){"function"==typeof define&&define.amd?define(function(){return t(e)}):"object"==typeof exports?module.exports=t:e.progressively=t(e)}(this,function(e){"use strict";function t(e,t){var n={};for(var o in e)n[o]=t.hasOwnProperty(o)?t[o]:e[o];return n}function n(e){var t=e.getBoundingClientRect(),n=t.top,o=t.height;e=e.parentNode;do{if(t=e.getBoundingClientRect(),!(n<=t.bottom))return!1;if(n+o<=t.top)return!1;e=e.parentNode}while(e!==document.body&&e!==document);return n<=document.documentElement.clientHeight}function o(e,t){setTimeout(function(){var n=new Image;n.onload=function(){e.classList.remove("progressive--not-loaded"),e.classList.add("progressive--is-loaded"),e.classList.contains("progressive__bg")?e.style["background-image"]='url("'+this.src+'")':e.src=this.src,d(e)},r()<=t.smBreakpoint&&e.getAttribute("data-progressive-sm")?(e.classList.add("progressive--loaded-sm"),n.src=e.getAttribute("data-progressive-sm")):(e.classList.remove("progressive--loaded-sm"),n.src=e.getAttribute("data-progressive"))},t.delay)}function r(){return Math.max(document.documentElement.clientWidth,window.innerWidth||0)}function i(){c||(clearTimeout(c),c=setTimeout(function(){l.check(),l.render(),c=null},s.throttle))}var s,c,d,a,l={};return d=function(){},s={throttle:300,delay:100,onLoadComplete:function(){},onLoad:function(){},smBreakpoint:600},l.init=function(n){n=n||{},s=t(s,n),d=s.onLoad||d,a=[].slice.call(document.querySelectorAll(".progressive__img, .progressive__bg")),l.render(),document.addEventListener?(e.addEventListener("scroll",i,!1),e.addEventListener("resize",i,!1),e.addEventListener("load",i,!1)):(e.attachEvent("onscroll",i),e.attachEvent("onresize",i),e.attachEvent("onload",i))},l.render=function(){for(var e,t=a.length-1;t>=0;--t)e=a[t],n(e)&&e.classList.contains("progressive--not-loaded")&&(o(e,s),a.splice(t,1));this.check()},l.check=function(){a.length||(s.onLoadComplete(),this.drop())},l.drop=function(){document.removeEventListener?(e.removeEventListener("scroll",i),e.removeEventListener("resize",i)):(e.detachEvent("onscroll",i),e.detachEvent("onresize",i)),clearTimeout(c)},l});
-</script>
-<script>
-    var Lazy = {
-        tools: {
-            setCookie: function (cname, cvalue, exdays) {
-                var d = new Date();
-                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-                var expires = "expires=" + d.toUTCString();
-                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-            },
-            getCookie: function (cname) {
-                var name = cname + "=";
-                var ca = document.cookie.split(';');
-                for (var i = 0; i < ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) == ' ') {
-                        c = c.substring(1);
-                    }
-                    if (c.indexOf(name) == 0) {
-                        return c.substring(name.length, c.length);
-                    }
-                }
-                return "";
-            },
-            checkCookie: function (name) {
-                var user = Lazy.tools.getCookie(name);
-                if (user != "") {
-                    return true;
-                } else {
-                    return false;
-                }
-            },
-            runSelector: function (value, displayValue) {
-                var el = document.querySelectorAll(value);
-                if (el)
-                    el.forEach(function (item) {
-                        item.style.display = displayValue;
-                    });
-            }
-        },
-		lazyLoading: {   // https://www.darrenlester.com/blog/instantly-loading-cached-images
-			onceOffCarousel : false,
-			onceOffOthers : false,
-			bootup : function() {
-				if (Lazy.tools.checkCookie("habitatlazy")) {
+﻿!function(e,t){"function" == typeof define && define.amd ? define(function () { return t(e) }) : "object" == typeof exports ? module.exports = t : e.progressively = t(e)}(this,function(e){"use strict";function t(e,t){var n={ };for(var o in e)n[o]=t.hasOwnProperty(o)?t[o]:e[o];return n}function n(e){var t=e.getBoundingClientRect(),n=t.top,o=t.height;e=e.parentNode;do{if(t=e.getBoundingClientRect(),!(n<=t.bottom))return!1;if(n+o<=t.top)return!1;e=e.parentNode}while(e!==document.body&&e!==document);return n<=document.documentElement.clientHeight}function o(e,t){setTimeout(function () { var n = new Image; n.onload = function () { e.classList.remove("progressive--not-loaded"), e.classList.add("progressive--is-loaded"), e.classList.contains("progressive__bg") ? e.style["background-image"] = 'url("' + this.src + '")' : e.src = this.src, d(e) }, r() <= t.smBreakpoint && e.getAttribute("data-progressive-sm") ? (e.classList.add("progressive--loaded-sm"), n.src = e.getAttribute("data-progressive-sm")) : (e.classList.remove("progressive--loaded-sm"), n.src = e.getAttribute("data-progressive")) }, t.delay)}function r(){return Math.max(document.documentElement.clientWidth,window.innerWidth||0)}function i(){c || (clearTimeout(c), c = setTimeout(function () { l.check(), l.render(), c = null }, s.throttle))}var s,c,d,a,l={ };return d=function(){ },s={throttle:300,delay:100,onLoadComplete:function(){ },onLoad:function(){ },smBreakpoint:600},l.init=function(n){n = n || {}, s = t(s, n), d = s.onLoad || d, a = [].slice.call(document.querySelectorAll(".progressive__img, .progressive__bg")), l.render(), document.addEventListener ? (e.addEventListener("scroll", i, !1), e.addEventListener("resize", i, !1), e.addEventListener("load", i, !1)) : (e.attachEvent("onscroll", i), e.attachEvent("onresize", i), e.attachEvent("onload", i))},l.render=function(){for(var e,t=a.length-1;t>=0;--t)e=a[t],n(e)&&e.classList.contains("progressive--not-loaded")&&(o(e,s),a.splice(t,1));this.check()},l.check=function(){a.length || (s.onLoadComplete(), this.drop())},l.drop=function(){document.removeEventListener ? (e.removeEventListener("scroll", i), e.removeEventListener("resize", i)) : (e.detachEvent("onscroll", i), e.detachEvent("onresize", i)), clearTimeout(c)},l});
 
-					const lazyImages = Array.prototype.slice.call(document.querySelectorAll('img[data-progressive]'));
-				    Promise.all(lazyImages.map(img => {
-						const src = img.dataset.progressive;
-						img.classList.add('progressive--is-loaded');
-						img.classList.add('progressive__img');
-
-						// The image is cached - load it
-						img.setAttribute('src', src);
-						if(img.datasrc && img.datasrc.alt)
-							img.setAttribute('alt', img.datasrc.alt);
-						img.removeAttribute('data-progressive');
-						img.removeAttribute('data-alt');
-				  })).then((values) => 
-                    {
-                        console.log("images fast loaded fromt cache");
-                    }
-                  );
-				}
-				else {
-                    console.log("starting lazy loading of images");
-                    Lazy.lazyLoading.pollCarouselLoaded();
-                    Lazy.tools.setCookie("habitatlazy")
-                }	
-			},
-			prepareNavigationImages : function() {
-				var highlightedItems = document.querySelectorAll(".field-navigation-image > img, .megadrop-secondary-main-image > a > img");
-
-				highlightedItems.forEach(function(myImage) {
-					//progressively.check(myImage);
-					myImage.src = myImage.getAttribute('data-progressive');
-					myImage.classList.remove("progressive--not-loaded");
-					myImage.classList.add("progressive--is-loaded");
-				});
-			}, 
-			startProgressively : function() {
-				progressively.init({
-					delay: 2000,
-					throttle: 200,
-					smBreakpoint: 600,
-					onLoad: function(elem) {
-						//console.log(elem);
-					},
-					onLoadComplete: function() {
-						//console.log('All images have finished loading!');
-					}
-				});
-			    Lazy.lazyLoading.beginPoll();
-			}, 
-			beginPoll : function() {
-				if(progressively && progressively.render)
-					progressively.render();
-							
-				setTimeout(function(){
-				   Lazy.lazyLoading.beginPoll()
-				}, 500); 
-			}, 
-			pollCarouselLoaded : function() {
-				if(!Lazy.lazyLoading.onceOffCarousel) {
-					var highlightedItems = document.querySelectorAll("[data-variantfieldname*='BlurredImage']");
-					highlightedItems.forEach(function(myImage) {
-						myImage.classList.add('progressive__img');
-						myImage.classList.add('progressive--not-loaded');
-						Lazy.lazyLoading.onceOffCarousel = true;
-					});
-				}else {
-					if(!Lazy.lazyLoading.onceOffOthers) 
-					{
-						Lazy.lazyLoading.prepareNavigationImages();
-						Lazy.lazyLoading.startProgressively();
-						Lazy.lazyLoading.onceOffOthers = true;
-					}
-					return;
-				}
-							
-				setTimeout(function(){
-				   Lazy.lazyLoading.pollCarouselLoaded();
-				}, 500); 
+var Lazy = {
+	tools: {
+	setCookie: function (cname, cvalue, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+		var expires = "expires=" + d.toUTCString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	},
+	getCookie: function (cname) {
+		var name = cname + "=";
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length;) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
 			}
 		}
-    };
-	
-	setTimeout(function(){
-	   Lazy.lazyLoading.bootup();
-	}, 100); 
-</script>
+		return "";
+	},
+	checkCookie: function (name) {
+		var user = Lazy.tools.getCookie(name);
+		if (user != "") {
+			return true;
+		} else {
+			return false;
+		}
+	},
+	runSelector: function (value, displayValue) {
+		var el = document.querySelectorAll(value);
+		if (el)
+			el.forEach(function (item) {
+	item.style.display = displayValue;
+			});
+	}
+},
+lazyLoading: {
+	onceOffCarousel : false,
+	onceOffOthers : false,
+	bootup : function() {
+		if (Lazy.tools.checkCookie("habitatlazy")) {
+
+			const lazyImages = Array.prototype.slice.call(document.querySelectorAll('img[data-progressive]'));
+			Promise.all(lazyImages.map(img => {
+				const src = img.dataset.progressive;
+				img.classList.add('progressive--is-loaded');
+				img.classList.add('progressive__img');
+
+				// The image is cached - load it
+				img.setAttribute('src', src);
+				if(img.datasrc && img.datasrc.alt)
+					img.setAttribute('alt', img.datasrc.alt);
+				img.removeAttribute('data-progressive');
+				img.removeAttribute('data-alt');
+			})).then((values) =>
+			{
+	console.log("images fast loaded fromt cache");
+			}
+			);
+		}
+		else {
+	console.log("starting lazy loading of images");
+			Lazy.lazyLoading.pollCarouselLoaded();
+			Lazy.tools.setCookie("habitatlazy")
+		}
+	},
+	prepareNavigationImages : function() {
+		var highlightedItems = document.querySelectorAll(".field-navigation-image > img, .megadrop-secondary-main-image > a > img");
+
+		highlightedItems.forEach(function(myImage) {
+	//progressively.check(myImage);
+	myImage.src = myImage.getAttribute('data-progressive');
+			myImage.classList.remove("progressive--not-loaded");
+			myImage.classList.add("progressive--is-loaded");
+		});
+	},
+	startProgressively : function() {
+	progressively.init({
+		delay: 2000,
+		throttle: 200,
+		smBreakpoint: 600,
+		onLoad: function (elem) {
+		},
+		onLoadComplete: function () {
+		}
+	});
+		Lazy.lazyLoading.beginPoll();
+	},
+	beginPoll : function() {
+		if(progressively && progressively.render)
+			progressively.render();
+
+		setTimeout(function(){
+	Lazy.lazyLoading.beginPoll()
+}, 500);
+	},
+	pollCarouselLoaded : function() {
+		if(!Lazy.lazyLoading.onceOffCarousel) {
+			var highlightedItems = document.querySelectorAll("[data-variantfieldname*='BlurredImage']");
+			highlightedItems.forEach(function(myImage) {
+	myImage.classList.add('progressive__img');
+				myImage.classList.add('progressive--not-loaded');
+				Lazy.lazyLoading.onceOffCarousel = true;
+			});
+		}else {
+			if(!Lazy.lazyLoading.onceOffOthers)
+			{
+	Lazy.lazyLoading.prepareNavigationImages();
+				Lazy.lazyLoading.startProgressively();
+				Lazy.lazyLoading.onceOffOthers = true;
+			}
+			return;
+		}
+
+		setTimeout(function(){
+	Lazy.lazyLoading.pollCarouselLoaded();
+		}, 500);
+	}
+}
+};
+
+setTimeout(function(){
+	Lazy.lazyLoading.bootup();
+}, 100); 
