@@ -44,7 +44,7 @@ namespace Sitecore.Foundation.Speedy.Settings
             return item.Fields[SpeedyConstants.Fields.EnableJavascriptLoadDefer] != null && item.IsEnabled(SpeedyConstants.Fields.EnableJavascriptLoadDefer);
         }
 
-        private static Item GetGlobalSettingsItem()
+        public static Item GetGlobalSettingsItem()
         {
             return GetMasterDatabase().GetItem(SpeedyConstants.GlobalSettings.SpeedyGlobalSettingsId);
         }

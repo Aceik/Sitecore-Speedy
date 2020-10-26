@@ -24,6 +24,8 @@ using System.Web.Caching;
 using Sitecore.XA.Foundation.SitecoreExtensions.Repositories;
 using System.Web.UI;
 using System.Net;
+using Newtonsoft.Json;
+using Sitecore.Foundation.Speedy.Model.Filters;
 
 namespace Sitecore.Foundation.Speedy.Speedy
 {
@@ -137,13 +139,43 @@ namespace Sitecore.Foundation.Speedy.Speedy
         private static string BuildEntireCssBlock(SpeedyAssetLinks assetLinks)
         {
             StringBuilder entireCriticalBlock = new StringBuilder();
-            foreach(var style in assetLinks.PlainStyles)
+
+            // Lookup the filters
+            var nameValueListString = SpeedyGenerationSettings.GetGlobalSettingsItem()[SpeedyConstants.GlobalSettings.Fields.CSSFilter];
+
+            //Converts the string to NameValueCollection
+            System.Collections.Specialized.NameValueCollection nameValueList = Sitecore.Web.WebUtil.ParseUrlParameters(nameValueListString);
+
+            foreach (var style in assetLinks.PlainStyles)
             {
                 string uri = style.ValueOrEmpty();
                 var cssContents = new StringBuilder(DownloadCssFile(uri));
                 string[] parts = uri.Split('/');
                 if (cssContents.Length > 10 && parts.Length > 5)
                 {
+                    try
+                    {
+                        var withoutTail = uri.Split('?')[0];
+                        var filterMatch = nameValueList[withoutTail.ToLower()];
+                        if (filterMatch != null)
+                        {
+                            var filters = JsonConvert.DeserializeObject<Filters>(filterMatch.ValueOrEmpty());
+                            foreach (var filter in filters.FilterList)
+                            {
+                                string contents = cssContents.ToString();
+                                if (contents.Contains(filter.Start) && contents.Contains(filter.End))
+                                {
+                                    int startIndex = contents.IndexOf(filter.Start);
+                                    int endIndex = contents.IndexOf(filter.End);
+                                    cssContents = cssContents.Remove(startIndex, endIndex - startIndex);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+
                     string replacementSection = $"/-/media/Themes/{parts[4]}/{parts[5]}/fonts/";
 
                     // Yes as crazy as it seems all three of the following combos were in the habitat example site. So lets deal with all the cases

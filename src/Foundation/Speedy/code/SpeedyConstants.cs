@@ -37,7 +37,7 @@ namespace Sitecore.Foundation.Speedy
                 public static readonly string DeferCSSLoadForMilliseconds = "DeferCSSLoadForMilliseconds";
                 public static readonly string DeferFallbackForMilliseconds = "DeferFallbackForMilliseconds";
                 public static readonly string EnableDebugMode = "EnableDebugMode";
-                
+                public static readonly string CSSFilter = "CSSFilter";
             }
 
             public struct Database
