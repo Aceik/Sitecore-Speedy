@@ -2,7 +2,7 @@
 ID: "e4d3ba94-e967-477f-8e3d-de3bda8712a3"
 Parent: "b06f7c55-9717-4bfa-86d5-875b2ddac17c"
 Template: "e269fbb5-3750-427a-9149-7aa950b49301"
-Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint
+Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Global Speed Settings
 DB: master
 Languages:
 - Language: en

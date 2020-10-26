@@ -1,8 +1,8 @@
 ﻿---
-ID: "dc098258-5fbb-4026-9ac3-4dd167af2788"
-Parent: "cd50f100-0fae-4a18-94f2-a304fcceec98"
-Template: "cd50f100-0fae-4a18-94f2-a304fcceec98"
-Path: /sitecore/templates/Foundation/Speedy/_Critical/__Standard Values
+ID: "0e5425e1-76a7-44bb-9363-438bbf6b584d"
+Parent: "afb9a38d-7eca-4c13-848c-f6a5df08c11e"
+Template: "afb9a38d-7eca-4c13-848c-f6a5df08c11e"
+Path: /sitecore/templates/Foundation/Speedy/_SpeedyPage/__Standard Values
 DB: master
 Languages:
 - Language: en
@@ -11,41 +11,7 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: "20190501T124451:636923114915874802Z"
-  - Version: 2
-    Fields:
-    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
-      Hint: __Created
-      Value: "20190501T124630:636923115902635095Z"
-  - Version: 3
-    Fields:
-    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
-      Hint: __Created
-      Value: "20190501T124642:636923116024615042Z"
-  - Version: 4
-    Fields:
-    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
-      Hint: __Created
-      Value: 20190501T124752Z
-    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
-      Hint: __Created by
-      Value: |
-        sitecore\admin
-    - ID: "c8f93afe-bfd4-4e8f-9c61-152559854661"
-      Hint: __Valid from
-      Value: 20190501T124752Z
-  - Version: 5
-    Fields:
-    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
-      Hint: __Created
-      Value: 20190501T124757Z
-    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
-      Hint: __Created by
-      Value: |
-        sitecore\admin
-    - ID: "c8f93afe-bfd4-4e8f-9c61-152559854661"
-      Hint: __Valid from
-      Value: 20190501T124757Z
+      Value: 20201022T040839Z
     - ID: "fe95d1f4-3eb5-4f40-8ff1-db7d935fe13d"
       Hint: SpecialCaseCriticalCSS
       Value: |

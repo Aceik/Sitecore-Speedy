@@ -26,6 +26,8 @@ using System.Web.UI;
 using System.Net;
 using Newtonsoft.Json;
 using Sitecore.Foundation.Speedy.Model.Filters;
+using Sitecore.ContentSearch.Pipelines.GetGlobalFilters;
+using System.Collections.Specialized;
 
 namespace Sitecore.Foundation.Speedy.Speedy
 {
@@ -79,29 +81,7 @@ namespace Sitecore.Foundation.Speedy.Speedy
 
             if (model.SpeedyEnabled && model.ByPassNotDetected)
             {
-                var speedyLinks = GenerateDeferedLinks(new ThemesProvider());
-                model.AssetLinks = speedyLinks;
-                model.VanillaJavasript = GetVanillaJavascript();
-                
-                model.SpeedyJsEnabled = SpeedyGenerationSettings.IsCriticalJavascriptEnabledAndPossible(Sitecore.Context.Item);
-                model.SpeedyCssEnabled = SpeedyGenerationSettings.IsCriticalStylesEnabled(Sitecore.Context.Item);
-
-                string largeCiticalCssBlockCacheKey = $"speedy-entire-css-critical-page-block-{Sitecore.Context.Item.ID}";
-                string largeCriticalCssBlockCache = HttpContext.Current.Cache[largeCiticalCssBlockCacheKey] as string;
-
-                if (SpeedyGenerationSettings.IsDebugModeEnabled())
-                     largeCriticalCssBlockCache = null;
-
-                if (!string.IsNullOrWhiteSpace(largeCriticalCssBlockCache))
-                {
-                    model.CriticalHtml = largeCriticalCssBlockCache;
-                }
-                else
-                {
-                    model.CriticalHtml = BuildEntireCssBlock(speedyLinks);
-                    CacheObject(largeCiticalCssBlockCacheKey, model.CriticalHtml, GetDependencies(null));
-                }
-                model.SpecialCaseCriticalCss = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.SpecialCaseCriticalCss].Value;
+                BuildSpeedy(model);
             }
             else
             {
@@ -109,6 +89,38 @@ namespace Sitecore.Foundation.Speedy.Speedy
             }
 
             return model;
+        }
+
+        private static void BuildSpeedy(SpeedyLayoutModel model)
+        {
+            var speedyLinks = GenerateDeferedLinks(new ThemesProvider());
+            model.AssetLinks = speedyLinks;
+            model.VanillaJavasript = GetVanillaJavascript();
+
+            model.SpeedyJsEnabled = SpeedyGenerationSettings.IsCriticalJavascriptEnabledAndPossible(Sitecore.Context.Item);
+            model.SpeedyCssEnabled = SpeedyGenerationSettings.IsCriticalStylesEnabled(Sitecore.Context.Item);
+
+            LoadCssIntoModel(model, speedyLinks);
+        }
+
+        private static void LoadCssIntoModel(SpeedyLayoutModel model, SpeedyAssetLinks speedyLinks)
+        {
+            string largeCiticalCssBlockCacheKey = $"speedy-entire-css-critical-page-block-{Sitecore.Context.Item.ID}";
+            string largeCriticalCssBlockCache = HttpContext.Current.Cache[largeCiticalCssBlockCacheKey] as string;
+
+            if (SpeedyGenerationSettings.IsDebugModeEnabled())
+                largeCriticalCssBlockCache = null;
+
+            if (!string.IsNullOrWhiteSpace(largeCriticalCssBlockCache))
+            {
+                model.CriticalHtml = largeCriticalCssBlockCache;
+            }
+            else
+            {
+                model.CriticalHtml = BuildEntireCssBlock(speedyLinks);
+                CacheObject(largeCiticalCssBlockCacheKey, model.CriticalHtml, GetDependencies(null));
+            }
+            model.SpecialCaseCriticalCss = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.SpecialCaseCriticalCss].Value;
         }
 
         private static string GetVanillaJavascript()
@@ -148,48 +160,59 @@ namespace Sitecore.Foundation.Speedy.Speedy
 
             foreach (var style in assetLinks.PlainStyles)
             {
-                string uri = style.ValueOrEmpty();
-                var cssContents = new StringBuilder(DownloadCssFile(uri));
-                string[] parts = uri.Split('/');
-                if (cssContents.Length > 10 && parts.Length > 5)
-                {
-                    try
-                    {
-                        var withoutTail = uri.Split('?')[0];
-                        var filterMatch = nameValueList[withoutTail.ToLower()];
-                        if (filterMatch != null)
-                        {
-                            var filters = JsonConvert.DeserializeObject<Filters>(filterMatch.ValueOrEmpty());
-                            foreach (var filter in filters.FilterList)
-                            {
-                                string contents = cssContents.ToString();
-                                if (contents.Contains(filter.Start) && contents.Contains(filter.End))
-                                {
-                                    int startIndex = contents.IndexOf(filter.Start);
-                                    int endIndex = contents.IndexOf(filter.End);
-                                    cssContents = cssContents.Remove(startIndex, endIndex - startIndex);
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                    }
-
-                    string replacementSection = $"/-/media/Themes/{parts[4]}/{parts[5]}/fonts/";
-
-                    // Yes as crazy as it seems all three of the following combos were in the habitat example site. So lets deal with all the cases
-                    cssContents = cssContents.Replace("url('../fonts/", $"url('{replacementSection}"); // With a '
-                    cssContents = cssContents.Replace("url(\"../fonts/", $"url(\"{replacementSection}"); // With a "
-                    cssContents = cssContents.Replace("url(../fonts/", $"url({replacementSection}");  // Without a '
-
-                    entireCriticalBlock = entireCriticalBlock.Append(cssContents);
-                }
+                ApplyStyleFile(nameValueList, entireCriticalBlock, style);
             }
 
             entireCriticalBlock = entireCriticalBlock.Replace("font-family:", "font-display:swap;font-family:");
 
             return entireCriticalBlock.ToString();
+        }
+
+        private static void ApplyStyleFile(NameValueCollection nameValueList, StringBuilder entireCriticalBlock, string style)
+        {
+            string uri = style.ValueOrEmpty();
+            var cssContents = new StringBuilder(DownloadCssFile(uri));
+            string[] parts = uri.Split('/');
+            if (cssContents.Length > 10 && parts.Length > 5)
+            {
+                cssContents = ApplyGlobalFilters(uri, cssContents, nameValueList);
+
+                string replacementSection = $"/-/media/Themes/{parts[4]}/{parts[5]}/fonts/";
+
+                // Yes as crazy as it seems all three of the following combos were in the habitat example site. So lets deal with all the cases
+                cssContents = cssContents.Replace("url('../fonts/", $"url('{replacementSection}"); // With a '
+                cssContents = cssContents.Replace("url(\"../fonts/", $"url(\"{replacementSection}"); // With a "
+                cssContents = cssContents.Replace("url(../fonts/", $"url({replacementSection}");  // Without a '
+
+                entireCriticalBlock = entireCriticalBlock.Append(cssContents);
+            }
+        }
+
+        private static StringBuilder ApplyGlobalFilters(string uri, StringBuilder cssContents, System.Collections.Specialized.NameValueCollection nameValueList)
+        {
+            try
+            {
+                var withoutTail = uri.Split('?')[0];
+                var filterMatch = nameValueList[withoutTail.ToLower()];
+                if (filterMatch != null)
+                {
+                    var filters = JsonConvert.DeserializeObject<Filters>(filterMatch.ValueOrEmpty());
+                    foreach (var filter in filters.FilterList)
+                    {
+                        string contents = cssContents.ToString();
+                        if (contents.Contains(filter.Start) && contents.Contains(filter.End))
+                        {
+                            int startIndex = contents.IndexOf(filter.Start);
+                            int endIndex = contents.IndexOf(filter.End);
+                            cssContents = cssContents.Remove(startIndex, endIndex - startIndex);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return cssContents;
         }
 
         private static string DownloadCssFile(string url, bool acceptJs = false)

@@ -11,11 +11,14 @@ SharedFields:
 Languages:
 - Language: en
   Versions:
-  - Version: 1
+  - Version: 3
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20190426T102857Z
+      Value: 20201026T102929Z
+    - ID: "348d98df-86f6-4beb-9b84-2ab946e100c7"
+      Hint: CSSFilter
+      Value: "/-/media/Base-Themes/Core-Libraries/styles/optimized-min.css=%7Bfilters%3A%20%5B%7Bstart%3A%20%27%2F%2A%21%5Cn%20%2A%20%20Font%20Awesome%204.7.0%20by%20%40davegandy%27%2C%20end%3A%20%27%2F%2A%21%5Cn%20%2A%20FullCalendar%20v3.8.1%27%7D%2C%20%7Bstart%3A%27%2F%2A%21%5Cn%20%2A%20FullCalendar%20v3.8.1%27%2C%20end%3A%20%27%2F%2A%21%20jQuery%20UI%27%7D%20%5D%7D&/-/media/Themes/Habitat-SXA-Sites/Habitat-Home-Basic/styles/optimized-min.css=%7Bfilters%3A%20%5B%7Bstart%3A%20%27%2F%2A%21%5Cn%20%2A%20%20Font%20Awesome%204.7.0%20by%20%40davegandy%27%2C%20end%3A%20%27%23header%3E.row%27%7D%20%5D%7D"
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
@@ -24,3 +27,25 @@ Languages:
       Hint: EnableDebugMode
       Type: Checkbox
       Value: 0
+    - ID: "c8f93afe-bfd4-4e8f-9c61-152559854661"
+      Hint: __Valid from
+      Value: 20201026T102929Z
+  - Version: 4
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201026T105647Z
+    - ID: "348d98df-86f6-4beb-9b84-2ab946e100c7"
+      Hint: CSSFilter
+      Value: "/-/media/Base-Themes/Core-Libraries/styles/optimized-min.css=%7Bfilters%3A%20%5B%7Bstart%3A%20%27%2F%2A%21%5Cn%20%2A%20%20Font%20Awesome%204.7.0%20by%20%40davegandy%27%2C%20end%3A%20%27%2F%2A%21%5Cn%20%2A%20FullCalendar%20v3.8.1%27%7D%2C%20%7Bstart%3A%27%2F%2A%21%5Cn%20%2A%20FullCalendar%20v3.8.1%27%2C%20end%3A%20%27%2F%2A%21%20jQuery%20UI%27%7D%20%5D%7D&/-/media/Themes/Habitat-SXA-Sites/Habitat-Home-Basic/styles/optimized-min.css=%7Bfilters%3A%20%5B%7Bstart%3A%20%27%2F%2A%21%5Cn%20%2A%20%20Font%20Awesome%204.7.0%20by%20%40davegandy%27%2C%20end%3A%20%27%23header%3E.row%27%7D%20%5D%7D"
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "737ca5d6-f33f-428c-be56-8f1f7dcec8d1"
+      Hint: EnableDebugMode
+      Type: Checkbox
+      Value: 0
+    - ID: "c8f93afe-bfd4-4e8f-9c61-152559854661"
+      Hint: __Valid from
+      Value: 20201026T105647Z

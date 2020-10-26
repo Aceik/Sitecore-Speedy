@@ -3,7 +3,7 @@
     <metadata>
       <PackageName>Sitecore Speedy</PackageName>
       <Author>Thomas Tyack @ Aceik</Author>
-      <Version>v2.0</Version>
+      <Version>v2.0-release</Version>
       <Revision />
       <License />
       <Comment>Supports SXA 9.3 
@@ -168,6 +168,12 @@ Oct 2020 - Sitecore 10 updates
         <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/SpeedyEnabled/{CFCC9511-C7E2-47BC-B8D4-86734CE26A93}/invariant/0</x-item>
         <x-item>/master/sitecore/templates/Foundation/Speedy/{D3434909-6A00-43A3-88A5-20C305351612}/invariant/0</x-item>
         <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/Speedy/EveryLoadVanillaJavscriptFile/{F64007C5-0567-4925-A0A6-569875924FDD}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_Critical/__Standard Values/{DC098258-5FBB-4026-9AC3-4DD167AF2788}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/__Standard Values/{76CCC6FD-80DB-4D36-95C6-FDA2CE6521F5}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Global Speed Filters/{CB059EC2-A4B7-45DC-8C9E-0E552028D827}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Global Speed Filters/CSSFilter/{348D98DF-86F6-4BEB-9B84-2AB946E100C7}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPage/__Standard Values/{0E5425E1-76A7-44BB-9363-438BBF6B584D}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Foundation/Speedy/_SpeedyPageSettings/__Standard Values/{F78E3CF4-5E8D-4465-ACB5-D3C2A029E7E4}/invariant/0</x-item>
       </Entries>
       <SkipVersions>False</SkipVersions>
       <Converter>

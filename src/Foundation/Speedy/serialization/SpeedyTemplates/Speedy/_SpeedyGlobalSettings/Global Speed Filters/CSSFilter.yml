@@ -1,28 +1,28 @@
 ﻿---
-ID: "737ca5d6-f33f-428c-be56-8f1f7dcec8d1"
-Parent: "e4d3ba94-e967-477f-8e3d-de3bda8712a3"
+ID: "348d98df-86f6-4beb-9b84-2ab946e100c7"
+Parent: "cb059ec2-a4b7-45dc-8c9e-0e552028d827"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Critical Generation Endpoint/EnableDebugMode
+Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Global Speed Filters/CSSFilter
 DB: master
 SharedFields:
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
-  Value: Checkbox
+  Value: Name Value List
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
-  Value: 700
+  Value: 100
 Languages:
 - Language: en
   Fields:
   - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
     Hint: Title
-    Value: "Enable Debug Mode (Turns off the internal caches - Should be turned on in Production - Use with Caution)"
+    Value: CSS Filters (Remove values from some CSS files to reduce the payload size)
   Versions:
   - Version: 1
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20201021T205951Z
+      Value: 20201024T095021Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
