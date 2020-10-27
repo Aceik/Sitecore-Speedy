@@ -42,3 +42,6 @@ Languages:
       Hint: OnePassCookieEnabled
       Type: Checkbox
       Value: 1
+    - ID: "f64007c5-0567-4925-a0a6-569875924fdd"
+      Hint: EveryLoadVanillaJavscriptFile
+      Value: /scripts/lazy.js
