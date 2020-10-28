@@ -81,3 +81,9 @@ Ideally the javascript library would be written so that it will initialise when 
 `Speedy.fallbackExperienceAfterLoad = function () {` which can be found [here](https://github.com/Aceik/Sitecore-Speedy/blob/master/src/Foundation/Speedy/code/Views/Speedy/SpeedyJavascriptLoader.cshtml)
 
 At this stage Speedy doesn't support a hybrid model of loading some scripts in main upfront and some async. It might be something to consider in a future release. 
+
+
+### Q) What happenned in the Sitecore 10 Release of Speedy ?
+### A) 
+
+A fairly large overhaul that's what. We got feedback that content editors don't really want be generating optimised critical CSS chunks. Or at least its not really fair to put this burden on them. At the same time developers role off projects and don't want to maintain it. So in the V10 release we simply started reading the entire CSS bundle inline into the critical region in the <head> block of the page. This isn't optimal but its a lot more practical and its still give you far better scores than loading all of those external CSS files seperately as render blocking network calls. One caveat to this is that you need to consider [GZIP your HTML payload.](https://aceik.com.au/2020/10/05/page-speed-the-smaller-7th-pillar-micro-boosts/)
