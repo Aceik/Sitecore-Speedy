@@ -15,7 +15,7 @@ Implementing Critical CSS and Deferred Javascript loading can be tricky. This mo
 
 [Results demo screencast ... click here](https://www.youtube.com/watch?v=S8aIy-dK75g&feature=youtu.be) 
 
-[Installation and Usage on a developer machine screencast ... click here](https://youtu.be/-1SA12qax1g)
+[Installation and Usage on a developer machine screencast ... click here](https://www.youtube.com/watch?v=8q4BTHYBsMI)
 
 Results: 
 
@@ -28,7 +28,7 @@ Before / After (Full Screenshots):
 
 ## What does Speedy solve in regard to Page Speed ?
 
-In order to get great page speed scores there are several aspects you need to address. [Read more here.](https://github.com/Aceik/Sitecore-Speedy/wiki/Extra-Info---Page-Speed-Considerations)
+In order to get great page speed scores there are several aspects you need to address. [Read more here.](https://aceik.com.au/2020/05/23/one-performance-blog-to-rule-them-all-combining-the-6-pillars-of-speed/)
 
 This module addresses Critical CSS and Deferred asset loading, which is perhaps one of the hardest parts of Page Speed to get right.
 
@@ -38,24 +38,19 @@ This module addresses Critical CSS and Deferred asset loading, which is perhaps 
 
 It is likely that a developer will be required to setup and tweak the settings before the first full deployment. 
 
-In production mode the Content Editor will have a button they can use to re-generate the Critical CSS for any given page. (This feature is supported by a simple node API application that can be hosted on an Azure Free plan and a subscription to https://www.browserless.io/ if you go over the free limits.)
-<a target="_blank" href="https://aceiksolutions.files.wordpress.com/2019/07/generatebutton.png"><img src="https://aceiksolutions.files.wordpress.com/2019/07/generatebutton.png"/></a>
-
 ## Installation prerequisites and notes
 
-1) <img src="https://img.shields.io/badge/requires-node-blue.svg?style=flat-square" alt="requires node">  (Required in [local development mode](https://github.com/Aceik/Sitecore-Speedy/wiki/08---Development-Mode))
-2) <img src="https://img.shields.io/badge/requires-sitecore-blue.svg?style=flat-square" alt="requires sitecore">
-  * <img src="https://img.shields.io/badge/supports-sitecore%20v9.0.2-green.svg?style=flat-square" alt="requires sitecore 9.0.2">
-  * <img src="https://img.shields.io/badge/supports-sitecore%20v9.1-green.svg?style=flat-square" alt="requires sitecore 9.1">
-  * <img src="https://img.shields.io/badge/supports-helix-green.svg?style=flat-square" alt="requires Helix Foundation"/>
+* <img src="https://img.shields.io/badge/requires-sitecore-blue.svg?style=flat-square" alt="requires sitecore">
+* <img src="https://img.shields.io/badge/supports-sitecore%20v10-green.svg?style=flat-square" alt="supports sitecore 10">
+* <img src="https://img.shields.io/badge/supports-sitecore%20v9.3-green.svg?style=flat-square" alt="supports sitecore 9.3">
+* <img src="https://img.shields.io/badge/supports-sitecore%20v9.0.2-green.svg?style=flat-square" alt="supports sitecore 9.0.2">
+* <img src="https://img.shields.io/badge/supports-sitecore%20v9.1-green.svg?style=flat-square" alt="supports sitecore 9.1">
+* <img src="https://img.shields.io/badge/supports-helix-green.svg?style=flat-square" alt="requires Helix Foundation"/>
 
 ## Getting Started Steps
-1) Installation
-- Option 1: [via Sitecore Package](https://github.com/Aceik/Sitecore-Speedy/wiki/00-Installation-Via-Sitecore-Package)
-- Option 2: [Via Source](https://github.com/Aceik/Sitecore-Speedy/wiki/01--Installation-Via-Helix-Source)
-2) [Critical Generation](https://github.com/Aceik/Sitecore-Speedy/wiki/02---Critical-Generation-Options)
-3) [Usage on each page](https://github.com/Aceik/Sitecore-Speedy/wiki/03---Usage-on-a-Page)
-4) [Tweak, Adapt and test](https://github.com/Aceik/Sitecore-Speedy/wiki/04---Tweak,-Adapt-and-Test)
+1) Installation - via Sitecore Package - Select Override when promted
+2) Change the layout on the page you want to enable Speedy on
+3) Enable Speedy 
 
 ### Sitecore Settings
 * [Global Settings](https://github.com/Aceik/Sitecore-Speedy/wiki/06---Global-Settings)
