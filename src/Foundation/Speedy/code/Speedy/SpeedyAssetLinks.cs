@@ -10,14 +10,17 @@ namespace Sitecore.Foundation.Speedy.Speedy
             this.Scripts = links.Scripts;
             this.Styles = links.Styles;
             PlainStyles = links.PlainStyles;
+            PrefetchStyles = links.PrefetchStyles;
         }
         public SpeedyAssetLinks()
         {
             OrderedScripts = new Dictionary<int, Dictionary<string, AssetLinks>>();
             PlainStyles = new HashSet<string>();
+            PrefetchStyles = new HashSet<string>();
         }
 
         public HashSet<string> PlainStyles { get; set; }
+        public HashSet<string> PrefetchStyles { get; set; }
         public Dictionary<int, Dictionary<string, AssetLinks>> OrderedScripts { get; set; }
 
         public string ClientScriptsRendered { get; set; }

@@ -5,96 +5,47 @@ Template: "b06f7c55-9717-4bfa-86d5-875b2ddac17c"
 Path: /sitecore/system/Settings/Foundation/Speedy/Speedy Global Settings
 DB: master
 SharedFields:
-- ID: "5a158a54-b524-483c-a3a0-6e2a5fcc5cbe"
-  Hint: EndpointURL
-  Value: "http://localhost:3000"
 - ID: "af9fa73f-f0a8-4d58-8dea-cb2169147c87"
   Hint: DeferJSLoadForMilliseconds
   Value: 6000
-- ID: "f4006c48-6487-43b7-8d65-a3c32c637e29"
-  Hint: RemoteFontMap
-  Value: |
-    { "fontMap": [
-        {
-          "find": "/Users/sitecore/AppData/Local/fonts/tahoma/",
-          "replace": "/-/media/themes/mysite/mysite-theme/fonts/tahoma/"
-        },
-        {
-          "find": "/Users/sitecore/AppData/Local/fonts/fontawesome/",
-          "replace": "/-/media/themes/mysite/mysite-theme/fonts/fontawesome/"
-        },            
-        {
-          "find": "content:\"\"",
-          "replace": ""
-        },
-        {
-          "find": "content:\"\"",
-          "replace": ""
-        },
-        {
-          "find": "url(/C:/-/media/",
-          "replace": "url(/-/media/"
-        },
-        {
-          "find": "@font-face{",
-          "replace": "@font-face{font-display: swap;"
-        }
-      ]
-    }
 Languages:
 - Language: en
   Versions:
-  - Version: 1
+  - Version: 3
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20190426T102857Z
-    - ID: "3bd89967-8179-41eb-b4d0-30bb21f892fe"
-      Hint: RemoteFontsToSwitch
-      Value: |
-        {"fontFaceSwitch": [
-            {
-              "find": "font-family:NationalWebExtraBold;",
-              "replace": "font-family:NationalWebExtraBold-Critical;"
-            },
-            {
-              "find": "font-family:NationalWeb;",
-              "replace": "font-family:NationalWeb-Critical;"
-            },
-            {
-              "find": "font-family:NationalWebExtraBold;",
-              "replace": "font-family:NationalWebExtraBold-critical;"
-            },
-            {
-              "find": "font-family:NationalWebMedium;",
-              "replace": "font-family:NationalWebMedium-critical;"
-            },
-            {
-              "find": "font-family:NationalWeb;",
-              "replace": "font-family:NationalWeb-critical;"
-            },
-            {
-              "find": "font-family:NationalWebBold;",
-              "replace": "font-family:NationalWebBold-critical;"
-            }
-          ]}
+      Value: 20201026T102929Z
+    - ID: "348d98df-86f6-4beb-9b84-2ab946e100c7"
+      Hint: CSSFilter
+      Value: "/-/media/Base-Themes/Core-Libraries/styles/optimized-min.css=%7Bfilters%3A%20%5B%7Bstart%3A%20%27%2F%2A%21%5Cn%20%2A%20%20Font%20Awesome%204.7.0%20by%20%40davegandy%27%2C%20end%3A%20%27%2F%2A%21%5Cn%20%2A%20FullCalendar%20v3.8.1%27%7D%2C%20%7Bstart%3A%27%2F%2A%21%5Cn%20%2A%20FullCalendar%20v3.8.1%27%2C%20end%3A%20%27%2F%2A%21%20jQuery%20UI%27%7D%20%5D%7D&/-/media/Themes/Habitat-SXA-Sites/Habitat-Home-Basic/styles/optimized-min.css=%7Bfilters%3A%20%5B%7Bstart%3A%20%27%2F%2A%21%5Cn%20%2A%20%20Font%20Awesome%204.7.0%20by%20%40davegandy%27%2C%20end%3A%20%27%23header%3E.row%27%7D%20%5D%7D"
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
         sitecore\admin
-    - ID: "c86e2356-39db-45c9-9451-5232660b8074"
-      Hint: RemoteDuplicatesToRemove
+    - ID: "737ca5d6-f33f-428c-be56-8f1f7dcec8d1"
+      Hint: EnableDebugMode
+      Type: Checkbox
+      Value: 0
+    - ID: "c8f93afe-bfd4-4e8f-9c61-152559854661"
+      Hint: __Valid from
+      Value: 20201026T102929Z
+  - Version: 4
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201026T105647Z
+    - ID: "348d98df-86f6-4beb-9b84-2ab946e100c7"
+      Hint: CSSFilter
+      Value: "/-/media/Base-Themes/Core-Libraries/styles/optimized-min.css=%7Bfilters%3A%20%5B%7Bstart%3A%20%27%2F%2A%21%5Cn%20%2A%20%20Font%20Awesome%204.7.0%20by%20%40davegandy%27%2C%20end%3A%20%27%2F%2A%21%5Cn%20%2A%20FullCalendar%20v3.8.1%27%7D%2C%20%7Bstart%3A%27%2F%2A%21%5Cn%20%2A%20FullCalendar%20v3.8.1%27%2C%20end%3A%20%27%2F%2A%21%20jQuery%20UI%27%7D%20%5D%7D&/-/media/Themes/Habitat-SXA-Sites/Habitat-Home-Basic/styles/optimized-min.css=%7Bfilters%3A%20%5B%7Bstart%3A%20%27%2F%2A%21%5Cn%20%2A%20%20Font%20Awesome%204.7.0%20by%20%40davegandy%27%2C%20end%3A%20%27%23header%3E.row%27%7D%20%5D%7D"
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
       Value: |
-        {
-        "removeDuplicates": [
-            {
-              "find": "@font-face{font-display: swap;font-family:Conv_tahoma;src:url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_eot.eot);src:local(\"☺\"),url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_woff.woff) format(\"woff\"),url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_ttf.ttf) format(\"truetype\"),url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_svg.svg) format(\"svg\");font-weight:400;font-style:normal}"
-            },
-            {
-              "find": "@font-face{font-display: swap;src:url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_eot.eot);src:local(\"☺\"),url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_woff.woff) format(\"woff\"),url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_ttf.ttf) format(\"truetype\"),url(/-/media/themes/mysite/mysite-theme/fonts/tahoma/tahoma_svg.svg) format(\"svg\");font-weight:400;font-style:normal}"
-            },
-            {
-              "find":"@font-face{font-display: swap;font-family:FontAwesome;src:url(/-/media/themes/mysite/mysite-theme/fonts/fontawesome/fontawesome-webfont-eot.eot?v=4.7.0);src:url(/-/media/themes/mysite/mysite-theme/fonts/fontawesome/fontawesome-webfont-eot.eot?#iefix&v=4.7.0) format(\"embedded-opentype\"),url(/-/media/themes/mysite/mysite-theme/fonts/fontawesome/fontawesome-webfont-woff2.woff2?v=4.7.0) format(\"woff2\"),url(/-/media/themes/mysite/mysite-theme/fonts/fontawesome/fontawesome-webfont-woff.woff?v=4.7.0) format(\"woff\"),url(/-/media/themes/mysite/mysite-theme/fonts/fontawesome/fontawesome-webfont-ttf.ttf?v=4.7.0) format(\"truetype\"),url(/-/media/themes/mysite/mysite-theme/fonts/fontawesome/fontawesome-webfont-svg.svg?v=4.7.0#fontawesomeregular) format(\"svg\");font-weight:400;font-style:normal}"
-            }
-          ]
-        }
+        sitecore\admin
+    - ID: "737ca5d6-f33f-428c-be56-8f1f7dcec8d1"
+      Hint: EnableDebugMode
+      Type: Checkbox
+      Value: 0
+    - ID: "c8f93afe-bfd4-4e8f-9c61-152559854661"
+      Hint: __Valid from
+      Value: 20201026T105647Z

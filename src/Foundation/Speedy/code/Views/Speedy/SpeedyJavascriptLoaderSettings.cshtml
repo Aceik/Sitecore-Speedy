@@ -2,12 +2,15 @@
 @using Sitecore.Foundation.Speedy.Settings
 @using Sitecore.XA.Foundation.Theming.Bundler
 
+Speedy.isMobile = window.screen.width < 1000;
+
 Speedy.settings = {
     cookieName: '@Html.Raw(SpeedyConstants.CookieNames.OnePassCookieName)',
     cookieExpiration: @Html.Raw(SpeedyGenerationSettings.GetCookieExpiration()),
-    jsDeferLoadForMilliseconds: @Html.Raw(SpeedyGenerationSettings.GetDeferJSLoadForMilliseconds()),
-    fallBackExperienceDelay: @Html.Raw(SpeedyGenerationSettings.GetDeferFallbackMilliseconds()),
+    jsDeferLoadForMilliseconds: Speedy.isMobile  ? @Html.Raw(SpeedyGenerationSettings.GetDeferJSLoadForMilliseconds()): 0,
+    fallBackExperienceDelay: Speedy.isMobile  ? @Html.Raw(SpeedyGenerationSettings.GetDeferFallbackMilliseconds()): 0,
     stylesDeferMilliseconds: @Html.Raw(SpeedyGenerationSettings.GetDeferCSSLoadForMilliseconds()),
     fallbackHideSelector : @Html.Raw(SpeedyGenerationSettings.GetFallbackExperienceSelector()),
-    isFirstPassOnlyCookieEnabled : @Html.Raw(Sitecore.Context.Item.IsOnePassCookieEnabled().ToString().ToLower())
+    isFirstPassOnlyCookieEnabled : @Html.Raw(Sitecore.Context.Item.IsOnePassCookieEnabled().ToString().ToLower()),
+    fallBackExperienceComplete : false
     };

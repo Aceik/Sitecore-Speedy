@@ -1,25 +1,29 @@
 ﻿---
-ID: "fe95d1f4-3eb5-4f40-8ff1-db7d935fe13d"
-Parent: "9639c84f-79b5-42bc-9102-3f4be236425b"
+ID: "af9fa73f-f0a8-4d58-8dea-cb2169147c87"
+Parent: "e4d3ba94-e967-477f-8e3d-de3bda8712a3"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: /sitecore/templates/Foundation/Speedy/_Critical/Speedy/SpecialCaseCriticalCSS
+Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/Global Speed Settings/DeferJSLoadForMilliseconds
 DB: master
 SharedFields:
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
-  Value: "Multi-Line Text"
+  Value: "Single-Line Text"
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
-  Value: 60
+  Value: 400
+- ID: "be351a73-fcb0-4213-93fa-c302d8ab4f51"
+  Hint: Shared
+  Type: Checkbox
+  Value: 1
 Languages:
 - Language: en
   Fields:
   - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
     Hint: Title
-    Value: Special Case CSS (Usually important CSS extras that help display) 
+    Value: Defer JS Load For Milliseconds
   Versions:
   - Version: 1
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20190529T060311Z
+      Value: 20190624T115338Z

@@ -5,12 +5,18 @@ Template: "b06f7c55-9717-4bfa-86d5-875b2ddac17c"
 Path: /sitecore/templates/Foundation/Speedy/_SpeedyGlobalSettings/__Standard Values
 DB: master
 SharedFields:
-- ID: "167a1fdf-2465-4131-8877-03fbe4f1dceb"
-  Hint: EndpointPassword
-  Value: generator
-- ID: "d261c023-5e72-4901-a7b7-95fadf754def"
-  Hint: EndpointUsername
-  Value: critical
+- ID: "32c93514-942e-4411-a8b1-9432cb055bc1"
+  Hint: CookieExpirationDays
+  Value: 10
+- ID: "4fda48e4-0a51-4aa7-9d98-5008502377e6"
+  Hint: DeferCSSLoadForMilliseconds
+  Value: 5500
+- ID: "6c44f9ab-65f2-4730-87e3-ffda8aec3da5"
+  Hint: DeferFallbackForMilliseconds
+  Value: 5000
+- ID: "af9fa73f-f0a8-4d58-8dea-cb2169147c87"
+  Hint: DeferJSLoadForMilliseconds
+  Value: 4000
 Languages:
 - Language: en
   Versions:
@@ -19,42 +25,10 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20190426T111214Z
-    - ID: "32c93514-942e-4411-a8b1-9432cb055bc1"
-      Hint: CookieExpirationDays
-      Value: 10
-    - ID: "3d90972c-d661-48ca-80d8-3eec2beaa230"
-      Hint: DefaultCriticalWidth
-      Value: 1800
-    - ID: "4fda48e4-0a51-4aa7-9d98-5008502377e6"
-      Hint: DeferCSSLoadForMilliseconds
-      Value: 5500
-    - ID: "5a158a54-b524-483c-a3a0-6e2a5fcc5cbe"
-      Hint: EndpointURL
-      Value: "https://nodeapicritical.azurewebsites.net/critical/"
+    - ID: "348d98df-86f6-4beb-9b84-2ab946e100c7"
+      Hint: CSSFilter
+      Value: "media/Base-Themes/Core-Libraries/styles/optimized-min.css=%7Bfilters%3A%20%5B%7Bstart%3A%20%27%2F%2A%21%5Cn%20%2A%20%20Font%20Awesome%204.7.0%20by%20%40davegandy%27%2C%20end%3A%20%27%2F%2A%21%5Cn%20%2A%20FullCalendar%20v3.8.1%27%7D%2C%20%7Bstart%3A%27%2F%2A%21%5Cn%20%2A%20FullCalendar%20v3.8.1%27%2C%20end%3A%20%27%2F%2A%21%20jQuery%20UI%27%7D%20%5D%7D&media/Themes/Habitat-SXA-Sites/Habitat-Home-Basic/styles/optimized-min.css=%5B%7Bstart%3A%20%27%2F%2A%21%20%20%2A%20%20Font%20Awesome%204.7.0%20by%20%40davegandy%27%2C%20end%3A%20%27.container-color-background%7Bbackground%3A%2350a1ab%7D%27%7D%20%5D"
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
         sitecore\admin
-    - ID: "6c44f9ab-65f2-4730-87e3-ffda8aec3da5"
-      Hint: DeferFallbackForMilliseconds
-      Value: 5000
-    - ID: "97197d2e-4289-4a4e-8bcc-789897de907f"
-      Hint: DefaultCriticalHeight
-      Value: 1200
-    - ID: "af9fa73f-f0a8-4d58-8dea-cb2169147c87"
-      Hint: DeferJSLoadForMilliseconds
-      Value: 4000
-    - ID: "f4006c48-6487-43b7-8d65-a3c32c637e29"
-      Hint: RemoteFontMap
-      Value: |
-        { "fontmap": [
-            {
-              "find": "/Users/fontmap/AppData/Local/fonts/fontawesome/",
-              "replace": "/-/media/Themes/Habitat-Sites/Habitat-Home-v2/fonts/fontawesome/"
-            },
-            {
-              "find": "/Users/font/AppData/Local/fonts/",
-              "replace": "/-/media/Themes/Habitat-Sites/Habitat-Home-v2/fonts/"
-            }
-          ]
-        }

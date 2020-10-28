@@ -24,6 +24,10 @@ using System.Web.Caching;
 using Sitecore.XA.Foundation.SitecoreExtensions.Repositories;
 using System.Web.UI;
 using System.Net;
+using Newtonsoft.Json;
+using Sitecore.Foundation.Speedy.Model.Filters;
+using Sitecore.ContentSearch.Pipelines.GetGlobalFilters;
+using System.Collections.Specialized;
 
 namespace Sitecore.Foundation.Speedy.Speedy
 {
@@ -53,6 +57,10 @@ namespace Sitecore.Foundation.Speedy.Speedy
         {
             string text = GetPageKey(HttpContext.Current.Request.Url.AbsolutePath) + "speedysettings";
             SpeedyLayoutModel speedyModel = HttpContext.Current.Cache[text] as SpeedyLayoutModel;
+
+            if (SpeedyGenerationSettings.IsDebugModeEnabled())
+                speedyModel = null;
+
             if (speedyModel != null)
             {
                 return speedyModel;
@@ -68,37 +76,12 @@ namespace Sitecore.Foundation.Speedy.Speedy
 
             if (!model.ByPassNotDetected)
                 model.SpeedyEnabled = false;
+            
+            model.VanillaJavasriptAllLoads = GetVanillaJavascriptAllLoades();
 
             if (model.SpeedyEnabled && model.ByPassNotDetected)
             {
-                var speedyLinks = GenerateDeferedLinks(new ThemesProvider());
-                model.AssetLinks = speedyLinks;
-                model.SpeedyJsEnabled = SpeedyGenerationSettings.IsCriticalJavascriptEnabledAndPossible(Sitecore.Context.Item);
-                model.SpeedyCssEnabled = SpeedyGenerationSettings.IsCriticalStylesEnabledAndPossible(Sitecore.Context.Item);
-                bool easySpeedyEnabled = SpeedyGenerationSettings.IsEasyCriticalEnabled(Sitecore.Context.Item);
-
-                if(easySpeedyEnabled) // Its cheating a bit, but for the lazy web team that won't do maintanence it still give a page speed boost.
-                {
-                    model.SpeedyCssEnabled = true;
-
-                    string largeCiticalCssBlockCacheKey = $"speedy-entire-css-critical-page-block-{Sitecore.Context.Item.ID}";
-                    string largeCriticalCssBlockCache = HttpContext.Current.Cache[largeCiticalCssBlockCacheKey] as string;
-                    if (!string.IsNullOrWhiteSpace(largeCriticalCssBlockCache))
-                    {
-                        model.CriticalHtml = largeCriticalCssBlockCache;
-                    }
-                    else
-                    {
-                        model.CriticalHtml = BuildEntireCssBlock(speedyLinks);
-                        CacheObject(largeCiticalCssBlockCacheKey, model.CriticalHtml, GetDependencies(null));
-                    }   
-                    model.SpecialCaseCriticalCss = string.Empty;
-                }
-                else if (model.SpeedyCssEnabled)
-                {
-                    model.CriticalHtml = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.CriticalCss].Value;
-                    model.SpecialCaseCriticalCss = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.SpecialCaseCriticalCss].Value;
-                }
+                BuildSpeedy(model);
             }
             else
             {
@@ -106,6 +89,56 @@ namespace Sitecore.Foundation.Speedy.Speedy
             }
 
             return model;
+        }
+
+        private static void BuildSpeedy(SpeedyLayoutModel model)
+        {
+            var speedyLinks = GenerateDeferedLinks(new ThemesProvider());
+            model.AssetLinks = speedyLinks;
+            model.VanillaJavasript = GetVanillaJavascript();
+
+            model.SpeedyJsEnabled = SpeedyGenerationSettings.IsCriticalJavascriptEnabledAndPossible(Sitecore.Context.Item);
+            model.SpeedyCssEnabled = SpeedyGenerationSettings.IsCriticalStylesEnabled(Sitecore.Context.Item);
+
+            LoadCssIntoModel(model, speedyLinks);
+        }
+
+        private static void LoadCssIntoModel(SpeedyLayoutModel model, SpeedyAssetLinks speedyLinks)
+        {
+            string largeCiticalCssBlockCacheKey = $"speedy-entire-css-critical-page-block-{Sitecore.Context.Item.ID}";
+            string largeCriticalCssBlockCache = HttpContext.Current.Cache[largeCiticalCssBlockCacheKey] as string;
+
+            if (SpeedyGenerationSettings.IsDebugModeEnabled())
+                largeCriticalCssBlockCache = null;
+
+            if (!string.IsNullOrWhiteSpace(largeCriticalCssBlockCache))
+            {
+                model.CriticalHtml = largeCriticalCssBlockCache;
+            }
+            else
+            {
+                model.CriticalHtml = BuildEntireCssBlock(speedyLinks);
+                CacheObject(largeCiticalCssBlockCacheKey, model.CriticalHtml, GetDependencies(null));
+            }
+            model.SpecialCaseCriticalCss = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.SpecialCaseCriticalCss].Value;
+        }
+
+        private static string GetVanillaJavascript()
+        {
+            string url = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.MobileCriticalJavascript].Value;
+            if (!string.IsNullOrWhiteSpace(url))
+                return DownloadCssFile(url, true);
+            else
+                return string.Empty;
+        }
+
+        private static string GetVanillaJavascriptAllLoades()
+        {
+            string url = Sitecore.Context.Item.Fields[SpeedyConstants.Fields.EveryLoadVanillaJavscriptFile].Value;
+            if (!string.IsNullOrWhiteSpace(url))
+                return DownloadCssFile(url, true);
+            else
+                return string.Empty;
         }
 
         /// <summary>
@@ -118,37 +151,78 @@ namespace Sitecore.Foundation.Speedy.Speedy
         private static string BuildEntireCssBlock(SpeedyAssetLinks assetLinks)
         {
             StringBuilder entireCriticalBlock = new StringBuilder();
-            foreach(var style in assetLinks.PlainStyles)
+
+            // Lookup the filters
+            var nameValueListString = SpeedyGenerationSettings.GetGlobalSettingsItem()[SpeedyConstants.GlobalSettings.Fields.CSSFilter];
+
+            //Converts the string to NameValueCollection
+            System.Collections.Specialized.NameValueCollection nameValueList = Sitecore.Web.WebUtil.ParseUrlParameters(nameValueListString);
+
+            foreach (var style in assetLinks.PlainStyles)
             {
-                string uri = style.ValueOrEmpty();
-                var cssContents = new StringBuilder(DownloadCssFile(uri));
-                string[] parts = uri.Split('/');
-                if (cssContents.Length > 10 && parts.Length > 5)
-                {
-                    string replacementSection = $"/-/media/Themes/{parts[4]}/{parts[5]}/fonts/";
-
-                    // Yes as crazy as it seems all three of the following combos were in the habitat example site. So lets deal with all the cases
-                    cssContents = cssContents.Replace("url('../fonts/", $"url('{replacementSection}"); // With a '
-                    cssContents = cssContents.Replace("url(\"../fonts/", $"url(\"{replacementSection}"); // With a "
-                    cssContents = cssContents.Replace("url(../fonts/", $"url({replacementSection}");  // Without a '
-
-                    entireCriticalBlock = entireCriticalBlock.Append(cssContents);
-                }
+                ApplyStyleFile(nameValueList, entireCriticalBlock, style);
             }
-
-            //entireCriticalBlock = entireCriticalBlock.Replace("src:url('/-/media/Themes/", "font-display:swap;src:url('/-/media/Themes/");
-            //entireCriticalBlock = entireCriticalBlock.Replace("src:url(/-/media/Themes/", "font-display:swap;src:url(/-/media/Themes/");
-            //entireCriticalBlock = entireCriticalBlock.Replace("src:url(\"/-/media/Themes/", "font-display:swap;src:url(\"/-/media/Themes/");
 
             entireCriticalBlock = entireCriticalBlock.Replace("font-family:", "font-display:swap;font-family:");
 
             return entireCriticalBlock.ToString();
         }
 
-        private static string DownloadCssFile(string url)
+        private static void ApplyStyleFile(NameValueCollection nameValueList, StringBuilder entireCriticalBlock, string style)
+        {
+            string uri = style.ValueOrEmpty();
+            var cssContents = new StringBuilder(DownloadCssFile(uri));
+            string[] parts = uri.Split('/');
+            if (cssContents.Length > 10 && parts.Length > 5)
+            {
+                cssContents = ApplyGlobalFilters(uri, cssContents, nameValueList);
+
+                string replacementSection = $"/-/media/Themes/{parts[4]}/{parts[5]}/fonts/";
+
+                // Yes as crazy as it seems all three of the following combos were in the habitat example site. So lets deal with all the cases
+                cssContents = cssContents.Replace("url('../fonts/", $"url('{replacementSection}"); // With a '
+                cssContents = cssContents.Replace("url(\"../fonts/", $"url(\"{replacementSection}"); // With a "
+                cssContents = cssContents.Replace("url(../fonts/", $"url({replacementSection}");  // Without a '
+
+                entireCriticalBlock = entireCriticalBlock.Append(cssContents);
+            }
+        }
+
+        private static StringBuilder ApplyGlobalFilters(string uri, StringBuilder cssContents, System.Collections.Specialized.NameValueCollection nameValueList)
+        {
+            try
+            {
+                var withoutTail = uri.Split('?')[0];
+                var filterMatch = nameValueList[withoutTail.ToLower()];
+                if (filterMatch != null)
+                {
+                    var filters = JsonConvert.DeserializeObject<Filters>(filterMatch.ValueOrEmpty());
+                    foreach (var filter in filters.FilterList)
+                    {
+                        string contents = cssContents.ToString();
+                        if (contents.Contains(filter.Start) && contents.Contains(filter.End))
+                        {
+                            int startIndex = contents.IndexOf(filter.Start);
+                            int endIndex = contents.IndexOf(filter.End);
+                            cssContents = cssContents.Remove(startIndex, endIndex - startIndex);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return cssContents;
+        }
+
+        private static string DownloadCssFile(string url, bool acceptJs = false)
         {
             string cssFileCacheKey = $"speedy-external-css-{url}";
             string cssFileCache = HttpContext.Current.Cache[cssFileCacheKey] as string;
+
+            if (SpeedyGenerationSettings.IsDebugModeEnabled())
+                cssFileCache = null;
+
             if (!string.IsNullOrWhiteSpace(cssFileCache))
             {
                 return cssFileCache;
@@ -161,6 +235,13 @@ namespace Sitecore.Foundation.Speedy.Speedy
                 ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
                 var client = new RestClient(host + url);
                 var request = new RestRequest(Method.GET) { RequestFormat = DataFormat.Json };
+
+                if(acceptJs)
+                {
+                    request.AddHeader("Accept", "application/javascript");
+                    request.AddHeader("Content-Type", "application/javascript");
+                }
+
                 // or automatically deserialize result
                 // return content type is sniffed but can be explicitly set via RestClient.AddHandler();
                 try
@@ -184,6 +265,10 @@ namespace Sitecore.Foundation.Speedy.Speedy
             CorePipeline.Run("assetService", assetsArgs);
             string text = GenerateCacheKey(assetsArgs.GetHashCode()) + "speedylinks-" + Sitecore.Context.Item.ID;
             SpeedyAssetLinks assetLinks = HttpContext.Current.Cache[text] as SpeedyAssetLinks;
+
+            if (SpeedyGenerationSettings.IsDebugModeEnabled())
+                assetLinks = null;
+
             if (assetLinks == null || _configuration.RequestAssetsOptimizationDisabled)
             {
                 assetLinks = new SpeedyAssetLinks();
@@ -242,7 +327,9 @@ namespace Sitecore.Foundation.Speedy.Speedy
                                         select $"<link async=\"true\" href=\"{link}\" rel=\"stylesheet\" />")
                 {
                     var cssFileUri = item.Replace($"<link async=\"true\" href=\"", string.Empty).Replace($"\" rel=\"stylesheet\" />", string.Empty);
+                    var prefetchInclude = item.Replace($"async=\"true\"", $"async=\"true\" rel=\"prefetch\"");
                     result.PlainStyles.Add(cssFileUri);
+                    result.PrefetchStyles.Add(prefetchInclude);
                     result.Styles.Add(item);
                 }
                 foreach (string item2 in from link in assetLinks.Scripts
@@ -267,15 +354,26 @@ namespace Sitecore.Foundation.Speedy.Speedy
             if (AreScriptsDeferred)
             {
                 string deferredSriptsCacheKey = $"speedy-deferred-page-scripts-{Sitecore.Context.Item.ID}";
+                string preloadSriptsCacheKey = $"speedy-preload-page-scripts-{Sitecore.Context.Item.ID}";
                 string deferredSriptsCache = HttpContext.Current.Cache[deferredSriptsCacheKey] as string;
-                if (!string.IsNullOrWhiteSpace(deferredSriptsCache))
+                string preloadSriptsCache = HttpContext.Current.Cache[preloadSriptsCacheKey] as string;
+
+                if (SpeedyGenerationSettings.IsDebugModeEnabled())
+                {
+                    deferredSriptsCache = null;
+                    preloadSriptsCache = null;
+                }
+
+                if (!string.IsNullOrWhiteSpace(deferredSriptsCache) && !string.IsNullOrWhiteSpace(preloadSriptsCache))
                 {
                     linkSpeedy.ClientScriptsRendered = deferredSriptsCache;
+                    linkSpeedy.ClientScriptsPreload = preloadSriptsCache;
                 }
                 else
                 {
                     assetsGenerator.GenerateSpeedyScripts(linkSpeedy);
                     CacheObject(deferredSriptsCacheKey, linkSpeedy.ClientScriptsRendered, GetDependencies(null));
+                    CacheObject(preloadSriptsCacheKey, linkSpeedy.ClientScriptsPreload, GetDependencies(null));
                 }
             }
             else
@@ -300,7 +398,7 @@ namespace Sitecore.Foundation.Speedy.Speedy
                     comma = string.Empty;
 
                 result += $"'{scripts}'{comma}";
-                resultPreloaded += $"<link rel=\"preload\" href=\"{scripts}\" as=\"script\">";
+                resultPreloaded += $"<link rel=\"prefetch\" href=\"{scripts}\" as=\"script\">";
                 count++;
             }
 

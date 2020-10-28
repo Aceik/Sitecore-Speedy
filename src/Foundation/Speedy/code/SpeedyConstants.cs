@@ -12,17 +12,13 @@ namespace Sitecore.Foundation.Speedy
         public struct Fields
         {
             public static readonly string SpeedyEnabled = "SpeedyEnabled";
-            public static readonly string CriticalViewPortWidth = "CriticalViewPortWidthPixels";
-            public static readonly string CriticalViewPortHeight = "CriticalViewPortHeightPixels";
-            public static readonly string CriticalCss = "CriticalCSS";
             public static readonly string SpecialCaseCriticalCss = "SpecialCaseCriticalCSS";
-
             public static readonly string EnableJavascriptLoadDefer = "EnableJavascriptLoadDefer";
             public static readonly string EnableStylesheetLoadDefer = "EnableStylesheetLoadDefer";
-            public static readonly string EnableEasyCriticalMode = "EnableEasyCriticalMode";
             public static readonly string OnePassCookieEnabled = "OnePassCookieEnabled";
-            
             public static readonly string FallbackSelectorFieldName = "CssFallbackSelector";
+            public static readonly string MobileCriticalJavascript = "MobileCriticalJavascript";
+            public static readonly string EveryLoadVanillaJavscriptFile = "EveryLoadVanillaJavscriptFile";
         }
 
         public struct CookieNames
@@ -36,21 +32,12 @@ namespace Sitecore.Foundation.Speedy
 
             public struct Fields
             {
-                public static readonly string EndpointUrl = "EndpointURL";
-                public static readonly string EndpointUsername = "EndpointUsername";
-                public static readonly string EndpointPassword = "EndpointPassword";
-                public static readonly string RemoteFontMap = "RemoteFontMap";
-                public static readonly string RemoteDuplicatesToRemove = "RemoteDuplicatesToRemove";
-                public static readonly string RemoteFontsToSwitch = "RemoteFontsToSwitch";
-                public static readonly string ShouldRegenerateOnEverySaveEvent = "ShouldRegenerateOnEverySaveEvent";
-                public static readonly string ShouldGenerateOnScheduledTask = "ShouldGenerateOnScheduledTask";
                 public static readonly string CookieExpiration = "CookieExpirationDays";
                 public static readonly string DeferJSLoadForMilliseconds = "DeferJSLoadForMilliseconds";
                 public static readonly string DeferCSSLoadForMilliseconds = "DeferCSSLoadForMilliseconds";
                 public static readonly string DeferFallbackForMilliseconds = "DeferFallbackForMilliseconds";
-
-                public static readonly string DefaultCriticalWidth = "DefaultCriticalWidth";
-                public static readonly string DefaultCriticalHeight = "DefaultCriticalHeight";
+                public static readonly string EnableDebugMode = "EnableDebugMode";
+                public static readonly string CSSFilter = "CSSFilter";
             }
 
             public struct Database
