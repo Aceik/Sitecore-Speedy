@@ -53,8 +53,8 @@ It is likely that a developer will be required to setup and tweak the settings b
 3) Enable Speedy 
 
 ### Sitecore Settings
-* [Global Settings](https://github.com/Aceik/Sitecore-Speedy/wiki/06---Global-Settings)
-* [Page Settings](https://github.com/Aceik/Sitecore-Speedy/wiki/07---Page-Settings)
+* [Speedy Global Settings](https://github.com/Aceik/Sitecore-Speedy/wiki/06---Global-Settings)
+* [Speedy Page Settings](https://github.com/Aceik/Sitecore-Speedy/wiki/07---Page-Settings)
 
 ## Troubleshooting
 
