@@ -46,12 +46,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Extensions\QuickExtensions.cs" />
-    <Compile Include="Models\API\ResponseWrapper\ApiErrorResponse.cs" />
-    <Compile Include="Models\API\ResponseWrapper\IGenericResponse.cs" />
-    <Compile Include="Models\API\ResponseWrapper\IServiceError.cs" />
-    <Compile Include="Models\API\ResponseWrapper\IWebApiResponse.cs" />
-    <Compile Include="Models\API\ResponseWrapper\ServiceError.cs" />
-    <Compile Include="Models\API\ResponseWrapper\WebApiResponse.cs" />
     <Compile Include="Model\Filters\Filters.cs" />
     <Compile Include="Model\SpeedyLayoutModel.cs" />
     <Compile Include="Settings\SpeedyGenerationSettings.cs" />
@@ -77,7 +71,9 @@
     <Content Include="Views\Speedy\SpeedyJavascriptLoaderSettings.cshtml" />
     <Content Include="Views\Speedy\SpeedyJavascriptPreLoader.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Configuration.ConfigurationBuilders.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Microsoft.Configuration.ConfigurationBuilders.Base.1.0.2\lib\Net471\Microsoft.Configuration.ConfigurationBuilders.Base.dll</HintPath>
@@ -104,35 +100,8 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
-    </Reference>
     <Reference Include="Sitecore.Annotations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Sitecore.Annotations.10.0.0\lib\net471\Sitecore.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Buckets, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Buckets.10.0.0\lib\net48\Sitecore.Buckets.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Buckets.Client, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Buckets.Client.10.0.0\lib\net48\Sitecore.Buckets.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.ContentSearch, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.10.0.0\lib\net48\Sitecore.ContentSearch.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.ContentSearch.Data, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.Data.10.0.0\lib\net48\Sitecore.ContentSearch.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.ContentSearch.Linq, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.ContentSearch.Linq.10.0.0\lib\net48\Sitecore.ContentSearch.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Framework.Conditions, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Framework.Conditions.5.0.0\lib\netstandard2.0\Sitecore.Framework.Conditions.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Framework.Data.Blobs, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Framework.Data.Blobs.2.0.0\lib\netstandard2.0\Sitecore.Framework.Data.Blobs.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Framework.Data.Blobs.Abstractions, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Framework.Data.Blobs.Abstractions.2.0.0\lib\netstandard2.0\Sitecore.Framework.Data.Blobs.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel, Version=16.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Sitecore.Kernel.10.1.0\lib\net48\Sitecore.Kernel.dll</HintPath>
@@ -145,12 +114,6 @@
     </Reference>
     <Reference Include="Sitecore.Mvc, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Sitecore.Mvc.10.0.0\lib\net48\Sitecore.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Nexus.Consumption, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9de34fe2109de40c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Nexus.Consumption.1.2.0\lib\netstandard2.0\Sitecore.Nexus.Consumption.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Nexus.Licensing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9de34fe2109de40c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Nexus.Licensing.2.0.6\lib\netstandard2.0\Sitecore.Nexus.Licensing.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Web, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Sitecore.Web.10.0.0\lib\net48\Sitecore.Web.dll</HintPath>
