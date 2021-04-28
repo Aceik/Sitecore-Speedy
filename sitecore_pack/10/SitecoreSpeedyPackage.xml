@@ -2,13 +2,14 @@
   <Metadata>
     <metadata>
       <PackageName>Sitecore Speedy</PackageName>
-      <Author>Thomas Tyack @ Aceik</Author>
-      <Version>v2.0-release-a</Version>
+      <Author>Thomas Tyack</Author>
+      <Version>v2.0.1</Version>
       <Revision />
       <License />
-      <Comment>Supports SXA 9.3 
+      <Comment>Supports SXA 10.0.0
 All documentation and setup instructions head over to: https://github.com/Aceik/Sitecore-Speedy
 
+28/04/2020 - Fix for CD Database context bug and CD instructions added
 10/05/2020 - Added in the Services config
 18/05/2020 - Fix for having styles off and JS on.  Plus fix layout Flag
 
@@ -29,7 +30,33 @@ Oct 2020 - Sitecore 10 updates
 
 - Complete overhaul in V2.  No longer require a node server. </Comment>
       <Attributes />
-      <Readme>All documentation and setup instructions head over to: https://github.com/Aceik/Sitecore-Speedy</Readme>
+      <Readme>All documentation and setup instructions head over to: https://github.com/Aceik/Sitecore-Speedy
+
+This is a package that can be installed on a Standalone Role and ContentManagement Role. 
+
+------------------------------------------------------
+
+CD Installation - (After installing the package on the CM server) 
+
+The following files need to be incorporated into your CI/CD process, or copied from CM to CD manually after installation.  For CI/CD integrations it is advisable to incorporate the Helix module into your own solution. The version of Sitecore your using likely has a matching branch in the Github repository. 
+
+Files to deploy to CD
+
+1)  Copy /Views/SxaLayout/SxaLayoutPageSpeed.cshtml
+2)  Copy /Views/Speedy/ 
+3)  Copy /bin/RestSharp.dll 
+4)  Copy /bin/Sitecore.Foundation.Speedy.dll  
+5)  Copy /Scripts/lazy.js  
+6)  Copy /Scripts/mobile-vanilla-critical.js
+
+
+Items to Publish to CD
+
+1) /sitecore/templates/Foundation/Speedy
+2) /sitecore/layout/Layouts/Foundation/Speedy
+3) /sitecore/layout/Renderings/Foundation/Speedy
+4) /sitecore/system/Settings/Foundation/Speedy
+5) /sitecore/templates/Foundation/Experience Accelerator/Multisite/Content/Page</Readme>
       <Publisher>Thomas Tyack</Publisher>
       <PostStep />
       <PackageID />
