@@ -17,17 +17,14 @@ using Sitecore.XA.Foundation.Theming.Pipelines.AssetService;
 using static Sitecore.Foundation.Speedy.SpeedyConstants;
 using Sitecore.Mvc.Presentation;
 using System.Text;
-using RestSharp;
 using System;
 using Sitecore.Mvc.Extensions;
 using System.Web.Caching;
 using Sitecore.XA.Foundation.SitecoreExtensions.Repositories;
-using System.Web.UI;
 using System.Net;
+using System.Collections.Specialized;
 using Newtonsoft.Json;
 using Sitecore.Foundation.Speedy.Model.Filters;
-using Sitecore.ContentSearch.Pipelines.GetGlobalFilters;
-using System.Collections.Specialized;
 
 namespace Sitecore.Foundation.Speedy.Speedy
 {
@@ -232,24 +229,18 @@ namespace Sitecore.Foundation.Speedy.Speedy
                 var uri = HttpContext.Current.Request.Url;
                 var host = uri.Scheme + Uri.SchemeDelimiter + uri.Host + ":" + uri.Port;
 
-                ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
-                var client = new RestClient(host + url);
-                var request = new RestRequest(Method.GET) { RequestFormat = DataFormat.Json };
-
-                if(acceptJs)
-                {
-                    request.AddHeader("Accept", "application/javascript");
-                    request.AddHeader("Content-Type", "application/javascript");
-                }
-
                 // or automatically deserialize result
                 // return content type is sniffed but can be explicitly set via RestClient.AddHandler();
                 try
                 {
-                    var response2 = client.Execute(request);
-                    if(response2?.Content != null)
-                        CacheObject(cssFileCacheKey, response2.Content, GetDependencies(null));
-                    return response2.Content;
+                    WebClient client = new WebClient();
+                    string reply = client.DownloadString(host + url);
+
+                    ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+
+                    if (!string.IsNullOrWhiteSpace(reply))
+                        CacheObject(cssFileCacheKey, reply, GetDependencies(null));
+                    return reply;
                 }
                 catch (Exception ex)
                 {
