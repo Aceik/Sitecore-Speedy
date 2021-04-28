@@ -24,37 +24,17 @@ namespace Sitecore.Foundation.Speedy.Settings
             return item.IsEnabled(SpeedyConstants.Fields.OnePassCookieEnabled);
         }
 
-        //public static bool IsCriticalStylesEnabledAndPossible(this Item item)
-        //{
-        //    return item.IsEnabled(SpeedyConstants.Fields.EnableStylesheetLoadDefer);
-        //}
-
         public static bool IsCriticalStylesEnabled(this Item item)
         {
             return item.IsEnabled(SpeedyConstants.Fields.EnableStylesheetLoadDefer);
         }
-
-        //public static bool IsEasyCriticalEnabled(this Item item)
-        //{
-        //    return item.IsCriticalStylesEnabled() && item.IsEnabled(SpeedyConstants.Fields.EnableEasyCriticalMode);
-        //}
 
         public static bool IsCriticalJavascriptEnabledAndPossible(this Item item)
         {
             return item.Fields[SpeedyConstants.Fields.EnableJavascriptLoadDefer] != null && item.IsEnabled(SpeedyConstants.Fields.EnableJavascriptLoadDefer);
         }
 
-        public static Item GetGlobalSettingsItem()
-        {
-            return GetMasterDatabase().GetItem(SpeedyConstants.GlobalSettings.SpeedyGlobalSettingsId);
-        }
-
-        private static Database GetMasterDatabase()
-        {
-            return Database.GetDatabase(SpeedyConstants.GlobalSettings.Database.Master);
-        }
-
-        private static Item GetGlobalSettingsItemFromContext()
+        public static Item GetGlobalSettingsItemFromContext()
         {
             return GetContextDatabase().GetItem(SpeedyConstants.GlobalSettings.SpeedyGlobalSettingsId);
         }
@@ -66,12 +46,12 @@ namespace Sitecore.Foundation.Speedy.Settings
 
         public static string GetCookieExpiration()
         {
-            return GetGlobalSettingsItem().Fields[SpeedyConstants.GlobalSettings.Fields.CookieExpiration].Value;
+            return GetGlobalSettingsItemFromContext().Fields[SpeedyConstants.GlobalSettings.Fields.CookieExpiration].Value;
         }
 
         public static bool IsDebugModeEnabled()
         {
-            return GetGlobalSettingsItem().IsEnabled(SpeedyConstants.GlobalSettings.Fields.EnableDebugMode);
+            return GetGlobalSettingsItemFromContext().IsEnabled(SpeedyConstants.GlobalSettings.Fields.EnableDebugMode);
         }
 
         public static string GetDeferJSLoadForMilliseconds()
