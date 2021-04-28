@@ -148,9 +148,6 @@
     <Reference Include="Sitecore.XA.Foundation.TokenResolution, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Sitecore.XA.Foundation.TokenResolution.10.0.0\lib\net48\Sitecore.XA.Foundation.TokenResolution.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Zip, Version=12.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Sitecore.Zip.10.0.0\lib\net48\Sitecore.Zip.dll</HintPath>
-    </Reference>
     <Reference Include="sysglobl" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
