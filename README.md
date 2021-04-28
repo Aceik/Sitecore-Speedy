@@ -39,6 +39,7 @@ It is likely that a developer will be required to setup and tweak the settings b
 ## Installation prerequisites and notes
 
 * <img src="https://img.shields.io/badge/requires-sitecore-blue.svg?style=flat-square" alt="requires sitecore">
+* <img src="https://img.shields.io/badge/supports-sitecore%20v10.1-green.svg?style=flat-square" alt="supports sitecore 10.1">
 * <img src="https://img.shields.io/badge/supports-sitecore%20v10-green.svg?style=flat-square" alt="supports sitecore 10">
 * <img src="https://img.shields.io/badge/supports-sitecore%20v9.3-green.svg?style=flat-square" alt="supports sitecore 9.3">
 * <img src="https://img.shields.io/badge/supports-sitecore%20v9.2-green.svg?style=flat-square" alt="supports sitecore 9.2">
