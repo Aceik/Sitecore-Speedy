@@ -153,7 +153,7 @@ namespace Sitecore.Foundation.Speedy.Speedy
             StringBuilder entireCriticalBlock = new StringBuilder();
 
             // Lookup the filters
-            var nameValueListString = SpeedyGenerationSettings.GetGlobalSettingsItem()[SpeedyConstants.GlobalSettings.Fields.CSSFilter];
+            var nameValueListString = SpeedyGenerationSettings.GetGlobalSettingsItemFromContext()[SpeedyConstants.GlobalSettings.Fields.CSSFilter];
 
             //Converts the string to NameValueCollection
             System.Collections.Specialized.NameValueCollection nameValueList = Sitecore.Web.WebUtil.ParseUrlParameters(nameValueListString);
