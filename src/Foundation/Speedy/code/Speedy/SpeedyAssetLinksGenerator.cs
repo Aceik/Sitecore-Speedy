@@ -236,8 +236,11 @@ namespace Sitecore.Foundation.Speedy.Speedy
                     WebClient client = new WebClient();
                     string reply = client.DownloadString(host + url);
 
-                    ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
-
+                    // The below is commented out, and originally slipped through to master by mistake.
+                    // If your testing the module in development and don't have a valid SSL certificate, you might need to comment it in.
+//#if DEBUG
+//                    ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+//#endif
                     if (!string.IsNullOrWhiteSpace(reply))
                         CacheObject(cssFileCacheKey, reply, GetDependencies(null));
                     return reply;
