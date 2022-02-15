@@ -1,5 +1,16 @@
 ![Sitecore Speedy](https://aceiksolutions.files.wordpress.com/2019/06/speedylogo.png?w=200)
 
+#Feb 2022 - Update Notice Below
+
+- There won't be a release for 10.2 planned. Its 2022 and Sitecore 10.2 now supports Next.JS which is a far better option if your serious about page speed. Yes the headless world has it challanges and its a little bit of the bleeding edge / wild west, but worth considering if you have a new build. 
+- If you want to get in touch, reach out on Sitecore slack. I'm not actively watching the issues tab in this repository. 
+- Google has updated the Page Speed test. You will now see the real world data tests at the top, which is an amazing improvement for everyone. 
+- On the other hand if your just running single one off tests, its also cranked up the algoritm the next notch it appears. So its a bit harder again to get into the green zone for single test runs. 
+- One tip worth mentioning for those single tests before your get into production. Switch over to using GTMetrics (which in now also based on lighthouse) and choose a testing server closer to your hosting server. For those not using an Edge CDN  this will provide a more accurate 'single' run score. 
+
+
+
+
 ## Sitecore Speedy (SXA Version) 
 <img src='https://img.shields.io/github/tag/Aceik/Sitecore-Speedy.svg' />
 <img src='https://img.shields.io/github/issues/Aceik/Sitecore-Speedy.svg' />
